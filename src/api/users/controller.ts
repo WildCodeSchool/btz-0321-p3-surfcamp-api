@@ -3,11 +3,27 @@ import faker from "faker";
 
 interface User {
   id: string;
+  firstname: string;
+  lastname: string;
   email: string;
+  password: string;
+  image: string;
+  role: string;
+  birthDate: Date;
+  status: string;
+  mobilePhone: string;
 }
 
 interface ReqBodyUser {
+  firstname: string;
+  lastname: string;
   email: string;
+  password: string;
+  image: string;
+  role: string;
+  birthDate: Date;
+  status: string;
+  mobilePhone: string;
 }
 
 interface Params {
@@ -31,26 +47,62 @@ const controllers: UserHandlers = {
 
     const user = {
       id: faker.datatype.uuid(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
       email: faker.internet.email(),
+      password: faker.internet.password(),
+      image: faker.image.avatar(),
+      role: faker.lorem.word(),
+      birthDate: faker.date.past(),
+      status: faker.lorem.word(),
+      mobilePhone: faker.phone.phoneNumber(),
     };
 
     res.status(200).json(user);
   },
   post: (req, res) => {
-    const { email } = req.body;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      image,
+      role,
+      birthDate,
+      status,
+      mobilePhone,
+    } = req.body;
 
     setTimeout(() => {}, 500);
 
     const createdUser = {
       id: faker.datatype.uuid(),
+      firstname,
+      lastname,
       email,
+      password,
+      image,
+      role,
+      birthDate,
+      status,
+      mobilePhone,
     };
 
     res.status(201).json(createdUser);
   },
   put: (req, res) => {
     const { id } = req.params;
-    const { email } = req.body;
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      image,
+      role,
+      birthDate,
+      status,
+      mobilePhone,
+    } = req.body;
 
     setTimeout(() => {}, 500);
 
