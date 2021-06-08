@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model User {
+  id           String        @id @default(uuid())
+  firstname    String
+  lastname     String
+  email        String
+  password     String
+  picture      String
+  role         String
+  birthDate    DateTime
+  status       String
+  phoneNumber  String
+  address      Address?
+  reservations Reservation[]
+}
+
+model Address {
+  id           String     @id @default(uuid())
+  zipcode      String
+  city         String
+  street       String
+  streetNumber String
+  lat          Decimal
+  long         Decimal
+  countryCode  String
+  phoneNumber  String
+  users        User       @relation(fields: [userId], references: [id])
+  userId       String
+  Property     Property[]
+}
+
+model Property {
+  id               String            @id @default(uuid())
+  name             String
+  description      String
+  type             String
+  priceByNight     Int
+  status           Boolean
+  propertyPictures PropertyPicture[]
+  address          Address           @relation(fields: [addressId], references: [id])
+  rooms            Room[]
+  features         Feature[]
+  Reservation      Reservation?      @relation(fields: [reservationId], references: [id])
+  reservationId    String?
+  addressId        String
+}
+
+model Feature {
+  id         String     @id @default(uuid())
+  label      String
+  type       String
+  properties Property[]
+}
+
+model PropertyPicture {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  url         String
+  Property    Property? @relation(fields: [propertyId], references: [id])
+  propertyId  String?
+}
+
+model Room {
+  id           String    @id @default(uuid())
+  name         String
+  description  String
+  capacity     String
+  priceByNight Float
+  Property     Property? @relation(fields: [propertyId], references: [id])
+  propertyId   String?
+}
+
+model Checkout {
+  id            String       @id @default(uuid())
+  comment       String
+  rating        Int
+  Reservation   Reservation? @relation(fields: [reservationId], references: [id])
+  reservationId String?
+}
+
+model Reservation {
+  id            String     @id @default(uuid())
+  startDate     DateTime
+  endDtate      DateTime
+  customerCount Int
+  status        Boolean
+  checkouts     Checkout[]
+  user          User[]
+  property      Property[]
+}
