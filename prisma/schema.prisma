@@ -18,7 +18,7 @@ model User {
   password     String
   picture      String
   role         Role          @default(USER)
-  birthDate    DateTime
+  birthDate    String
   isActive     Boolean       @default(false)
   phoneNumber  String
   address      Address?
