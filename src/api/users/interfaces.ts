@@ -8,7 +8,7 @@ interface UserWithoutPassword {
   email: string;
   picture: string;
   role: Role;
-  birthDate: Date;
+  birthDate: string;
   phoneNumber: string;
   createdAt: Date;
 }
@@ -20,7 +20,7 @@ interface ReqBodyUserPost {
   password: string;
   confirmPassword: string;
   picture: string;
-  birthDate: Date;
+  birthDate: string;
   phoneNumber: string;
   address?: Address;
 }
@@ -30,7 +30,7 @@ interface ReqBodyUserPut {
   lastname: string;
   email: string;
   picture: string;
-  birthDate: Date;
+  birthDate: string;
   phoneNumber: string;
   role: Role;
   isActive: boolean;

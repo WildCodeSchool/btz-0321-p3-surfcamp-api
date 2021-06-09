@@ -3,6 +3,7 @@ import prisma from "../../../prisma/prismaClient";
 import UserHandlers from "./interfaces";
 
 const post: UserHandlers["post"] = async (req, res) => {
+  console.log(req.body)
   const {
     firstname,
     lastname,
@@ -38,13 +39,15 @@ const post: UserHandlers["post"] = async (req, res) => {
           },
         }),
       },
+
     });
 
     const { password: pw, ...createdUserWithoutPassword } = createdUser;
 
     res.status(201).json(createdUserWithoutPassword);
   } catch (error) {
-    res.json(error);
+  
+    res.status(400).json(error);
   }
 };
 
