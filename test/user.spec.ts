@@ -4,7 +4,7 @@ import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 
-describe("Users Ressources", () => {
+describe("Users Resources", () => {
   test("Get status 200 and array of users", async () => {
     const res = await request(app)
       .get("/users")
@@ -14,7 +14,7 @@ describe("Users Ressources", () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  test("Get status 200 and array of one user", async () => {
+  test("Get status 200 and one user", async () => {
     const sampleUser = {
       email: faker.internet.email(),
       firstname: faker.name.firstName(),
@@ -39,7 +39,7 @@ describe("Users Ressources", () => {
     expect(res.body).not.toHaveProperty("password");
   });
 
-  test("post user should fail, password doesn't match", async () => {
+  test("post user should fail, passwords don't match", async () => {
     const sampleUser = {
       email: faker.internet.email(),
       firstname: faker.name.firstName(),
