@@ -1,4 +1,4 @@
-import UserHandlers from "./interfaces";
+import AddressHandlers from "./interfaces";
 
 import getAll from "./getAll";
 import getOne from "./getOne";
@@ -6,7 +6,7 @@ import post from "./post";
 import put from "./put";
 import deleteOne from "./delete";
 
-const controllers: UserHandlers = {
+const controllers: AddressHandlers = {
   getAll,
   getOne,
   post,
