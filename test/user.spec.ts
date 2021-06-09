@@ -82,6 +82,48 @@ describe("Users Ressources", () => {
     expect(res.body).toHaveProperty("lastname", sampleUser.lastname);
     expect(res.body).not.toHaveProperty("password");
   });
+
+  test("put one user", async () => {
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id } = await prisma.user.create({
+      data: sampleUser,
+    });
+
+    const res = await request(app)
+      .put(`/users/${id}`)
+      .send(sampleUser)
+      .expect(204);
+
+    expect.not.objectContaining(sampleUser);
+  });
+
+  test("delete one user", async () => {
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id } = await prisma.user.create({
+      data: sampleUser,
+    });
+    const res = await request(app).delete(`/users/${id}`).expect(204);
+
+    expect.not.objectContaining(sampleUser);
+  });
 });
 
 afterAll(async () => {
