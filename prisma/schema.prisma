@@ -1,0 +1,137 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id           String        @id @default(uuid())
+  firstname    String
+  lastname     String
+  email        String
+  password     String
+  picture      String
+  role         Role          @default(USER)
+  birthDate    DateTime
+  isActive     Boolean       @default(false)
+  phoneNumber  String
+  address      Address?
+  reservations Reservation[]
+  comment      Comment[]
+  createdAt    DateTime      @default(now())
+}
+
+model Address {
+  id           String    @id @default(uuid())
+  zipcode      String
+  city         String
+  street       String
+  streetNumber String
+  lat          Decimal
+  long         Decimal
+  countryCode  String
+  phoneNumber  String
+  user         User?     @relation(fields: [userId], references: [id])
+  userId       String?
+  property     Property?
+  createdAt    DateTime  @default(now())
+}
+
+model Property {
+  id           String            @id @default(uuid())
+  name         String
+  description  String
+  type         String
+  priceByNight Int
+  status       Boolean
+  pictures     PropertyPicture[]
+  address      Address           @relation(fields: [addressId], references: [id])
+  addressId    String
+  rooms        Room[]
+  features     Feature[]
+  reservations Reservation[]
+  comment      Comment[]
+  createdAt    DateTime          @default(now())
+}
+
+model Feature {
+  id         String     @id @default(uuid())
+  label      String
+  type       String
+  properties Property[]
+  createdAt  DateTime   @default(now())
+}
+
+model PropertyPicture {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  url         String
+  property    Property? @relation(fields: [propertyId], references: [id])
+  propertyId  String?
+  createdAt   DateTime  @default(now())
+}
+
+model Room {
+  id           String        @id @default(uuid())
+  name         String
+  description  String
+  capacity     Int
+  priceByNight Float
+  property     Property?     @relation(fields: [propertyId], references: [id])
+  propertyId   String?
+  reservation  Reservation[]
+  comment      Comment[]
+  createdAt    DateTime      @default(now())
+}
+
+model Comment {
+  id            String      @id @default(uuid())
+  comment       String      @db.Text
+  rate          Int
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  property      Property?   @relation(fields: [propertyId], references: [id])
+  propertyId    String?
+  room          Room?       @relation(fields: [roomId], references: [id])
+  roomId        String?
+  reservation   Reservation @relation(fields: [reservationId], references: [id])
+  reservationId String
+  createdAt     DateTime    @default(now())
+}
+
+model Reservation {
+  id            String    @id @default(uuid())
+  startDate     DateTime
+  endDtate      DateTime
+  customerCount Int
+  status        Status
+  user          User      @relation(fields: [userId], references: [id])
+  userId        String
+  property      Property? @relation(fields: [propertyId], references: [id])
+  propertyId    String
+  room          Room?     @relation(fields: [roomId], references: [id])
+  roomId        String?
+  comment       Comment[]
+  createdAt     DateTime  @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPERADMIN
+  RENTER
+}
+
+enum Status {
+  PENDING
+  CONFIRMED
+  CANCELED
+  CONSUMED
+}
