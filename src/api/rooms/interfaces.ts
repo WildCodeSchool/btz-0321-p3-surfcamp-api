@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { Property, Room } from "@prisma/client";
+import { Room } from "@prisma/client";
 
 interface ReqBodyRoomPost {
   name: string;

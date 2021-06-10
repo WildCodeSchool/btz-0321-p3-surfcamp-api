@@ -1,18 +1,18 @@
-import { Feature, Property } from ".prisma/client";
+import { Feature } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyFeaturePost {
   label: string;
   type: string;
   createdAt: Date;
-  property?: string;
+  propertyId: string;
 }
 
 interface ReqBodyFeaturePut {
   label: string;
   type: string;
   createdAt: Date;
-  property: string;
+  propertyId: string;
 }
 
 interface Params {

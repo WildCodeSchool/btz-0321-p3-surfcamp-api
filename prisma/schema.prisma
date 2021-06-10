@@ -64,7 +64,8 @@ model Feature {
   id         String     @id @default(uuid())
   label      String
   type       String
-  properties Property[]
+  property     Property     @relation(fields: [propertyId], references: [id])
+  propertyId   String
   createdAt  DateTime   @default(now())
 }
 
