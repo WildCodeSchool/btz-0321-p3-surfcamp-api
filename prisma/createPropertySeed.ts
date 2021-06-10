@@ -10,7 +10,6 @@ const createProperty = async (number: number, prisma: PrismaClient) => {
         countryCode: faker.address.countryCode(),
         lat: faker.address.latitude(),
         long: faker.address.longitude(),
-        phoneNumber: faker.phone.phoneNumber(),
         street: faker.address.streetName(),
         streetNumber: faker.address.streetAddress(),
         zipcode: faker.address.zipCode(),
@@ -24,6 +23,7 @@ const createProperty = async (number: number, prisma: PrismaClient) => {
         priceByNight: parseInt(faker.commerce.price()),
         status: faker.datatype.boolean(),
         type: faker.company.companyName(),
+        phoneNumber: faker.phone.phoneNumber(),
         addressId: address.id,
       },
     });
