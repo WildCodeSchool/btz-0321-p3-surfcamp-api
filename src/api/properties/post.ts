@@ -3,6 +3,7 @@ import prisma from "../../../prisma/prismaClient";
 import PropertyHandlers from "./interfaces";
 
 const post: PropertyHandlers["post"] = async (req, res) => {
+
   const {
     name,
     priceByNight,
@@ -13,6 +14,9 @@ const post: PropertyHandlers["post"] = async (req, res) => {
     rooms,
   } = req.body;
 
+  const { name, priceByNight, type, description, status, addressId } = req.body;
+
+
   const createdProperty = await prisma.property.create({
     data: {
       name,
@@ -20,16 +24,7 @@ const post: PropertyHandlers["post"] = async (req, res) => {
       description,
       type,
       status,
-      rooms: {
-        create: {
-          ...rooms,
-        },
-      },
-      address: {
-        create: {
-          ...address,
-        },
-      },
+      addressId,
     },
   });
 
