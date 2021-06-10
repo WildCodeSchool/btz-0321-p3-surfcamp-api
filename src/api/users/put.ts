@@ -15,21 +15,25 @@ const put: UserHandlers["put"] = async (req, res) => {
     isActive,
   } = req.body;
 
-  await prisma.user.update({
-    where: { id },
-    data: {
-      firstname,
-      lastname,
-      isActive,
-      email,
-      picture,
-      birthDate,
-      phoneNumber,
-      role,
-    },
-  });
+  try {
+    await prisma.user.update({
+      where: { id },
+      data: {
+        firstname,
+        lastname,
+        isActive,
+        email,
+        picture,
+        birthDate,
+        phoneNumber,
+        role,
+      },
+    });
 
-  res.sendStatus(204);
+    res.sendStatus(204);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 export default put;
