@@ -4,9 +4,8 @@ import createAddress from "./createAdressSeed";
 
 const seed: any = async () => {
   createProperty(40);
-  createAddress(40);
   createUser(40);
-  return "ok seed";
+  return "40 adresses properties and users was created";
 };
 
 export default seed;
