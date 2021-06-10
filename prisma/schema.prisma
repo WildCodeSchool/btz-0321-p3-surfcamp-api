@@ -36,7 +36,7 @@ model Address {
   lat          Decimal
   long         Decimal
   countryCode  String
-  phoneNumber  String
+ 
   user         User?     @relation(fields: [userId], references: [id])
   userId       String?
   property     Property?
@@ -57,6 +57,7 @@ model Property {
   features     Feature[]
   reservations Reservation[]
   comments      Comment[]
+  phoneNumber  String
   createdAt    DateTime          @default(now())
 }
 
