@@ -6,7 +6,7 @@ interface ReqBodyRoomPost {
   description: string;
   capacity: number;
   priceByNight: number;
-  Property?: Property;
+  property?: Property;
 }
 
 interface ReqBodyRoomPut {
@@ -14,8 +14,7 @@ interface ReqBodyRoomPut {
   description: string;
   capacity: number;
   priceByNight: number;
-  propertyId: string;
-  Property?: Property;
+  property: Property;
 }
 
 interface Params {
