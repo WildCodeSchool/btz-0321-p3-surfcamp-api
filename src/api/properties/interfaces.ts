@@ -1,4 +1,4 @@
-import { Address, Property } from ".prisma/client";
+import { Address, Property, Room } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPost {
@@ -8,6 +8,7 @@ interface ReqBodyPropertyPost {
   priceByNight: number;
   status: boolean;
   address: Address;
+  rooms: Room;
 }
 
 interface ReqBodyPropertyPut {
