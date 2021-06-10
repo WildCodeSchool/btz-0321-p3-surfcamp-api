@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// function who take a number as parrameter as iterator and create one property and one adress with the relation between them for each iteration.
+
 const createProperty = async (number: number) => {
   for (let i = 0; i < number; i++) {
     let address = await prisma.address.create({

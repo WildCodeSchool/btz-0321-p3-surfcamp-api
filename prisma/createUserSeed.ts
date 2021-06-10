@@ -4,6 +4,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+// function who take a number as parrameter as iterator and create a user  for each iteration.
+
 const createUser = async (number: number) => {
   for (let i = 0; i < number; i++) {
     const users: any = await prisma.user.create({
