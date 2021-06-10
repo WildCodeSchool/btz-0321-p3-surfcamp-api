@@ -1,8 +1,8 @@
 import prisma from "../../../prisma/prismaClient";
 
-import CommentsHandlers from "./interfaces";
+import CommentHandlers from "./interfaces";
 
-const post: CommentsHandlers["post"] = async (req, res) => {
+const post: CommentHandlers["post"] = async (req, res) => {
   const { comment, rate, reservationId, userId } = req.body;
 
   const createdComments = await prisma.comment.create({

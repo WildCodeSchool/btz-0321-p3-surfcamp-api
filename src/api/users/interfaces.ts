@@ -8,7 +8,7 @@ interface UserWithoutPassword {
   email: string;
   picture: string;
   role: Role;
-  birthDate: string;
+  birthDate: Date;
   phoneNumber: string;
   createdAt: Date;
 }
