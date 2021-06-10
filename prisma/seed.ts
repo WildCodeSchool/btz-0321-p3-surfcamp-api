@@ -1,11 +1,20 @@
 import createUser from "./createUserSeed";
 import createProperty from "./createPropertySeed";
-import createAddress from "./createAdressSeed";
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 const seed: any = async () => {
-  createProperty(40);
-  createUser(40);
-  return "40 adresses properties and users were created";
+  await createProperty(40, prisma);
+  await createUser(40, prisma);
 };
 
-export default seed;
+seed()
+  .catch((e: any) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

@@ -7,7 +7,6 @@ interface ReqBodyPropertyPost {
   type: string;
   priceByNight: number;
   status: boolean;
-  address: Address;
   addressId: string;
 }
 

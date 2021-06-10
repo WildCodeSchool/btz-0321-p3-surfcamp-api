@@ -18,7 +18,7 @@ model User {
   password     String
   picture      String
   role         Role          @default(USER)
-  birthDate    String
+  birthDate    DateTime    
   isActive     Boolean       @default(false)
   phoneNumber  String
   address      Address?
@@ -56,7 +56,7 @@ model Property {
   rooms        Room[]
   features     Feature[]
   reservations Reservation[]
-  comment      Comment[]
+  comments      Comment[]
   createdAt    DateTime          @default(now())
 }
 
@@ -84,10 +84,10 @@ model Room {
   description  String
   capacity     Int
   priceByNight Float
-  property     Property?     @relation(fields: [propertyId], references: [id])
-  propertyId   String?
+  property     Property     @relation(fields: [propertyId], references: [id])
+  propertyId   String
   reservation  Reservation[]
-  comment      Comment[]
+  comments      Comment[]
   createdAt    DateTime      @default(now())
 }
 
@@ -118,7 +118,7 @@ model Reservation {
   propertyId    String
   room          Room?     @relation(fields: [roomId], references: [id])
   roomId        String?
-  comment       Comment[]
+  comment       Comment?
   createdAt     DateTime  @default(now())
 }
 

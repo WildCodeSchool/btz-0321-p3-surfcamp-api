@@ -1,8 +1,8 @@
 import prisma from "../../../prisma/prismaClient";
 
-import CommentsHandlers from "./interfaces";
+import CommentHandlers from "./interfaces";
 
-const getAll: CommentsHandlers["getAll"] = async (req, res) => {
+const getAll: CommentHandlers["getAll"] = async (req, res) => {
   const Comments = await prisma.comment.findMany();
   res.setHeader("X-Total-Count", 200);
   res.set({

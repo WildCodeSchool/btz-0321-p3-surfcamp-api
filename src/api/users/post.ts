@@ -3,7 +3,6 @@ import prisma from "../../../prisma/prismaClient";
 import UserHandlers from "./interfaces";
 
 const post: UserHandlers["post"] = async (req, res) => {
-  console.log(req.body)
   const {
     firstname,
     lastname,
@@ -19,6 +18,7 @@ const post: UserHandlers["post"] = async (req, res) => {
   try {
     if (password !== confirmPassword) {
       res.status(422);
+      // TODO : create JOI validation middleware
       throw new Error("password doesn't match");
     }
 
@@ -29,7 +29,7 @@ const post: UserHandlers["post"] = async (req, res) => {
         email,
         password,
         picture,
-        birthDate,
+        birthDate: new Date(birthDate).toISOString(),
         phoneNumber,
         ...(address && {
           address: {
@@ -39,15 +39,14 @@ const post: UserHandlers["post"] = async (req, res) => {
           },
         }),
       },
-
     });
 
     const { password: pw, ...createdUserWithoutPassword } = createdUser;
 
     res.status(201).json(createdUserWithoutPassword);
   } catch (error) {
-  
-    res.status(400).json(error);
+    //  TODO : send to error middleware
+    res.sendStatus(res.statusCode);
   }
 };
 

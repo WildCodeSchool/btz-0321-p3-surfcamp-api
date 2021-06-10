@@ -8,24 +8,22 @@ interface ReqBodyReservationPost {
   startDate: Date;
   endDtate: Date;
   status: Status;
-  roomId: string;
+  roomId?: string;
   userId: string;
-  propertyId: string;
+  propertyId?: string;
   createdAt: Date;
 }
 
 interface ReqBodyReservationPut {
   id: string;
   comment: string;
-  createdAt: Date;
   customerCount: number;
   endDtate: Date;
-  property: string;
-  roomId: string;
   startDate: Date;
   status: Status;
   userId: string;
-  propertyId: string;
+  roomId?: string;
+  propertyId?: string;
 }
 
 interface Params {
