@@ -34,7 +34,6 @@ describe("comments Ressources", () => {
       countryCode: faker.address.countryCode(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
-      phoneNumber: faker.phone.phoneNumber(),
       street: faker.address.streetName(),
       streetNumber: faker.address.streetAddress(),
       zipcode: faker.address.zipCode(),
@@ -48,6 +47,7 @@ describe("comments Ressources", () => {
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
       type: faker.lorem.word(),
+      phoneNumber: faker.phone.phoneNumber(),
       status: faker.datatype.boolean(),
       addressId: addressId,
     };
@@ -114,7 +114,6 @@ describe("comments Ressources", () => {
       countryCode: faker.address.countryCode(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
-      phoneNumber: faker.phone.phoneNumber(),
       street: faker.address.streetName(),
       streetNumber: faker.address.streetAddress(),
       zipcode: faker.address.zipCode(),
@@ -130,6 +129,7 @@ describe("comments Ressources", () => {
       type: faker.lorem.word(),
       status: faker.datatype.boolean(),
       addressId: addressId,
+      phoneNumber: faker.phone.phoneNumber(),
     };
 
     const { id: propertyId }: any = await prisma.property.create({
@@ -191,7 +191,6 @@ describe("comments Ressources", () => {
       countryCode: faker.address.countryCode(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
-      phoneNumber: faker.phone.phoneNumber(),
       street: faker.address.streetName(),
       streetNumber: faker.address.streetAddress(),
       zipcode: faker.address.zipCode(),
@@ -207,6 +206,7 @@ describe("comments Ressources", () => {
       type: faker.lorem.word(),
       status: faker.datatype.boolean(),
       addressId: addressId,
+      phoneNumber: faker.phone.phoneNumber(),
     };
 
     const { id: propertyId }: any = await prisma.property.create({
@@ -265,11 +265,11 @@ describe("comments Ressources", () => {
       countryCode: faker.address.countryCode(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
-      phoneNumber: faker.phone.phoneNumber(),
       street: faker.address.streetName(),
       streetNumber: faker.address.streetAddress(),
       zipcode: faker.address.zipCode(),
     };
+
     const { id: addressId } = await prisma.address.create({
       data: sampleAddress,
     });
@@ -277,6 +277,7 @@ describe("comments Ressources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
+      phoneNumber: faker.phone.phoneNumber(),
       description: faker.lorem.text(),
       type: faker.lorem.word(),
       status: faker.datatype.boolean(),
