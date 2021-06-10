@@ -8,7 +8,7 @@ const post: AddressHandlers["post"] = async (req, res) => {
     countryCode,
     lat,
     long,
-    phoneNumber,
+
     street,
     streetNumber,
     zipcode,
@@ -22,7 +22,7 @@ const post: AddressHandlers["post"] = async (req, res) => {
       zipcode,
       streetNumber,
       street,
-      phoneNumber,
+
       long,
     },
   });

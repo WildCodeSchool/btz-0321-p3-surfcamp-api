@@ -35,8 +35,7 @@ model Address {
   streetNumber String
   lat          Decimal
   long         Decimal
-  countryCode  String
- 
+  countryCode  String 
   user         User?     @relation(fields: [userId], references: [id])
   userId       String?
   property     Property?

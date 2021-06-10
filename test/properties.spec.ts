@@ -13,7 +13,6 @@ describe("Properties Resources", () => {
 
     expect(Array.isArray(res.body)).toBe(true);
   });
-
   test("Get status 200 and one property", async () => {
     const sampleProperty = {
       name: faker.company.companyName(),
@@ -21,6 +20,7 @@ describe("Properties Resources", () => {
       type: faker.lorem.word(),
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
       status: faker.datatype.boolean(),
+      phoneNumber: faker.phone.phoneNumber(),
     };
 
     const address = {
@@ -46,7 +46,7 @@ describe("Properties Resources", () => {
     expect(res.body).toHaveProperty("type", sampleProperty.type);
   });
 
-  test("post succeeded, property online", async () => {
+  test("Post property", async () => {
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -58,48 +58,31 @@ describe("Properties Resources", () => {
     };
 
     const { id } = await prisma.address.create({
-      data: { ...address },
+      data: address,
     });
+
     const sampleProperty = {
-      addressId: id,
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
       type: faker.lorem.word(),
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
       status: faker.datatype.boolean(),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: id,
     };
 
     const res = await request(app)
-      .post("/properties/")
+      .post(`/properties`)
       .send(sampleProperty)
       .expect(201)
       .expect("Content-Type", /json/);
 
-    expect(res.body).toHaveProperty("name", sampleProperty.name);
     expect(res.body).toHaveProperty("description", sampleProperty.description);
     expect(res.body).toHaveProperty("type", sampleProperty.type);
-  });
-
-  test("Put one property", async () => {
-    const sampleProperty = {
-      name: faker.company.companyName(),
-      description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
-      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
-    };
-
-    const { id } = await prisma.user.create({
-      data: sampleProperty,
-    });
-
-    const res = await request(app)
-      .post(`/properties/${id}`)
-      .send(sampleProperty)
-      .expect(204)
-      .expect("Content-Type", /json/);
-
-    expect.not.objectContaining(sampleProperty);
+    expect(res.body).toHaveProperty(
+      "priceByNight",
+      sampleProperty.priceByNight
+    );
   });
 });
 
