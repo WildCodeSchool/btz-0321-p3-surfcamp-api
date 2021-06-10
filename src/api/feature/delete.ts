@@ -1,8 +1,8 @@
 import prisma from "../../../prisma/prismaClient";
 
-import featureHandlers from "./interfaces";
+import FeatureHandlers from "./interfaces";
 
-const deleteOne: featureHandlers["delete"] = async (req, res) => {
+const deleteOne: FeatureHandlers["delete"] = async (req, res) => {
   const { id } = req.params;
 
   await prisma.property.delete({

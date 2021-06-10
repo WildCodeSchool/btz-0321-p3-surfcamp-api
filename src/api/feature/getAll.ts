@@ -1,9 +1,9 @@
 import prisma from "../../../prisma/prismaClient";
 
-import featureHandlers from "./interfaces";
+import FeatureHandlers from "./interfaces";
 
-const getAll: featureHandlers["getAll"] = async (req, res) => {
-  const feature = await prisma.address.findMany();
+const getAll: FeatureHandlers["getAll"] = async (req, res) => {
+  const feature = await prisma.feature.findMany();
   res.setHeader('X-Total-Count',200)
   res.set({
     'X-Total-Count': '100',

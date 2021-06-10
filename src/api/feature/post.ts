@@ -1,33 +1,25 @@
 import prisma from "../../../prisma/prismaClient";
 
-import AddressHandlers from "./interfaces";
+import FeatureHandlers from "./interfaces";
 
-const post: AddressHandlers["post"] = async (req, res) => {
+const post: FeatureHandlers["post"] = async (req, res) => {
   const {
-    city,
-    countryCode,
-    lat,
-    long,
-    phoneNumber,
-    street,
-    streetNumber,
-    zipcode,
+    label,
+    type,
+    createdAt,
+    Property,
   } = req.body;
 
-  const createdAddress = await prisma.address.create({
+  const createdFeature = await prisma.feature.create({
     data: {
-      city,
-      countryCode,
-      lat,
-      zipcode,
-      streetNumber,
-      street,
-      phoneNumber,
-      long,
+      label,
+      type,
+      createdAt,
+      Property
     },
   });
 
-  res.status(201).json(createdAddress);
+  res.status(201).json(createdFeature);
 };
 
 export default post;

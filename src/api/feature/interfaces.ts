@@ -1,36 +1,28 @@
-import { Address } from ".prisma/client";
+import { Feature, Property } from ".prisma/client";
 import { RequestHandler } from "express";
 
-interface ReqBodyAddressPost {
-  zipcode: string;
-  city: string;
-  street: string;
-  streetNumber: string;
-  lat: number;
-  long: number;
-  countryCode: string;
-  phoneNumber: string;
+interface ReqBodyFeaturePost {
+  label: string;
+  type: string;
+  createdAt: Date;
+  property?: string;
 }
 
-interface ReqBodyAddressPut {
-  zipcode: string;
-  city: string;
-  street: string;
-  streetNumber: string;
-  lat: number;
-  long: number;
-  countryCode: string;
-  phoneNumber: string;
+interface ReqBodyFeaturePut {
+  label: string;
+  type: string;
+  createdAt: Date;
+  property: string;
 }
 
 interface Params {
   id: string;
 }
 
-export default interface AddressHandlers {
-  getAll: RequestHandler<null, Address[], null>;
-  getOne: RequestHandler<Params, Address, null>;
-  post: RequestHandler<null, Address, ReqBodyAddressPost>;
-  put: RequestHandler<Params, null, ReqBodyAddressPut>;
+export default interface FeatureHandlers {
+  getAll: RequestHandler<null, Feature[], null>;
+  getOne: RequestHandler<Params, Feature, null>;
+  post: RequestHandler<null, Feature, ReqBodyFeaturePost>;
+  put: RequestHandler<Params, null, ReqBodyFeaturePut>;
   delete: RequestHandler<Params, null, null>;
 }

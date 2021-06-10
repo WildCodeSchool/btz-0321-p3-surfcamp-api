@@ -1,15 +1,15 @@
 import prisma from "../../../prisma/prismaClient";
 
-import AddressHandlers from "./interfaces";
+import FeatureHandlers from "./interfaces";
 
-const put: AddressHandlers["put"] = async (req, res) => {
+const put: FeatureHandlers["put"] = async (req, res) => {
   const { id } = req.params;
-  const { zipcode,long,phoneNumber,street,streetNumber,lat,countryCode,city} = req.body;
+  const { type, label, createdAt } = req.body;
 
-  await prisma.address.update({
+  await prisma.feature.update({
     where: { id },
     data: {
-      city,id,countryCode,lat,long,phoneNumber,street,streetNumber,zipcode
+      type, label, createdAt,
     },
   });
 

@@ -1,12 +1,12 @@
 import prisma from "../../../prisma/prismaClient";
 
-import featureHandlers from "./interfaces";
+import FeatureHandlers from "./interfaces";
 
-const getOne: featureHandlers["getOne"] = async (req, res, next) => {
+const getOne: FeatureHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const feature = await prisma.address.findUnique({
+    const feature = await prisma.feature.findUnique({
       where: {
         id,
       },
