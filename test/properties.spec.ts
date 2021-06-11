@@ -84,6 +84,80 @@ describe("Properties Resources", () => {
       sampleProperty.priceByNight
     );
   });
+
+  test("Put one property", async () => {
+    const address = {
+      street: faker.address.streetAddress(),
+      city: faker.address.cityName(),
+      countryCode: faker.address.countryCode(),
+      streetNumber: "10",
+      zipcode: "64600",
+      lat: "43.481402",
+      long: "-1.514699",
+    };
+
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+
+    const sampleProperty = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: faker.lorem.word(),
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      status: faker.datatype.boolean(),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: addressId,
+    };
+
+    const { id } = await prisma.property.create({
+      data: sampleProperty,
+    });
+
+    const res = await request(app)
+      .put(`/properties/${id}`)
+      .send(sampleProperty)
+      .expect(204);
+
+    expect.not.objectContaining(sampleProperty);
+  });
+
+  test("Delete one property", async () => {
+    const address = {
+      street: faker.address.streetAddress(),
+      city: faker.address.cityName(),
+      countryCode: faker.address.countryCode(),
+      streetNumber: "10",
+      zipcode: "64600",
+      lat: "43.481402",
+      long: "-1.514699",
+    };
+
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+
+    const sampleProperty = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: faker.lorem.word(),
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      status: faker.datatype.boolean(),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: addressId,
+    };
+
+    const { id } = await prisma.property.create({
+      data: sampleProperty,
+    });
+
+    const res = await request(app)
+      .delete(`/properties/${id}`)
+      .send(sampleProperty)
+      .expect(204);
+
+    expect.not.objectContaining(sampleProperty);
+  });
 });
 
 afterAll(async () => {
