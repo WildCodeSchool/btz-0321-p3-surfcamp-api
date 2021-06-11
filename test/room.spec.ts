@@ -14,16 +14,15 @@ describe("Rooms Ressources", () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  test("Get status 200 and array of one room", async () => {
+  test("Get status 200 and one room", async () => {
     const sampleRoom = {
       name: faker.company.companyName(),
-      description: faker.lorem.words(10),
+      description: faker.lorem.words(2),
       capacity: faker.datatype.number({ min: 1, max: 10 }),
       priceByNight: faker.datatype.number(),
-      propertyId: faker.datatype.uuid(),
     };
 
-    const property = {
+    const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
       type: faker.lorem.word(),
@@ -31,8 +30,24 @@ describe("Rooms Ressources", () => {
       status: faker.datatype.boolean(),
     };
 
+    const address = {
+      street: faker.address.streetAddress(),
+      city: faker.address.cityName(),
+      countryCode: faker.address.countryCode(),
+      streetNumber: "10",
+      zipcode: "64600",
+      lat: "43.481402",
+      long: "-1.514699",
+      phoneNumber: "0678987809",
+    };
+
     const { id } = await prisma.room.create({
-      data: { ...sampleRoom, property: { create: { ...propertyId } } },
+      data: {
+        ...sampleRoom,
+        property: {
+          create: { ...sampleProperty, address: { create: { ...address } } },
+        },
+      },
     });
 
     const res = await request(app)
