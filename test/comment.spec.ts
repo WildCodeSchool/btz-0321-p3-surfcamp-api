@@ -23,7 +23,7 @@ describe("comments Ressources", () => {
       picture: faker.internet.avatar(),
       password: faker.internet.password(),
       phoneNumber: faker.phone.phoneNumber(),
-    };
+    }
 
     const { id: userId } = await prisma.user.create({
       data: sampleUser,
