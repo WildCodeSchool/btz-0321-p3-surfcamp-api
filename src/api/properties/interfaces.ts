@@ -8,6 +8,7 @@ interface ReqBodyPropertyPost {
   priceByNight: number;
   status: boolean;
   addressId: string;
+  phoneNumber: string;
 }
 
 interface ReqBodyPropertyPut {
@@ -16,6 +17,7 @@ interface ReqBodyPropertyPut {
   type: string;
   priceByNight: number;
   status: boolean;
+  phoneNumber: string;
 }
 
 interface Params {
