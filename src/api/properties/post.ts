@@ -5,23 +5,23 @@ import PropertyHandlers from "./interfaces";
 const post: PropertyHandlers["post"] = async (req, res) => {
   const {
     name,
+    phoneNumber,
     priceByNight,
     type,
     description,
     status,
     addressId,
-    phoneNumber,
   } = req.body;
 
   const createdProperty = await prisma.property.create({
     data: {
       name,
+      phoneNumber,
       priceByNight,
       description,
       type,
       status,
       addressId,
-      phoneNumber,
     },
   });
 
