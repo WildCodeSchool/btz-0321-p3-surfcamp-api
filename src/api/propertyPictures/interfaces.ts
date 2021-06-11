@@ -1,4 +1,4 @@
-import { Address, PropertyPicture, Room } from ".prisma/client";
+import { PropertyPicture } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPicturePost {

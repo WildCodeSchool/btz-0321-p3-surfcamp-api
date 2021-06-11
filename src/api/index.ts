@@ -6,7 +6,7 @@ import address from "./address/routes";
 import reservations from "./reservations/routes";
 import comments from "./comments/routes";
 import rooms from "./rooms/routes";
-import propertyPicture from './rooms/routes'
+import propertyPicture from './propertyPictures/routes'
 
 const router = Router();
 

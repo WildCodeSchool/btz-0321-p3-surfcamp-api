@@ -7,7 +7,7 @@ import app from "../src/app";
 describe("PropertyPicture Ressources", () => {
   test("Get status 200 and array of PropertyPicture", async () => {
     const res = await request(app)
-      .get("/Propertypicture")
+      .get("/propertypictures")
       .expect(200)
       .expect("Content-Type", /json/);
 
@@ -15,112 +15,206 @@ describe("PropertyPicture Ressources", () => {
   });
 
   test("Get status 200 and array of one propertypicture", async () => {
-    const sampleUser = {
-      email: faker.internet.email(),
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      birthDate: faker.date.past(),
-      picture: faker.internet.avatar(),
-      password: faker.internet.password(),
-      phoneNumber: faker.phone.phoneNumber(),
+   
+  
+      const sampleAddress = {
+        city: faker.address.city(),
+        countryCode: faker.address.countryCode(),
+        lat: faker.address.latitude(),
+        long: faker.address.longitude(),
+        street: faker.address.streetName(),
+        streetNumber: faker.address.streetAddress(),
+        zipcode: faker.address.zipCode(),
+      };
+      const { id: addressId } = await prisma.address.create({
+        data: sampleAddress,
+      });
+  
+      const sampleProperty = {
+        name: faker.company.companyName(),
+        priceByNight: faker.datatype.number(),
+        description: faker.lorem.text(),
+        type: faker.lorem.word(),
+        phoneNumber: faker.phone.phoneNumber(),
+        status: faker.datatype.boolean(),
+        addressId: addressId,
+      };
+  
+      const { id: propertyId } = await prisma.property.create({
+        data: sampleProperty,
+      });
+
+
+    const samplePropertyPicture = {
+        name: faker.lorem.word(),
+        description: faker.lorem.text(),
+        url: faker.internet.url(),
+        propertyId: propertyId,
     };
 
-    const { id } = await prisma.user.create({
-      data: sampleUser,
+    const { id } = await prisma.propertyPicture.create({
+      data: samplePropertyPicture,
     });
 
+
+
     const res = await request(app)
-      .get(`/users/${id}`)
+      .get(`/propertypictures/${id}`)
       .expect(200)
       .expect("Content-Type", /json/);
 
-    expect(res.body).toHaveProperty("email", sampleUser.email);
-    expect(res.body).toHaveProperty("lastname", sampleUser.lastname);
-    expect(res.body).not.toHaveProperty("password");
+    expect(res.body).toHaveProperty("name", samplePropertyPicture.name);
+    expect(res.body).toHaveProperty("description", samplePropertyPicture.description);
+    expect(res.body).toHaveProperty("url", samplePropertyPicture.url);
+    expect(res.body).toHaveProperty("propertyId", samplePropertyPicture.propertyId);
+   
   });
 
-  test("post user should fail, password doesn't match", async () => {
-    const sampleUser = {
-      email: "Brielle_Green44@gmail.com",
-      firstname: "Mittie",
-      lastname: "Hodkiewicz",
-      birthDate: "2020-10-01T12:18:10.404Z",
-      picture: "https://cdn.fakercloud.com/vatars/danmartin70_128.jpg",
-      password: "OvjXgSmZzmbL6bL",
-      confirmPassword: "o1wIL8kEIz_i0mx",
-      phoneNumber: "(608) 354-7463",
+ 
+
+  test("post property picture", async () => {
+    
+
+    const sampleAddress = {
+        city: faker.address.city(),
+        countryCode: faker.address.countryCode(),
+        lat: faker.address.latitude(),
+        long: faker.address.longitude(),
+        street: faker.address.streetName(),
+        streetNumber: faker.address.streetAddress(),
+        zipcode: faker.address.zipCode(),
+      };
+      const { id: addressId } = await prisma.address.create({
+        data: sampleAddress,
+      });
+  
+      const sampleProperty = {
+        name: faker.company.companyName(),
+        priceByNight: faker.datatype.number(),
+        description: faker.lorem.text(),
+        type: faker.lorem.word(),
+        phoneNumber: faker.phone.phoneNumber(),
+        status: faker.datatype.boolean(),
+        addressId: addressId,
+      };
+  
+      const { id: propertyId } = await prisma.property.create({
+        data: sampleProperty,
+      });
+
+
+    const samplePropertyPicture = {
+        name: faker.lorem.word(),
+        description: faker.lorem.text(),
+        url: faker.internet.url(),
+        propertyId: propertyId,
     };
 
-    const res = await request(app).post(`/PropertyPicture`).send(sampleUser).expect(422);
-    // .expect("Content-Type", /json/);
-    //  TODO : change this when JOI validation is ready
-  });
-
-  test("post user", async () => {
-    const password = faker.internet.password();
-
-    const sampleUser = {
-      email: faker.internet.email(),
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      birthDate: faker.date.past(),
-      picture: faker.internet.avatar(),
-      password: password,
-      confirmPassword: password,
-      phoneNumber: faker.phone.phoneNumber(),
-    };
+ 
 
     const res = await request(app)
-      .post(`/PropertyPicture`)
-      .send(sampleUser)
+      .post(`/propertypictures`)
+      .send(samplePropertyPicture)
       .expect(201)
       .expect("Content-Type", /json/);
 
-    expect(res.body).toHaveProperty("email", sampleUser.email);
-    expect(res.body).toHaveProperty("lastname", sampleUser.lastname);
-    expect(res.body).not.toHaveProperty("password");
+    expect(res.body).toHaveProperty("name", samplePropertyPicture.name);
+    expect(res.body).toHaveProperty("description", samplePropertyPicture.description);
+    expect(res.body).toHaveProperty("propertyId", samplePropertyPicture.propertyId);
+ 
   });
 
-  test("put one user", async () => {
-    const sampleUser = {
-      email: faker.internet.email(),
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      birthDate: faker.date.past(),
-      picture: faker.internet.avatar(),
-      password: faker.internet.password(),
-      phoneNumber: faker.phone.phoneNumber(),
+  test("put one property picture", async () => {
+    const sampleAddress = {
+        city: faker.address.city(),
+        countryCode: faker.address.countryCode(),
+        lat: faker.address.latitude(),
+        long: faker.address.longitude(),
+        street: faker.address.streetName(),
+        streetNumber: faker.address.streetAddress(),
+        zipcode: faker.address.zipCode(),
+      };
+      const { id: addressId } = await prisma.address.create({
+        data: sampleAddress,
+      });
+  
+      const sampleProperty = {
+        name: faker.company.companyName(),
+        priceByNight: faker.datatype.number(),
+        description: faker.lorem.text(),
+        type: faker.lorem.word(),
+        phoneNumber: faker.phone.phoneNumber(),
+        status: faker.datatype.boolean(),
+        addressId: addressId,
+      };
+  
+      const { id: propertyId } = await prisma.property.create({
+        data: sampleProperty,
+      });
+
+
+    const samplePropertyPicture = {
+        name: faker.lorem.word(),
+        description: faker.lorem.text(),
+        url: faker.internet.url(),
+        propertyId: propertyId,
     };
 
-    const { id } = await prisma.user.create({
-      data: sampleUser,
+    const { id } = await prisma.propertyPicture.create({
+      data: samplePropertyPicture,
     });
 
     const res = await request(app)
-      .put(`/PropertyPicture/${id}`)
-      .send(sampleUser)
+      .put(`/propertypictures/${id}`)
+      .send(samplePropertyPicture)
       .expect(204);
 
-    expect.not.objectContaining(sampleUser);
+    expect.not.objectContaining(samplePropertyPicture);
   });
 
   test("delete one user", async () => {
-    const sampleUser = {
-      email: faker.internet.email(),
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      birthDate: faker.date.past(),
-      picture: faker.internet.avatar(),
-      password: faker.internet.password(),
-      phoneNumber: faker.phone.phoneNumber(),
+    const sampleAddress = {
+        city: faker.address.city(),
+        countryCode: faker.address.countryCode(),
+        lat: faker.address.latitude(),
+        long: faker.address.longitude(),
+        street: faker.address.streetName(),
+        streetNumber: faker.address.streetAddress(),
+        zipcode: faker.address.zipCode(),
+      };
+      const { id: addressId } = await prisma.address.create({
+        data: sampleAddress,
+      });
+  
+      const sampleProperty = {
+        name: faker.company.companyName(),
+        priceByNight: faker.datatype.number(),
+        description: faker.lorem.text(),
+        type: faker.lorem.word(),
+        phoneNumber: faker.phone.phoneNumber(),
+        status: faker.datatype.boolean(),
+        addressId: addressId,
+      };
+  
+      const { id: propertyId } = await prisma.property.create({
+        data: sampleProperty,
+      });
+
+
+    const samplePropertyPicture = {
+        name: faker.lorem.word(),
+        description: faker.lorem.text(),
+        url: faker.internet.url(),
+        propertyId: propertyId,
     };
 
-    const { id } = await prisma.user.create({
-      data: sampleUser,
+    const { id } = await prisma.propertyPicture.create({
+      data: samplePropertyPicture,
     });
-    const res = await request(app).delete(`/PropertyPicture/${id}`).expect(204);
 
-    expect.not.objectContaining(sampleUser);
+    const res = await request(app).delete(`/propertypictures/${id}`).expect(204);
+
+    expect.not.objectContaining(samplePropertyPicture);
   });
 });
 
