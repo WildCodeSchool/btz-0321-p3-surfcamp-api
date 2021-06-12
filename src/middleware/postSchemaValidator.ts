@@ -17,9 +17,10 @@ export default function postSchemaValidator(schema: ObjectSchema<Schema>) {
     const result = schema.validate(req.body);
     const { error } = result;
     const valid = error == null;
+    console.log(error);
 
     if (!valid) {
-      res.status(422).send(error);
+      res.status(422).send(error?.details);
       throw new Error("Fields are missings or unavailable");
     }
     next();
