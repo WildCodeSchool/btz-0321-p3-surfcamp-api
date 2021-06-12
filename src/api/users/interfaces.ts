@@ -41,11 +41,6 @@ interface Params {
   id: string;
 }
 
-interface Error {
-  message: string;
-  data: object;
-}
-
 export default interface UserHandlers {
   getAll: RequestHandler<null, UserWithoutPassword[], null>;
   getOne: RequestHandler<Params, UserWithoutPassword, null>;
