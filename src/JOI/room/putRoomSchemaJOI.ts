@@ -1,11 +1,11 @@
 import Joi from "joi";
 
 const putRoomSchema = Joi.object().keys({
-  name: Joi.string().alphanum().min(1).max(50),
-  description: Joi.string().alphanum().min(1).max(2000),
+  name: Joi.string().min(1).max(50),
+  description: Joi.string(),
   capacity: Joi.number().min(1).max(100),
-  priceByNight: Joi.number().min(1).max(2000),
-  propertyId: Joi.string().required(),
+  priceByNight: Joi.number().min(1),
+  propertyId: Joi.string(),
 });
 
 export default putRoomSchema;

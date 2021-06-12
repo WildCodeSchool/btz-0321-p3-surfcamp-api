@@ -3,7 +3,6 @@ import { RequestHandler } from "express";
 import { Status } from ".prisma/client";
 
 interface ReqBodyReservationPost {
-  property: string;
   customerCount: number;
   startDate: Date;
   endDtate: Date;
@@ -33,7 +32,7 @@ interface Params {
 export default interface ReservationHandlers {
   getAll: RequestHandler<null, Reservation[], null>;
   getOne: RequestHandler<Params, Reservation, null>;
-  post: RequestHandler<null, Reservation, ReqBodyReservationPost>;
-  put: RequestHandler<Params, null, ReqBodyReservationPut>;
+  post: RequestHandler<null | any, Reservation, ReqBodyReservationPost>;
+  put: RequestHandler<Params | any, null, ReqBodyReservationPut>;
   delete: RequestHandler<Params, null, null>;
 }
