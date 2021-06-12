@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from "express";
+import { ValidationErrorItem } from "joi";
 
 interface Error {
-  details: Array<any>;
+  details: Array<ValidationErrorItem>;
   message: object;
 }
 
@@ -20,7 +21,7 @@ export default function errorHandler(
     .status(500)
     .send(
       err.details
-        ? err.details.map((detail: Error) => detail.message)
+        ? err.details.map((detail: ValidationErrorItem) => detail.message)
         : "Undefined Error"
     );
 }
