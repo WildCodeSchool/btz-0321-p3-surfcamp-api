@@ -11,8 +11,7 @@ export default function putSchemaValidator(
     const valid = error == null;
 
     if (!valid) {
-      res.status(422).send(error?.details);
-      throw new Error("Fields are missings or unavailable");
+      next(error);
     }
     next();
   };

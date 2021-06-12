@@ -8,6 +8,7 @@ import comments from "./comments/routes";
 import rooms from "./rooms/routes";
 import propertyPicture from "./propertyPictures/routes";
 import feature from "./feature/routes";
+import app from "../app";
 
 const router = Router();
 

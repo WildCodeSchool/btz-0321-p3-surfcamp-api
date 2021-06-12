@@ -4,6 +4,8 @@ import controller from "./controller";
 import putUserSchema from "../../JOI/users/putUserSchemaJOI";
 import putSchemaValidator from "../../middleware/putSchemaValidator";
 import postSchemaValidator from "../../middleware/postSchemaValidator";
+import app from "../../app";
+import errorHandler from "../../middleware/errorHandler";
 
 const router = Router();
 
