@@ -6,7 +6,8 @@ import address from "./address/routes";
 import reservations from "./reservations/routes";
 import comments from "./comments/routes";
 import rooms from "./rooms/routes";
-import propertyPicture from './propertyPictures/routes'
+import propertyPicture from "./propertyPictures/routes";
+import feature from "./feature/routes";
 
 const router = Router();
 
@@ -17,6 +18,6 @@ router.use("/reservations", reservations);
 router.use("/comments", comments);
 router.use("/rooms", rooms);
 router.use("/propertypictures", propertyPicture);
-
+router.use("/features", feature);
 
 export default router;
