@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import { Address } from ".prisma/client";
 import { ObjectSchema } from "joi";
 
 interface Schema {
