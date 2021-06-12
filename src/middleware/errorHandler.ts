@@ -20,7 +20,7 @@ export default function errorHandler(
     .status(500)
     .send(
       err.details
-        ? err.details.map((detail: any) => detail.message)
+        ? err.details.map((detail: Error) => detail.message)
         : "Undefined Error"
     );
 }
