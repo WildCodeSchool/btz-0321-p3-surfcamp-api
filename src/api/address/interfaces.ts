@@ -9,6 +9,8 @@ interface ReqBodyAddressPost {
   lat: number;
   long: number;
   countryCode: string;
+  userId?: string;
+  propertyId?: string;
 }
 
 interface ReqBodyAddressPut {
@@ -19,6 +21,8 @@ interface ReqBodyAddressPut {
   lat: number;
   long: number;
   countryCode: string;
+  userId?: string;
+  propertyId?: string;
 }
 
 interface Params {
