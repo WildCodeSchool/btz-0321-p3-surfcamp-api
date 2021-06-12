@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import { ObjectSchema } from "joi";
-import ReqBodyUserPost from "../api/users/interfaces";
+import ReqBodyUserPut from "../api/users/interfaces";
 
-export default function postSchemaValidator(
-  schema: ObjectSchema<ReqBodyUserPost>
+export default function putSchemaValidator(
+  schema: ObjectSchema<ReqBodyUserPut>
 ) {
   return function (req: Request, res: Response, next: NextFunction) {
     const result = schema.validate(req.body);
