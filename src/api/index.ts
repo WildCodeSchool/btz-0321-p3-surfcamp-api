@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import users from "./users/routes";
 import properties from "./properties/routes";
 import address from "./address/routes";
@@ -8,7 +7,6 @@ import comments from "./comments/routes";
 import rooms from "./rooms/routes";
 import propertyPicture from "./propertyPictures/routes";
 import feature from "./feature/routes";
-import app from "../app";
 
 const router = Router();
 

@@ -6,7 +6,9 @@ export default function postSchemaValidator(
   schema: ObjectSchema<ReqBodyUserPost>
 ) {
   return function (req: Request, res: Response, next: NextFunction) {
-    const result = schema.validate(req.body);
+    let options = { abortEarly: false };
+
+    const result = schema.validate(req.body, options);
     const { error } = result;
     const valid = error == null;
 
