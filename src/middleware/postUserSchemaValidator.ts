@@ -11,7 +11,7 @@ export default function postUserSchemaValidator(req: any, res: any, next: any) {
       message: "Filds are missings or unavailable",
       data: error,
     });
-    throw new Error("Filds are missings or unavailable");
+    throw new Error("Fields are missings or unavailable");
   }
   next();
 }
