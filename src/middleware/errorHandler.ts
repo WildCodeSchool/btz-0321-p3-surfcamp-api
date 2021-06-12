@@ -11,6 +11,16 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
-  console.error(err.details.map((detail: any) => detail.message));
-  res.status(500).send(err.details.map((detail: any) => detail.message));
+  console.error(
+    err.details
+      ? err.details.map((detail: any) => detail.message)
+      : "Undefined Error"
+  );
+  res
+    .status(500)
+    .send(
+      err.details
+        ? err.details.map((detail: any) => detail.message)
+        : "Undefined Error"
+    );
 }
