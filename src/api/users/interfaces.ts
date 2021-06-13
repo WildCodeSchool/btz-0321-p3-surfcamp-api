@@ -43,7 +43,7 @@ interface Params {
 export default interface UserHandlers {
   getAll: RequestHandler<null, UserWithoutPassword[], null>;
   getOne: RequestHandler<Params, UserWithoutPassword, null>;
-  post: RequestHandler<null, UserWithoutPassword, ReqBodyUserPost>;
+  post: RequestHandler<null, UserWithoutPassword | any, ReqBodyUserPost>;
   put: RequestHandler<Params, null, ReqBodyUserPut>;
   delete: RequestHandler<Params, null, null>;
 }
