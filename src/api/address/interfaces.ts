@@ -32,7 +32,7 @@ interface Params {
 export default interface AddressHandlers {
   getAll: RequestHandler<null, Address[], null>;
   getOne: RequestHandler<Params, Address, null>;
-  post: RequestHandler<null, Address, ReqBodyAddressPost>;
-  put: RequestHandler<Params, null, ReqBodyAddressPut>;
+  post: RequestHandler<null | any, Address, ReqBodyAddressPost>;
+  put: RequestHandler<Params | any, null, ReqBodyAddressPut>;
   delete: RequestHandler<Params, null, null>;
 }
