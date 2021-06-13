@@ -20,7 +20,7 @@ interface Params {
 export default interface FeatureHandlers {
   getAll: RequestHandler<null, Feature[], null>;
   getOne: RequestHandler<Params, Feature, null>;
-  post: RequestHandler<null, Feature, ReqBodyFeaturePost>;
-  put: RequestHandler<Params, null, ReqBodyFeaturePut>;
+  post: RequestHandler<null | any, Feature, ReqBodyFeaturePost>;
+  put: RequestHandler<Params | any, null, ReqBodyFeaturePut>;
   delete: RequestHandler<Params, null, null>;
 }
