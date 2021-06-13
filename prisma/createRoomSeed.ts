@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import faker from "faker";
 import { Status } from ".prisma/client";
 
-// function who take a number as iterator and create an adress on each iteration
+
 
 const createComment = async (number: number, prisma: PrismaClient) => {
   for (let i = 0; i < number; i++) {
