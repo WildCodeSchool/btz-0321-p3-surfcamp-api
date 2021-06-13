@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 const putReservationSchema = Joi.object().keys({
-  customerCount: Joi.string().alphanum().min(1).max(2000).required(),
+  customerCount: Joi.number().min(1).max(2000).required(),
   startDate: Joi.date().required(),
   endDate: Joi.date().required(),
   status: Joi.string().required(),
