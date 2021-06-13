@@ -16,6 +16,7 @@ const post: UserHandlers["post"] = async (req, res) => {
 
   try {
     if (password !== confirmPassword) {
+      console.log("zfee");
       res.status(422);
       throw new Error("password doesn't match");
     }
@@ -38,7 +39,7 @@ const post: UserHandlers["post"] = async (req, res) => {
         }),
       },
     });
-
+    console.log("user creation");
     const { password: pw, ...createdUserWithoutPassword } = createdUser;
 
     res.status(201).json(createdUserWithoutPassword);
