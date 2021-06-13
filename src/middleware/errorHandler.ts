@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ValidationErrorItem } from "joi";
+import { JsonWebTokenError } from "jsonwebtoken";
 
 interface Error {
   details: Array<ValidationErrorItem>;

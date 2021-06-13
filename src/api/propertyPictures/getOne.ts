@@ -1,10 +1,9 @@
-import prisma from "../../../prisma/prismaClient"
+import prisma from "../../../prisma/prismaClient";
 
 import PropertyPictureHandlers from "./interfaces";
 
 const getOne: PropertyPictureHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
-console.log(id)
   try {
     const propertyPicture = await prisma.propertyPicture.findUnique({
       where: {
