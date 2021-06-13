@@ -1,8 +1,8 @@
 import { Router } from "express";
 import putSchemaValidator from "../../middleware/putSchemaValidator";
 import postSchemaValidator from "../../middleware/postSchemaValidator";
-import putAddressSchemaJOI from "../../JOI/address/putPropertySchemaJOI";
-import postAddressSchemaJOI from "../../JOI/address/postPropertySchemaJOI";
+import putAddressSchemaJOI from "../../JOI/address/putAddressSchemaJOI";
+import postAddressSchemaJOI from "../../JOI/address/postAddressSchemaJOI";
 import controller from "./controller";
 
 const router = Router();
