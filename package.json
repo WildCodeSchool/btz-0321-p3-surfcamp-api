@@ -11,6 +11,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "build": "tsc",
     "dev": "ts-node-dev --pretty --respawn ./src/index.ts",
+    "seed": "prisma db seed --preview-feature",
     "migrate:reset": "prisma migrate reset --force",
     "migrate:create": "prisma migrate dev --create-only",
     "migrate:dev": "prisma migrate dev",

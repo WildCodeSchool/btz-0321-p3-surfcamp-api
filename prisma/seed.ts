@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 //  Only comment function is called because we allready create all ressources when we create a comment
 
 const seed: any = async () => {
-  await createCommentSeed(10, prisma);
+  await createCommentSeed(20, prisma);
   await createRoomSeed(10, prisma);
 };
 
