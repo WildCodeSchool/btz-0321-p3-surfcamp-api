@@ -22,7 +22,7 @@ interface Params {
 export default interface CommentHandlers {
   getAll: RequestHandler<null, Comment[], null>;
   getOne: RequestHandler<Params, Comment, null>;
-  post: RequestHandler<null, Comment, ReqBodyCommentPost>;
-  put: RequestHandler<Params, null, ReqBodyCommentPut>;
+  post: RequestHandler<null | any, Comment, ReqBodyCommentPost>;
+  put: RequestHandler<Params | any, null, ReqBodyCommentPut>;
   delete: RequestHandler<Params, null, null>;
 }

@@ -8,8 +8,8 @@ const router = Router();
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getOne);
-router.post("/",postSchemaValidator(postFeatureSchemaJOI), controller.post);
-router.put("/:id",putSchemaValidator(putFeatureSchemaJOI),controller.put);
+router.post("/", postSchemaValidator(postFeatureSchemaJOI), controller.post);
+router.put("/:id", putSchemaValidator(putFeatureSchemaJOI), controller.put);
 router.delete("/:id", controller.delete);
 
 export default router;
