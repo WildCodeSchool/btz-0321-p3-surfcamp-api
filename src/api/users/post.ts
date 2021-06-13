@@ -44,7 +44,6 @@ const post: UserHandlers["post"] = async (req, res) => {
   } catch (error) {
     //  TODO : send to error middleware
     res.send(error.message);
-    console.log(error.message);
   }
 };
 

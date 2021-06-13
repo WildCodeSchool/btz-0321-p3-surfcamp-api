@@ -7,10 +7,7 @@ export default function postUserSchemaValidator(req: any, res: any, next: any) {
   const valid = error == null;
 
   if (!valid) {
-    res.status(422).send({
-      message: "Fields are missings or unavailable",
-      data: error,
-    });
+    res.status(422).send(error);
     throw new Error("Fields are missings or unavailable");
   }
   next();
