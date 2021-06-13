@@ -16,9 +16,8 @@ const post: UserHandlers["post"] = async (req, res) => {
 
   try {
     if (password !== confirmPassword) {
-      console.log("zfee");
       res.status(422);
-      throw new Error("password doesn't match");
+      throw new Error("Password confirmation doesn't match");
     }
 
     const createdUser = await prisma.user.create({
@@ -39,13 +38,13 @@ const post: UserHandlers["post"] = async (req, res) => {
         }),
       },
     });
-    console.log("user creation");
     const { password: pw, ...createdUserWithoutPassword } = createdUser;
 
     res.status(201).json(createdUserWithoutPassword);
   } catch (error) {
     //  TODO : send to error middleware
-    res.send(error);
+    res.send(error.message);
+    console.log(error.message);
   }
 };
 

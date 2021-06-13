@@ -40,10 +40,15 @@ interface Params {
   id: string;
 }
 
+interface Error {
+  message: string;
+  data: object;
+}
+
 export default interface UserHandlers {
   getAll: RequestHandler<null, UserWithoutPassword[], null>;
   getOne: RequestHandler<Params, UserWithoutPassword, null>;
-  post: RequestHandler<null, UserWithoutPassword | any, ReqBodyUserPost>;
+  post: RequestHandler<null, UserWithoutPassword | Error, ReqBodyUserPost>;
   put: RequestHandler<Params, null, ReqBodyUserPut>;
   delete: RequestHandler<Params, null, null>;
 }
