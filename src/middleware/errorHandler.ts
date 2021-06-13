@@ -13,16 +13,12 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+  console.log(err);
   console.error(
+    err,
     err.details
       ? err.details.map((detail: any) => detail.message)
       : "Undefined Error"
   );
-  res
-    .status(500)
-    .send(
-      err.details
-        ? err.details.map((detail: ValidationErrorItem) => detail.message)
-        : "Undefined Error"
-    );
+  res.status(500).send(err);
 }
