@@ -6,7 +6,7 @@ const postUserSchema = Joi.object().keys({
   email: Joi.string().email().required(),
   password: Joi.string().required(),
   confirmPassword: Joi.string().required(),
-  picture: Joi.string(),
+  picture: Joi.string().required(),
   birthDate: Joi.date().iso().required(),
   phoneNumber: Joi.string().required(),
 });
