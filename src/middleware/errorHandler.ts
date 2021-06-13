@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { ValidationErrorItem } from "joi";
 
+//      Here is a middleware whose purpose is to catch errors like a bottleneck
+//    and sent it to the client.
+//    It send a status 500 and the error catched by all the app.
+//    Don't forget to send errors here with next(error)
+
 interface Error {
   details: Array<ValidationErrorItem>;
   message: object;

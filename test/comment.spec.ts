@@ -4,6 +4,10 @@ import { Status } from ".prisma/client";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 
+//    For this test we must create multiple ressources beacause
+//  the ressource we are testing depend of others ressources
+//  who depends of others too ...
+
 describe("comments Ressources", () => {
   test("Get status 200 and array of comments", async () => {
     const res = await request(app)
@@ -23,7 +27,7 @@ describe("comments Ressources", () => {
       picture: faker.internet.avatar(),
       password: faker.internet.password(),
       phoneNumber: faker.phone.phoneNumber(),
-    }
+    };
 
     const { id: userId } = await prisma.user.create({
       data: sampleUser,

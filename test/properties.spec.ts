@@ -4,6 +4,10 @@ import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 import { Address, Property } from ".prisma/client";
 
+//    For this test we must create multiple ressources beacause
+//  the ressource we are testing depend of others ressources
+//  who depends of others too ...
+
 describe("Properties Resources", () => {
   test("Get status 200 and array of properties", async () => {
     const res = await request(app)

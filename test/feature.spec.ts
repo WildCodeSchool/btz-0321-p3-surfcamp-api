@@ -4,6 +4,10 @@ import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 
+//    For this test we must create multiple ressources beacause
+//  the ressource we are testing depend of others ressources
+//  who depends of others too ...
+
 describe("Features Ressources", () => {
   test("Get status 200 and an array of features", async () => {
     const res = await request(app)
