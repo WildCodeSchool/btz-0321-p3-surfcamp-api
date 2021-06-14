@@ -5,7 +5,7 @@ import ReservationHandlers from "./interfaces";
 const post: ReservationHandlers["post"] = async (req, res) => {
   const {
     customerCount,
-    endDtate,
+    endDate,
     propertyId,
     roomId,
     startDate,
@@ -16,7 +16,7 @@ const post: ReservationHandlers["post"] = async (req, res) => {
   const createdReservation = await prisma.reservation.create({
     data: {
       customerCount,
-      endDtate,
+      endDate,
       propertyId: propertyId!,
       roomId: roomId!,
       startDate,
