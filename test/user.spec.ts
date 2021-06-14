@@ -41,14 +41,14 @@ describe("Users Ressources", () => {
 
   test("post user should fail, password doesn't match", async () => {
     const sampleUser = {
-      email: "Brielle_Green44@gmail.com",
       firstname: "Mittie",
       lastname: "Hodkiewicz",
-      birthDate: "2020-10-01T12:18:10.404Z",
-      picture: "https://cdn.fakercloud.com/vatars/danmartin70_128.jpg",
+      email: "Brielle_Green44@gmail.com",
       password: "OvjXgSmZzmbL6bL",
       confirmPassword: "o1wIL8kEIz_i0mx",
-      phoneNumber: "(608) 354-7463",
+      picture: "https://cdn.fakercloud.com/vatars/danmartin70_128.jpg",
+      birthDate: "2003-10-01T12:18:10.404Z",
+      phoneNumber: faker.phone.phoneNumber(),
     };
 
     const res = await request(app).post(`/users`).send(sampleUser).expect(422);
@@ -60,14 +60,14 @@ describe("Users Ressources", () => {
     const password = faker.internet.password();
 
     const sampleUser = {
-      email: faker.internet.email(),
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
-      birthDate: faker.date.past(),
-      picture: faker.internet.avatar(),
+      email: faker.internet.email(),
       password: password,
       confirmPassword: password,
       phoneNumber: faker.phone.phoneNumber(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
     };
 
     const res = await request(app)

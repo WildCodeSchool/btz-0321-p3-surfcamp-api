@@ -1,4 +1,4 @@
-import { Feature } from "@prisma/client";
+import { Feature } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyFeaturePost {
@@ -13,14 +13,12 @@ interface ReqBodyFeaturePut {
   propertyId: string;
 }
 
-interface Params {
-  id: string;
-}
+
 
 export default interface FeatureHandlers {
-  getAll: RequestHandler<null, Feature[], null>;
-  getOne: RequestHandler<Params, Feature, null>;
-  post: RequestHandler<null, Feature, ReqBodyFeaturePost>;
-  put: RequestHandler<Params, null, ReqBodyFeaturePut>;
-  delete: RequestHandler<Params, null, null>;
+  getAll: RequestHandler<{}, Feature[], null>;
+  getOne: RequestHandler<{id:string}, Feature, null>;
+  post: RequestHandler<{}, Feature, ReqBodyFeaturePost>;
+  put: RequestHandler<{id:string} , null, ReqBodyFeaturePut>;
+  delete: RequestHandler<{id:string}, null, null>;
 }

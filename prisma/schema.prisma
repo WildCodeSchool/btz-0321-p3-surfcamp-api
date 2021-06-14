@@ -50,7 +50,7 @@ model Property {
   priceByNight Int
   status       Boolean
   pictures     PropertyPicture[]
-  address      Address           @relation(fields: [addressId], references: [id])
+  address      Address?           @relation(fields: [addressId], references: [id])
   addressId    String
   rooms        Room[]
   features     Feature[]
@@ -85,7 +85,7 @@ model Room {
   description  String
   capacity     Int
   priceByNight Float
-  property     Property     @relation(fields: [propertyId], references: [id])
+  property     Property?     @relation(fields: [propertyId], references: [id])
   propertyId   String
   reservation  Reservation[]
   comments      Comment[]
