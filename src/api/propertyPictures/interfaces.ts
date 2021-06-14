@@ -21,8 +21,8 @@ interface Params {
 
 export default interface PropertyPictureHandlers {
   getAll: RequestHandler<null, PropertyPicture[], null>;
-  getOne: RequestHandler<Params, PropertyPicture, null>;
-  post: RequestHandler<null | any, PropertyPicture, ReqBodyPropertyPicturePost>;
-  put: RequestHandler<Params | any, null, ReqBodyPropertyPicturePut>;
+  getOne: RequestHandler<{id: string}, PropertyPicture, null>;
+  post: RequestHandler<{} | any, PropertyPicture, ReqBodyPropertyPicturePost>;
+  put: RequestHandler<{id: string}, null, ReqBodyPropertyPicturePut>;
   delete: RequestHandler<Params, null, null>;
 }

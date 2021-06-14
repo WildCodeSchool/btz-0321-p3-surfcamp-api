@@ -6,7 +6,7 @@ import ReqBodyUserPost from "../api/users/interfaces";
 // JOI check both format and required fields and send an error to the middleware if there is one.
 
 export default function postSchemaValidator(
-  schema: ObjectSchema<ReqBodyUserPost>
+  schema: ObjectSchema
 ) {
   return function (req: Request, res: Response, next: NextFunction) {
     let options = { abortEarly: false };
@@ -16,6 +16,7 @@ export default function postSchemaValidator(
     const valid = error == null;
 
     if (!valid) {
+      res.status(422)
       next(error);
     }
     next();

@@ -17,6 +17,9 @@ export default function errorHandler(
   res: Response,
   next: NextFunction
 ) {
+
+  const status = res.statusCode === 200 ? 500 : res.statusCode
+
   console.log(err);
   console.error(
     err,
@@ -24,5 +27,10 @@ export default function errorHandler(
       ? err.details.map((detail: any) => detail.message)
       : "Undefined Error"
   );
-  res.status(500).send(err);
+  res.status(status).send({
+    status: status,
+    message: err.message,
+    details: err.details ? err.details.map((detail: any) => detail.message) : "🛠",
+    
+  });
 }

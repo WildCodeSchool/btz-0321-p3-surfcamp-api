@@ -26,8 +26,8 @@ interface Params {
 
 export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
-  getOne: RequestHandler<Params, Property, null>;
-  post: RequestHandler<null | any, Property, ReqBodyPropertyPost>;
-  put: RequestHandler<Params | any, null, ReqBodyPropertyPut>;
+  getOne: RequestHandler<{id: string}, Property, null>;
+  post: RequestHandler<{} | any, Property, ReqBodyPropertyPost>;
+  put: RequestHandler<{id: string} | any, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
 }

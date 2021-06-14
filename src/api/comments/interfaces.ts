@@ -20,9 +20,9 @@ interface Params {
 }
 
 export default interface CommentHandlers {
-  getAll: RequestHandler<null, Comment[], null>;
-  getOne: RequestHandler<Params, Comment, null>;
-  post: RequestHandler<null | any, Comment, ReqBodyCommentPost>;
-  put: RequestHandler<Params | any, null, ReqBodyCommentPut>;
-  delete: RequestHandler<Params, null, null>;
+  getAll: RequestHandler<{}, Comment[], null>;
+  getOne: RequestHandler<{id: string}, Comment, null>;
+  post: RequestHandler<{}, Comment, ReqBodyCommentPost>;
+  put: RequestHandler<{id: string} | any, null, ReqBodyCommentPut>;
+  delete: RequestHandler<{id: string}, null, null>;
 }

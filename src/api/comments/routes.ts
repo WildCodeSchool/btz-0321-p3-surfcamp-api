@@ -1,16 +1,15 @@
 import { Router } from "express";
-import putSchemaValidator from "../../middleware/putSchemaValidator";
-import postCommentSchema from "../../JOI/comments/postCommentSchemaJOI";
-import postSchemaValidator from "../../middleware/postSchemaValidator";
+import bodyValidator from '../../middleware/bodyValidator'
 import putCommentSchema from "../../JOI/comments/putCommentSchemaJOI";
+import postCommentSchema from "../../JOI/comments/postCommentSchemaJOI";
 import controller from "./controller";
 
 const router = Router();
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getOne);
-router.post("/", postSchemaValidator(postCommentSchema), controller.post);
-router.put("/:id", putSchemaValidator(putCommentSchema), controller.put);
+router.post("/", bodyValidator(postCommentSchema), controller.post);
+router.put("/:id", bodyValidator(putCommentSchema), controller.put);
 router.delete("/:id", controller.delete);
 
 export default router;
