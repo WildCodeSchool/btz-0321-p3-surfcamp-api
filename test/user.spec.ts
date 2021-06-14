@@ -1,6 +1,5 @@
 import request from "supertest";
 import faker from "faker";
-
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 

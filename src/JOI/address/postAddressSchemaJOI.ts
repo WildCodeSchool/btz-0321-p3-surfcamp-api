@@ -7,7 +7,7 @@ const postAddressSchema = Joi.object().keys({
   streetNumber: Joi.string().required(),
   lat: Joi.number().required(),
   long: Joi.number().required(),
-  countryCode: Joi.number().required(),
+  countryCode: Joi.string().required(),
 });
 
 export default postAddressSchema;

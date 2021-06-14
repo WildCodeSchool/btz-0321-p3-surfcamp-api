@@ -1,11 +1,11 @@
 import prisma from "../../../prisma/prismaClient";
 
-import PropertyHandlers from "./interfaces";
+import AddressHandlers from "./interfaces";
 
-const deleteOne: PropertyHandlers["delete"] = async (req, res) => {
+const deleteOne: AddressHandlers["delete"] = async (req, res) => {
   const { id } = req.params;
 
-  await prisma.property.delete({
+  await prisma.address.delete({
     where: {
       id,
     },
