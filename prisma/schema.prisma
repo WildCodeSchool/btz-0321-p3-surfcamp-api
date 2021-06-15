@@ -34,8 +34,8 @@ model Address {
   city         String
   street       String
   streetNumber String
-  lat          Decimal
-  long         Decimal
+  lat          String
+  long         String
   countryCode  String
   user         User?
   property     Property?
@@ -110,10 +110,10 @@ model Comment {
 model Reservation {
   id            String    @id @default(uuid())
   startDate     DateTime
-  endDtate      DateTime
+  endDate       DateTime
   customerCount Int
-  status        Status
-  user          User      @relation(fields: [userId], references: [id])
+  status        Status    @default(PENDING)
+  user          User?     @relation(fields: [userId], references: [id])
   userId        String
   property      Property? @relation(fields: [propertyId], references: [id])
   propertyId    String?

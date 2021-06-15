@@ -5,8 +5,8 @@ const putAddressSchema = Joi.object().keys({
   city: Joi.string().required(),
   street: Joi.string().required(),
   streetNumber: Joi.string().required(),
-  lat: Joi.number().required(),
-  long: Joi.number().required(),
+  lat: Joi.string().required(),
+  long: Joi.string().required(),
   countryCode: Joi.string().required(),
 });
 

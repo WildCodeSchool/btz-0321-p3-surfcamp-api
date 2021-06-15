@@ -47,9 +47,9 @@ const createComment = async (number: number, prisma: PrismaClient) => {
       data: sampleProperty,
     });
 
-    const sampleReservarion = {
+    const sampleReservation = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
@@ -57,7 +57,7 @@ const createComment = async (number: number, prisma: PrismaClient) => {
     };
 
     const { id: reservationId }: any = await prisma.reservation.create({
-      data: sampleReservarion,
+      data: sampleReservation,
     });
 
     const sampleComment = {
