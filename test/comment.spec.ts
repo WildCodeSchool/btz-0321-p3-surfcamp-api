@@ -62,7 +62,7 @@ describe("comments Ressources", () => {
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
@@ -142,7 +142,7 @@ describe("comments Ressources", () => {
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
@@ -219,7 +219,7 @@ describe("comments Ressources", () => {
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
@@ -294,7 +294,7 @@ describe("comments Ressources", () => {
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
