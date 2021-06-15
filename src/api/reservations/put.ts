@@ -6,7 +6,7 @@ const put: ReservationHandlers["put"] = async (req, res) => {
   const { id } = req.params;
   const {
     customerCount,
-    endDtate,
+    endDate,
     propertyId,
     roomId,
     startDate,
@@ -18,7 +18,7 @@ const put: ReservationHandlers["put"] = async (req, res) => {
     where: { id },
     data: {
       customerCount,
-      endDtate,
+      endDate,
       id,
       propertyId: propertyId!,
       roomId: roomId!,

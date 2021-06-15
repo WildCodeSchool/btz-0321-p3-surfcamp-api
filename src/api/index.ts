@@ -1,12 +1,12 @@
 import { Router } from "express";
 import users from "./users/routes";
 import properties from "./properties/routes";
-import address from "./address/routes";
+import address from "./addresses/routes";
 import reservations from "./reservations/routes";
 import comments from "./comments/routes";
 import rooms from "./rooms/routes";
 import propertyPicture from "./propertyPictures/routes";
-import feature from "./feature/routes";
+import feature from "./features/routes";
 
 const router = Router();
 
