@@ -6,8 +6,8 @@ interface ReqBodyAddressPost {
   city: string;
   street: string;
   streetNumber: string;
-  lat: number;
-  long: number;
+  lat: string;
+  long: string;
   countryCode: string;
   userId?: string;
   propertyId?: string;
@@ -18,8 +18,8 @@ interface ReqBodyAddressPut {
   city: string;
   street: string;
   streetNumber: string;
-  lat: number;
-  long: number;
+  lat: string;
+  long: string;
   countryCode: string;
   userId?: string;
   propertyId?: string;
@@ -31,8 +31,8 @@ interface Params {
 
 export default interface AddressHandlers {
   getAll: RequestHandler<{}, Address[], null>;
-  getOne: RequestHandler<{id : string}, Address, null>;
+  getOne: RequestHandler<{ id: string }, Address, null>;
   post: RequestHandler<{}, Address, ReqBodyAddressPost>;
-  put: RequestHandler<{id: string}, null, ReqBodyAddressPut>;
-  delete: RequestHandler<{id: string}, null, null>;
+  put: RequestHandler<{ id: string }, null, ReqBodyAddressPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }
