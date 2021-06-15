@@ -1,4 +1,5 @@
 import { Router } from "express";
+
 import users from "./users/routes";
 import properties from "./properties/routes";
 import address from "./addresses/routes";
