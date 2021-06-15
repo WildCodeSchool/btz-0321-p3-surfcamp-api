@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
-import {Status} from '.prisma/client'
+import { Status } from ".prisma/client";
 
 // function who take a number as iterator and create an adress on each iteration
 

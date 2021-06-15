@@ -23,8 +23,8 @@ interface Params {
 
 export default interface RoomHandlers {
   getAll: RequestHandler<{}, Room[], null>;
-  getOne: RequestHandler<{id: string}, Room, null>;
-  post: RequestHandler<{}, ReqBodyRoomPost>;
-  put: RequestHandler<{id: string}, null, ReqBodyRoomPut>;
-  delete: RequestHandler<{id:string}, null, null>;
+  getOne: RequestHandler<{ id: string }, Room, null>;
+  post: RequestHandler<{}, Room, ReqBodyRoomPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyRoomPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }

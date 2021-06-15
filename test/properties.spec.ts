@@ -85,7 +85,7 @@ describe("Properties Resources", () => {
     expect(res.body).toHaveProperty("type", sampleProperty.type);
     expect(res.body).toHaveProperty(
       "priceByNight",
-      sampleProperty.priceByNight
+      sampleProperty.priceByNight.toString()
     );
   });
 
