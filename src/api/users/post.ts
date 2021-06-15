@@ -1,6 +1,13 @@
 import prisma from "../../../prisma/prismaClient";
 import UserHandlers from "./interfaces";
 
+/**
+ * POST /users
+ * @summary Create one user
+ * @tags users
+ * @param {PostUser} request.body.required - User info
+ * @return {DisplayUser} 201 - User successfully created
+ */
 const post: UserHandlers["post"] = async (req, res, next) => {
   const {
     firstname,
@@ -43,7 +50,7 @@ const post: UserHandlers["post"] = async (req, res, next) => {
     res.status(201).json(createdUserWithoutPassword);
   } catch (error) {
     //  TODO : send to error middleware
-    next(error)
+    next(error);
   }
 };
 

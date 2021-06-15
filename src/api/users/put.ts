@@ -2,6 +2,14 @@ import prisma from "../../../prisma/prismaClient";
 
 import UserHandlers from "./interfaces";
 
+/**
+ * PUT /users/{id}
+ * @summary Update one user
+ * @tags users
+ * @param {string} id.path - id of wanted user
+ * @param {UpdateUser} request.body.required - User info
+ * @return {object} 204 - User successfully updated
+ */
 const put: UserHandlers["put"] = async (req, res) => {
   const { id } = req.params;
   const {
