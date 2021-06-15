@@ -6,13 +6,7 @@ import bodyValidator from "../../middleware/bodyValidator";
 
 const router = Router();
 
-router.get(
-  "/",
-  /*
-    #swagger.tags = ["Users"]
-  */
-  controller.getAll
-);
+router.get("/", controller.getAll);
 router.get("/:id", controller.getOne);
 router.post("/", bodyValidator(postUserSchema), controller.post);
 router.put("/:id", bodyValidator(putUserSchema), controller.put);
