@@ -2,6 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import createCommentSeed from "../prisma/createCommentSeed";
 import createRoomSeed from "../prisma/createRoomSeed";
 import createFeature from "./createFeatureSeed";
+import createPropertyPictureSeed from "./createPropertyPictureSeed";
+
 
 const prisma = new PrismaClient();
 
@@ -11,6 +13,7 @@ const seed: any = async () => {
   await createCommentSeed(20, prisma);
   await createRoomSeed(10, prisma);
   await createFeature(10, prisma);
+  await createPropertyPictureSeed(10, prisma);
 };
 
 seed()
