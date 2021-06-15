@@ -1,7 +1,13 @@
 import prisma from "../../../prisma/prismaClient";
 
 import UserHandlers from "./interfaces";
-
+/**
+ * GET /users/{id}
+ * @summary View one user
+ * @tags users
+ * @param {string} id.path - id of wanted user
+ * @return {DisplayUser} 200 - User successfully retrieved
+ */
 const getOne: UserHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
 

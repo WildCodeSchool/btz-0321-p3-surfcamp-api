@@ -2,8 +2,7 @@ import { Router } from "express";
 import postUserSchema from "../../JOI/users/postUserSchemaJOI";
 import controller from "./controller";
 import putUserSchema from "../../JOI/users/putUserSchemaJOI";
-import bodyValidator from '../../middleware/bodyValidator'
-
+import bodyValidator from "../../middleware/bodyValidator";
 
 const router = Router();
 

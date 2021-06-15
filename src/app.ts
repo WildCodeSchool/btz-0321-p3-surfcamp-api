@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import expressJSDocSwagger from "express-jsdoc-swagger";
+
 import errorHandler from "./middleware/errorHandler";
 import api from "./api";
+import options from "./swaggerOptions";
 
 const app = express();
 
@@ -10,6 +13,12 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
+
+// Swagger documentation
+
+if (process.env.NODE_ENVV !== "test") {
+  expressJSDocSwagger(app)(options);
+}
 
 // Here is call the api folder wich contain all our Ressources.
 app.use(api);
