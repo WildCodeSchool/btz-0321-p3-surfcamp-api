@@ -1,6 +1,6 @@
 import faker from "faker";
 import { PrismaClient } from "@prisma/client";
-// function who take a number as parrameter as iterator and create one feature, one property and one adress with the relation between them for each iteration.
+// function who take a number as parameter as iterator and create one feature, one property and one adress with the relation between them for each iteration.
 
 const createFeature = async (number: number, prisma: PrismaClient) => {
   for (let i = 0; i < number; i++) {
