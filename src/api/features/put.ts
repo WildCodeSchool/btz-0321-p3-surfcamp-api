@@ -4,7 +4,7 @@ import FeatureHandlers from "./interfaces";
 
 const put: FeatureHandlers["put"] = async (req, res) => {
   const { id } = req.params;
-  const { type, label, propertyId } = req.body;
+  const { type, label, propertyId, iconUrl } = req.body;
 
   await prisma.feature.update({
     where: { id },
@@ -12,6 +12,7 @@ const put: FeatureHandlers["put"] = async (req, res) => {
       type,
       label,
       propertyId,
+      iconUrl,
     },
   });
 

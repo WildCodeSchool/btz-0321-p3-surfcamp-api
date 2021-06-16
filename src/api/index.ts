@@ -8,6 +8,8 @@ import comments from "./comments/routes";
 import rooms from "./rooms/routes";
 import propertyPicture from "./propertyPictures/routes";
 import feature from "./features/routes";
+import country from "./countries/routes";
+import city from "./city/routes";
 
 const router = Router();
 
@@ -19,5 +21,7 @@ router.use("/comments", comments);
 router.use("/rooms", rooms);
 router.use("/propertypictures", propertyPicture);
 router.use("/features", feature);
+router.use("/countries", country);
+router.use("/cities", city);
 
 export default router;

@@ -41,6 +41,7 @@ describe("Features Ressources", () => {
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
+      iconUrl: faker.internet.url(),
     };
 
     const { id } = await prisma.feature.create({
@@ -94,6 +95,7 @@ describe("Features Ressources", () => {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
       propertyId: propertyId,
+      iconUrl: faker.internet.url(),
     };
 
     const res = await request(app)
@@ -130,6 +132,7 @@ describe("Features Ressources", () => {
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
+      iconUrl: faker.internet.url(),
     };
 
     const { id } = await prisma.feature.create({
@@ -172,6 +175,7 @@ describe("Features Ressources", () => {
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
+      iconUrl: faker.internet.url(),
     };
 
     const { id } = await prisma.feature.create({
