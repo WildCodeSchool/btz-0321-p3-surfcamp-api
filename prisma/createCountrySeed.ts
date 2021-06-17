@@ -2,9 +2,12 @@ import faker from "faker";
 import { PrismaClient } from "@prisma/client";
 // function who take a number as parameter as iterator and create one country for each iteration.
 
-const createCountry = async (number: number, prisma: PrismaClient) => {
+const createCountry = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
-    const country = await prisma.country.create({
+    await prisma.country.create({
       data: {
         name: faker.address.country(),
         title: faker.lorem.words(5),
