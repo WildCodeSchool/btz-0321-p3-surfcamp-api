@@ -4,6 +4,7 @@ import createRoomSeed from "../prisma/createRoomSeed";
 import createFeature from "./createFeatureSeed";
 import createPropertyPictureSeed from "./createPropertyPictureSeed";
 import createCountryPicture from "./createCountryPictureSeed";
+import createCityPicture from "./createCityPictureSeed";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +16,7 @@ const seed = async () => {
   await createFeature(10, prisma);
   await createPropertyPictureSeed(10, prisma);
   await createCountryPicture(10, prisma);
+  await createCityPicture(10, prisma);
 };
 
 seed()
