@@ -33,6 +33,7 @@ const createFeature = async (number: number, prisma: PrismaClient) => {
         type: faker.lorem.word(),
         label: faker.lorem.words(5),
         propertyId: property.id,
+        iconUrl: faker.internet.url(),
       },
     });
   }
