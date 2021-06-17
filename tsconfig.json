@@ -8,5 +8,5 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "exclude": ["dist", "prisma"]
+  "exclude": ["test","dist", "prisma"]
 }
