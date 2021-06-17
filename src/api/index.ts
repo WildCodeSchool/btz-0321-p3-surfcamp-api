@@ -9,7 +9,9 @@ import rooms from "./rooms/routes";
 import propertyPicture from "./propertyPictures/routes";
 import feature from "./features/routes";
 import country from "./countries/routes";
-import city from "./city/routes";
+import city from "./cities/routes";
+import countryPicture from "./countryPictures/routes";
+import cityPicture from "./cityPictures/routes";
 
 const router = Router();
 
@@ -23,5 +25,7 @@ router.use("/propertypictures", propertyPicture);
 router.use("/features", feature);
 router.use("/countries", country);
 router.use("/cities", city);
+router.use("/countrypictures", countryPicture);
+router.use("/citypictures", cityPicture);
 
 export default router;
