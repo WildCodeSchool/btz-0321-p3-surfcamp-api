@@ -2,9 +2,12 @@ import faker from "faker";
 import { PrismaClient } from "@prisma/client";
 // function who take a number as parrameter as iterator and create a user  for each iteration.
 
-const createUser = async (number: number, prisma: PrismaClient) => {
+const createUser = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
-    const users: any = await prisma.user.create({
+    await prisma.user.create({
       data: {
         firstname: faker.name.firstName(),
         lastname: faker.name.lastName(),

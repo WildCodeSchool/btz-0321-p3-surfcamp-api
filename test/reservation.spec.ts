@@ -221,7 +221,8 @@ describe("Reservation Ressources", () => {
       roomId: roomId,
     };
     const { id } = await prisma.reservation.create({ data: sampleReservation });
-    const res = await request(app)
+
+    await request(app)
       .put(`/reservations/${id}`)
       .expect(204)
       .send(sampleReservation);
@@ -289,7 +290,7 @@ describe("Reservation Ressources", () => {
     };
     const { id } = await prisma.reservation.create({ data: sampleReservation });
 
-    const res = await request(app).delete(`/reservations/${id}`).expect(204);
+    await request(app).delete(`/reservations/${id}`).expect(204);
 
     expect.not.objectContaining(sampleReservation);
   });

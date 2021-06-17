@@ -75,10 +75,7 @@ describe("Address Ressources", () => {
       data: sampleAddress,
     });
 
-    const res = await request(app)
-      .put(`/addresses/${id}`)
-      .send(sampleAddress)
-      .expect(204);
+    await request(app).put(`/addresses/${id}`).send(sampleAddress).expect(204);
 
     expect.not.objectContaining(sampleAddress);
   });
@@ -98,7 +95,7 @@ describe("Address Ressources", () => {
       data: sampleAddress,
     });
 
-    const res = await request(app).delete(`/addresses/${id}`).expect(204);
+    await request(app).delete(`/addresses/${id}`).expect(204);
 
     expect.not.objectContaining(sampleAddress);
   });

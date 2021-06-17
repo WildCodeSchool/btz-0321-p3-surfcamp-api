@@ -2,9 +2,12 @@ import faker from "faker";
 import { PrismaClient } from "@prisma/client";
 // function who take a number as parameter as iterator and create one feature, one property and one adress with the relation between them for each iteration.
 
-const createFeature = async (number: number, prisma: PrismaClient) => {
+const createFeature = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
-    let address = await prisma.address.create({
+    const address = await prisma.address.create({
       data: {
         city: faker.address.cityName(),
         countryCode: faker.address.countryCode(),
@@ -28,11 +31,12 @@ const createFeature = async (number: number, prisma: PrismaClient) => {
       },
     });
 
-    const feature = await prisma.feature.create({
+    await prisma.feature.create({
       data: {
         type: faker.lorem.word(),
         label: faker.lorem.words(5),
         propertyId: property.id,
+        iconUrl: faker.internet.avatar(),
       },
     });
   }

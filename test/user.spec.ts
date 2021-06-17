@@ -50,7 +50,7 @@ describe("Users Ressources", () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
 
-    const res = await request(app).post(`/users`).send(sampleUser).expect(422);
+    await request(app).post(`/users`).send(sampleUser).expect(422);
     // .expect("Content-Type", /json/);
     //  TODO : change this when JOI validation is ready
   });
@@ -95,10 +95,7 @@ describe("Users Ressources", () => {
       data: sampleUser,
     });
 
-    const res = await request(app)
-      .put(`/users/${id}`)
-      .send(sampleUser)
-      .expect(204);
+    await request(app).put(`/users/${id}`).send(sampleUser).expect(204);
 
     expect.not.objectContaining(sampleUser);
   });
@@ -117,7 +114,7 @@ describe("Users Ressources", () => {
     const { id } = await prisma.user.create({
       data: sampleUser,
     });
-    const res = await request(app).delete(`/users/${id}`).expect(204);
+    await request(app).delete(`/users/${id}`).expect(204);
 
     expect.not.objectContaining(sampleUser);
   });

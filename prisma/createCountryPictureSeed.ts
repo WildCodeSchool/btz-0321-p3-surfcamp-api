@@ -2,7 +2,10 @@ import faker from "faker";
 import { PrismaClient } from "@prisma/client";
 // function who take a number as parameter as iterator and create one country and one countryPicture for each iteration.
 
-const createCountryPicture = async (number: number, prisma: PrismaClient) => {
+const createCountryPicture = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
     const country = await prisma.country.create({
       data: {
@@ -14,7 +17,7 @@ const createCountryPicture = async (number: number, prisma: PrismaClient) => {
       },
     });
 
-    const countryPicture = await prisma.countryPicture.create({
+    await prisma.countryPicture.create({
       data: {
         name: faker.address.country(),
         url: faker.internet.avatar(),

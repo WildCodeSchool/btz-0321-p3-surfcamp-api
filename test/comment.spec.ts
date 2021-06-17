@@ -56,7 +56,7 @@ describe("comments Ressources", () => {
       addressId: addressId,
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
@@ -69,7 +69,7 @@ describe("comments Ressources", () => {
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -136,7 +136,7 @@ describe("comments Ressources", () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
@@ -149,7 +149,7 @@ describe("comments Ressources", () => {
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -213,7 +213,7 @@ describe("comments Ressources", () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
@@ -226,7 +226,7 @@ describe("comments Ressources", () => {
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -241,10 +241,7 @@ describe("comments Ressources", () => {
       data: sampleComment,
     });
 
-    const res = await request(app)
-      .put(`/comments/${id}`)
-      .send(sampleComment)
-      .expect(204);
+    await request(app).put(`/comments/${id}`).send(sampleComment).expect(204);
 
     expect.not.objectContaining(sampleComment);
   });
@@ -288,7 +285,7 @@ describe("comments Ressources", () => {
       addressId: addressId,
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
@@ -301,7 +298,7 @@ describe("comments Ressources", () => {
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -316,7 +313,7 @@ describe("comments Ressources", () => {
       data: sampleComment,
     });
 
-    const res = await request(app).delete(`/comments/${id}`).expect(204);
+    await request(app).delete(`/comments/${id}`).expect(204);
 
     expect.not.objectContaining(sampleComment);
   });

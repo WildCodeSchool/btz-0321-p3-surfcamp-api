@@ -157,10 +157,7 @@ describe("Rooms Ressources", () => {
       data: sampleRoom,
     });
 
-    const res = await request(app)
-      .put(`/rooms/${id}`)
-      .send(sampleRoom)
-      .expect(204);
+    await request(app).put(`/rooms/${id}`).send(sampleRoom).expect(204);
 
     expect.not.objectContaining(sampleRoom);
   });
@@ -201,7 +198,7 @@ describe("Rooms Ressources", () => {
       },
     });
 
-    const res = await request(app).delete(`/rooms/${id}`).expect(204);
+    await request(app).delete(`/rooms/${id}`).expect(204);
 
     expect.not.objectContaining(sampleRoom);
   });

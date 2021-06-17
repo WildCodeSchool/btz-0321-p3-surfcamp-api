@@ -1,6 +1,5 @@
 import request from "supertest";
 import faker from "faker";
-
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 
@@ -144,10 +143,7 @@ describe("Features Ressources", () => {
       },
     });
 
-    const res = await request(app)
-      .put(`/features/${id}`)
-      .send(sampleFeature)
-      .expect(204);
+    await request(app).put(`/features/${id}`).send(sampleFeature).expect(204);
 
     expect.not.objectContaining(sampleFeature);
   });
@@ -187,7 +183,7 @@ describe("Features Ressources", () => {
       },
     });
 
-    const res = await request(app).delete(`/features/${id}`).expect(204);
+    await request(app).delete(`/features/${id}`).expect(204);
 
     expect.not.objectContaining(sampleFeature);
   });
