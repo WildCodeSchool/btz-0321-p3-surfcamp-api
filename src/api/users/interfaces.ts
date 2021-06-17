@@ -37,18 +37,14 @@ interface ReqBodyUserPut {
   isActive: boolean;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface UserHandlers {
-  getAll: RequestHandler<{}, UserWithoutPassword[], null>;
-  getOne: RequestHandler<{id: string}, UserWithoutPassword, null>;
+  getAll: RequestHandler<Record<string, never>, UserWithoutPassword[], null>;
+  getOne: RequestHandler<{ id: string }, UserWithoutPassword, null>;
   post: RequestHandler<
-    {},
+    Record<string, never>,
     UserWithoutPassword | Error,
     ReqBodyUserPost
   >;
-  put: RequestHandler<{id: string}, null, ReqBodyUserPut>;
-  delete: RequestHandler<{id: string}, null, null>;
+  put: RequestHandler<{ id: string }, null, ReqBodyUserPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }

@@ -1,4 +1,4 @@
-import { Address, Property, Room } from ".prisma/client";
+import { Property } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPost {
@@ -26,8 +26,8 @@ interface Params {
 
 export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
-  getOne: RequestHandler<{id: string}, Property, null>;
-  post: RequestHandler<{} | any, Property, ReqBodyPropertyPost>;
-  put: RequestHandler<{id: string} | any, null, ReqBodyPropertyPut>;
+  getOne: RequestHandler<{ id: string }, Property, null>;
+  post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
 }

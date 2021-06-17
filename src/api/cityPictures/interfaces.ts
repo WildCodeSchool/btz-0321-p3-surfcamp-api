@@ -14,9 +14,13 @@ interface ReqBodyCityPicturePut {
 }
 
 export default interface CityPictureHandlers {
-  getAll: RequestHandler<{}, CityPicture[], null>;
+  getAll: RequestHandler<Record<string, never>, CityPicture[], null>;
   getOne: RequestHandler<{ id: string }, CityPicture, null>;
-  post: RequestHandler<{}, CityPicture, ReqBodyCityPicturePost>;
+  post: RequestHandler<
+    Record<string, never>,
+    CityPicture,
+    ReqBodyCityPicturePost
+  >;
   put: RequestHandler<{ id: string }, null, ReqBodyCityPicturePut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

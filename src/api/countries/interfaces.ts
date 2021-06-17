@@ -18,9 +18,9 @@ interface ReqBodyCountryPut {
 }
 
 export default interface CountryHandlers {
-  getAll: RequestHandler<{}, Country[], null>;
+  getAll: RequestHandler<Record<string, never>, Country[], null>;
   getOne: RequestHandler<{ id: string }, Country, null>;
-  post: RequestHandler<{}, Country, ReqBodyCountryPost>;
+  post: RequestHandler<Record<string, never>, Country, ReqBodyCountryPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyCountryPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }
