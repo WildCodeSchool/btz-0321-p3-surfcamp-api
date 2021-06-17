@@ -1,7 +1,7 @@
 import { Router } from "express";
 import postReservationSchema from "../../JOI/reservation/postReservationSchemaJOI";
 import putReservationSchema from "../../JOI/reservation/putReservationSchemaJOI";
-import bodyValidator from '../../middleware/bodyValidator'
+import bodyValidator from "../../middleware/bodyValidator";
 
 import controller from "./controller";
 

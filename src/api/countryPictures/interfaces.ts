@@ -14,9 +14,13 @@ interface ReqBodyCountryPicturePut {
 }
 
 export default interface CountryPictureHandlers {
-  getAll: RequestHandler<{}, CountryPicture[], null>;
+  getAll: RequestHandler<Record<string, never>, CountryPicture[], null>;
   getOne: RequestHandler<{ id: string }, CountryPicture, null>;
-  post: RequestHandler<{}, CountryPicture, ReqBodyCountryPicturePost>;
+  post: RequestHandler<
+    Record<string, never>,
+    CountryPicture,
+    ReqBodyCountryPicturePost
+  >;
   put: RequestHandler<{ id: string }, null, ReqBodyCountryPicturePut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

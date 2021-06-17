@@ -25,14 +25,10 @@ interface ReqBodyAddressPut {
   propertyId?: string;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface AddressHandlers {
-  getAll: RequestHandler<{}, Address[], null>;
+  getAll: RequestHandler<Record<string, never>, Address[], null>;
   getOne: RequestHandler<{ id: string }, Address, null>;
-  post: RequestHandler<{}, Address, ReqBodyAddressPost>;
+  post: RequestHandler<Record<string, never>, Address, ReqBodyAddressPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyAddressPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

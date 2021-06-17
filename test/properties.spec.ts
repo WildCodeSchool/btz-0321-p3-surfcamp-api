@@ -2,7 +2,6 @@ import request from "supertest";
 import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
-import { Address, Property } from ".prisma/client";
 
 //    For this test we must create multiple ressources beacause
 //  the ressource we are testing depend of others ressources
@@ -118,7 +117,7 @@ describe("Properties Resources", () => {
       data: sampleProperty,
     });
 
-    const res = await request(app)
+    await request(app)
       .put(`/properties/${id}`)
       .send(sampleProperty)
       .expect(204);
@@ -155,7 +154,7 @@ describe("Properties Resources", () => {
       data: sampleProperty,
     });
 
-    const res = await request(app)
+    await request(app)
       .delete(`/properties/${id}`)
       .send(sampleProperty)
       .expect(204);

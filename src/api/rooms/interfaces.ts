@@ -17,14 +17,10 @@ interface ReqBodyRoomPut {
   propertyId: string;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface RoomHandlers {
-  getAll: RequestHandler<{}, Room[], null>;
+  getAll: RequestHandler<Record<string, never>, Room[], null>;
   getOne: RequestHandler<{ id: string }, Room, null>;
-  post: RequestHandler<{}, Room, ReqBodyRoomPost>;
+  post: RequestHandler<Record<string, never>, Room, ReqBodyRoomPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyRoomPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

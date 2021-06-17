@@ -4,7 +4,10 @@ import { Status } from ".prisma/client";
 
 // function who take a number as iterator and create an adress on each iteration
 
-const createComment = async (number: number, prisma: PrismaClient) => {
+const createComment = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
     const sampleUser = {
       email: faker.internet.email(),
@@ -43,7 +46,7 @@ const createComment = async (number: number, prisma: PrismaClient) => {
       addressId: addressId,
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
@@ -56,7 +59,7 @@ const createComment = async (number: number, prisma: PrismaClient) => {
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservation,
     });
 

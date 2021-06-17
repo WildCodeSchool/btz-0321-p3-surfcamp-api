@@ -165,7 +165,7 @@ describe("PropertyPicture Ressources", () => {
       data: samplePropertyPicture,
     });
 
-    const res = await request(app)
+    await request(app)
       .put(`/propertypictures/${id}`)
       .send(samplePropertyPicture)
       .expect(204);
@@ -212,9 +212,7 @@ describe("PropertyPicture Ressources", () => {
       data: samplePropertyPicture,
     });
 
-    const res = await request(app)
-      .delete(`/propertypictures/${id}`)
-      .expect(204);
+    await request(app).delete(`/propertypictures/${id}`).expect(204);
 
     expect.not.objectContaining(samplePropertyPicture);
   });

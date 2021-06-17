@@ -16,9 +16,9 @@ interface ReqBodyFeaturePut {
 }
 
 export default interface FeatureHandlers {
-  getAll: RequestHandler<{}, Feature[], null>;
+  getAll: RequestHandler<Record<string, never>, Feature[], null>;
   getOne: RequestHandler<{ id: string }, Feature, null>;
-  post: RequestHandler<{}, Feature, ReqBodyFeaturePost>;
+  post: RequestHandler<Record<string, never>, Feature, ReqBodyFeaturePost>;
   put: RequestHandler<{ id: string }, null, ReqBodyFeaturePut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

@@ -10,8 +10,8 @@ const post: ReservationHandlers["post"] = async (req, res) => {
     data: {
       customerCount,
       endDate,
-      propertyId: propertyId!,
-      roomId: roomId!,
+      propertyId,
+      roomId,
       startDate,
       userId,
     },

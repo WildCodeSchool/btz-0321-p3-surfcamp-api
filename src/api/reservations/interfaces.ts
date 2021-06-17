@@ -32,7 +32,11 @@ interface Params {
 export default interface ReservationHandlers {
   getAll: RequestHandler<null, Reservation[], null>;
   getOne: RequestHandler<{ id: string }, Reservation, null>;
-  post: RequestHandler<{}, Reservation, ReqBodyReservationPost>;
+  post: RequestHandler<
+    Record<string, never>,
+    Reservation,
+    ReqBodyReservationPost
+  >;
   put: RequestHandler<{ id: string }, null, ReqBodyReservationPut>;
   delete: RequestHandler<Params, null, null>;
 }
