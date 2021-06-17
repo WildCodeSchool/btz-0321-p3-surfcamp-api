@@ -1,5 +1,5 @@
 import { Router } from "express";
-import bodyValidator from '../../middleware/bodyValidator'
+import bodyValidator from "../../middleware/bodyValidator";
 import putAddressSchemaJOI from "../../JOI/address/putAddressSchemaJOI";
 import postAddressSchemaJOI from "../../JOI/address/postAddressSchemaJOI";
 import controller from "./controller";

@@ -1,12 +1,15 @@
 import faker from "faker";
 import { PrismaClient } from "@prisma/client";
 
-// function who take a number as parrameter as iterator and create one property 
+// function who take a number as parrameter as iterator and create one property
 // and one adress with the relation between them for each iteration.
 
-const createPropertyPictureSeed = async (number: number, prisma: PrismaClient) => {
+const createPropertyPictureSeed = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
-    let address = await prisma.address.create({
+    const address = await prisma.address.create({
       data: {
         city: faker.address.cityName(),
         countryCode: faker.address.countryCode(),
@@ -18,7 +21,7 @@ const createPropertyPictureSeed = async (number: number, prisma: PrismaClient) =
       },
     });
 
-    const {id:propertyId}: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: {
         description: faker.company.catchPhraseDescriptor(),
         name: faker.company.companyName(),
@@ -30,14 +33,14 @@ const createPropertyPictureSeed = async (number: number, prisma: PrismaClient) =
       },
     });
 
-   const propertyPicture = await prisma.propertyPicture.create({
-       data:{
-           name: faker.name.firstName(),
-           description: faker.lorem.text(),
-           url: faker.image.avatar(),
-           propertyId: propertyId,
-       }
-   })
+    await prisma.propertyPicture.create({
+      data: {
+        name: faker.name.firstName(),
+        description: faker.lorem.text(),
+        url: faker.image.avatar(),
+        propertyId: propertyId,
+      },
+    });
   }
 };
 export default createPropertyPictureSeed;

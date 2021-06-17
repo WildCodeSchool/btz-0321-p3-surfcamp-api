@@ -18,9 +18,9 @@ interface ReqBodyCityPut {
 }
 
 export default interface CityHandlers {
-  getAll: RequestHandler<{}, City[], null>;
+  getAll: RequestHandler<Record<string, never>, City[], null>;
   getOne: RequestHandler<{ id: string }, City, null>;
-  post: RequestHandler<{}, City, ReqBodyCityPost>;
+  post: RequestHandler<Record<string, never>, City, ReqBodyCityPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyCityPut>;
   delete: RequestHandler<{ id: string }, null, null>;
 }

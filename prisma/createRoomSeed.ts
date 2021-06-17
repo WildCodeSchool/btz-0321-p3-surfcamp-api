@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
 
-const createComment = async (number: number, prisma: PrismaClient) => {
+const createComment = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
     const { id: addressId } = await prisma.address.create({
       data: {

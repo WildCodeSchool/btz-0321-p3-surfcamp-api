@@ -1,5 +1,5 @@
 import { Router } from "express";
-import bodyValidator from '../../middleware/bodyValidator'
+import bodyValidator from "../../middleware/bodyValidator";
 import controller from "./controller";
 import postRoomSchema from "../../JOI/room/postRoomSchemaJOI";
 import putRoomSchema from "../../JOI/room/putRoomSchemaJOI";
