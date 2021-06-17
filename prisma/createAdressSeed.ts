@@ -11,7 +11,6 @@ const createAddress = async (number: number, prisma: PrismaClient) => {
         countryCode: faker.address.countryCode(),
         lat: faker.address.latitude(),
         long: faker.address.longitude(),
-        phoneNumber: faker.phone.phoneNumber(),
         street: faker.address.streetName(),
         streetNumber: faker.address.streetAddress(),
         zipcode: faker.address.zipCode(),
