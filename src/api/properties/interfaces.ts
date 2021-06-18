@@ -1,4 +1,4 @@
-import { Address, Property, Room } from ".prisma/client";
+import { Property } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPost {
@@ -7,8 +7,8 @@ interface ReqBodyPropertyPost {
   type: string;
   priceByNight: number;
   status: boolean;
-  address: Address;
   addressId: string;
+  phoneNumber: string;
 }
 
 interface ReqBodyPropertyPut {
@@ -17,6 +17,7 @@ interface ReqBodyPropertyPut {
   type: string;
   priceByNight: number;
   status: boolean;
+  phoneNumber: string;
 }
 
 interface Params {
@@ -25,8 +26,8 @@ interface Params {
 
 export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
-  getOne: RequestHandler<Params, Property, null>;
-  post: RequestHandler<null, Property, ReqBodyPropertyPost>;
-  put: RequestHandler<Params, null, ReqBodyPropertyPut>;
+  getOne: RequestHandler<{ id: string }, Property, null>;
+  post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
 }

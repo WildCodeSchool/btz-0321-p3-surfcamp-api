@@ -5,9 +5,8 @@ import ReservationHandlers from "./interfaces";
 const put: ReservationHandlers["put"] = async (req, res) => {
   const { id } = req.params;
   const {
-    createdAt,
     customerCount,
-    endDtate,
+    endDate,
     propertyId,
     roomId,
     startDate,
@@ -18,9 +17,8 @@ const put: ReservationHandlers["put"] = async (req, res) => {
   await prisma.reservation.update({
     where: { id },
     data: {
-      createdAt,
       customerCount,
-      endDtate,
+      endDate,
       id,
       propertyId,
       roomId,

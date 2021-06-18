@@ -11,6 +11,8 @@ const getOne: RoomHandlers["getOne"] = async (req, res, next) => {
       },
       rejectOnNotFound: true,
     });
+
+    res.status(200).json(room);
   } catch (error) {
     res.status(404);
     next(error);

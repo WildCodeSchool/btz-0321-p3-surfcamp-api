@@ -2,7 +2,7 @@ import prisma from "../../../prisma/prismaClient";
 import RoomHandlers from "./interfaces";
 
 const post: RoomHandlers["post"] = async (req, res) => {
-  const { name, description, capacity, priceByNight, property } = req.body;
+  const { name, description, capacity, priceByNight, propertyId } = req.body;
 
   const createdRoom = await prisma.room.create({
     data: {
@@ -10,7 +10,7 @@ const post: RoomHandlers["post"] = async (req, res) => {
       description,
       capacity,
       priceByNight,
-      property,
+      propertyId,
     },
   });
 

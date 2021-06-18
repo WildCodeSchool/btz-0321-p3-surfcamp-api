@@ -1,30 +1,16 @@
 import prisma from "../../../prisma/prismaClient";
 
-import CommentsHandlers from "./interfaces";
+import CommentHandlers from "./interfaces";
 
-const put: CommentsHandlers["put"] = async (req, res) => {
+const put: CommentHandlers["put"] = async (req, res) => {
   const { id } = req.params;
-  const {
-    comment,
-    propertyId,
-    reservationId,
-    rate,
-    roomId,
-    userId,
-    createdAt,
-  } = req.body;
+  const { comment, rate } = req.body;
 
   await prisma.comment.update({
     where: { id },
     data: {
-      id,
       comment,
-      propertyId,
-      reservationId,
       rate,
-      roomId,
-      userId,
-      createdAt,
     },
   });
 

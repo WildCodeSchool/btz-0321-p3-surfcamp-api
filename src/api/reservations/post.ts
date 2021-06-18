@@ -3,26 +3,16 @@ import prisma from "../../../prisma/prismaClient";
 import ReservationHandlers from "./interfaces";
 
 const post: ReservationHandlers["post"] = async (req, res) => {
-  const {
-    createdAt,
-    customerCount,
-    endDtate,
-    propertyId,
-    roomId,
-    startDate,
-    status,
-    userId,
-  } = req.body;
+  const { customerCount, endDate, propertyId, roomId, startDate, userId } =
+    req.body;
 
   const createdReservation = await prisma.reservation.create({
     data: {
-      createdAt,
       customerCount,
-      endDtate,
+      endDate,
       propertyId,
       roomId,
       startDate,
-      status,
       userId,
     },
   });

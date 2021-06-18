@@ -1,8 +1,8 @@
 import prisma from "../../../prisma/prismaClient";
 
-import CommentsHandlers from "./interfaces";
+import CommentHandlers from "./interfaces";
 
-const getOne: CommentsHandlers["getOne"] = async (req, res, next) => {
+const getOne: CommentHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
 
   try {

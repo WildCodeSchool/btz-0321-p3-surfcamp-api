@@ -1,12 +1,12 @@
-import faker from "faker";
-
 import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import faker from "faker";
 
 // function who take a number as iterator and create an adress on each iteration
 
-const createAddress = async (number: number) => {
+const createAddress = async (
+  number: number,
+  prisma: PrismaClient
+): Promise<void> => {
   for (let i = 0; i < number; i++) {
     await prisma.address.create({
       data: {
@@ -14,7 +14,6 @@ const createAddress = async (number: number) => {
         countryCode: faker.address.countryCode(),
         lat: faker.address.latitude(),
         long: faker.address.longitude(),
-        phoneNumber: faker.phone.phoneNumber(),
         street: faker.address.streetName(),
         streetNumber: faker.address.streetAddress(),
         zipcode: faker.address.zipCode(),
@@ -22,4 +21,5 @@ const createAddress = async (number: number) => {
     });
   }
 };
+
 export default createAddress;

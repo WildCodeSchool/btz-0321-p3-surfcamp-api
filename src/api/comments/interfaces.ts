@@ -1,32 +1,24 @@
 import { Comment } from ".prisma/client";
 import { RequestHandler } from "express";
 
-interface ReqBodyCommentsPost {
+interface ReqBodyCommentPost {
   comment: string;
   rate: number;
   userId: string;
   reservationId: string;
+  propertyId?: string;
+  roomId?: string;
 }
 
-interface ReqBodyCommentsPut {
-  id: string;
+interface ReqBodyCommentPut {
   comment: string;
   rate: number;
-  userId: string;
-  reservationId: string;
-  roomId: string;
-  createdAt: Date;
-  propertyId: string;
 }
 
-interface Params {
-  id: string;
-}
-
-export default interface CommentsHandlers {
-  getAll: RequestHandler<null, Comment[], null>;
-  getOne: RequestHandler<Params, Comment, null>;
-  post: RequestHandler<null, Comment, ReqBodyCommentsPost>;
-  put: RequestHandler<Params, null, ReqBodyCommentsPut>;
-  delete: RequestHandler<Params, null, null>;
+export default interface CommentHandlers {
+  getAll: RequestHandler<Record<string, never>, Comment[], null>;
+  getOne: RequestHandler<{ id: string }, Comment, null>;
+  post: RequestHandler<Record<string, never>, Comment, ReqBodyCommentPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyCommentPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }
