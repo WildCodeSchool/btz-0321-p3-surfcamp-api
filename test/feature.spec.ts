@@ -188,3 +188,7 @@ describe("Features Ressources", () => {
     expect.not.objectContaining(sampleFeature);
   });
 });
+
+afterAll(async () => {
+  await prisma.$disconnect();
+});

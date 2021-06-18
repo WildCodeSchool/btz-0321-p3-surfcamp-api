@@ -295,3 +295,7 @@ describe("Reservation Ressources", () => {
     expect.not.objectContaining(sampleReservation);
   });
 });
+
+afterAll(async () => {
+  await prisma.$disconnect();
+});

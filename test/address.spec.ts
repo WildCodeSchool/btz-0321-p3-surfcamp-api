@@ -100,3 +100,7 @@ describe("Address Ressources", () => {
     expect.not.objectContaining(sampleAddress);
   });
 });
+
+afterAll(async () => {
+  await prisma.$disconnect();
+});
