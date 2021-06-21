@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ValidationErrorItem } from "joi";
 
 //      Here is a middleware whose purpose is to catch errors like a bottleneck
@@ -14,7 +14,8 @@ interface Error {
 export default function errorHandler(
   err: Error,
   req: Request,
-  res: Response
+  res: Response,
+  _next: NextFunction,
 ): void {
   const status = res.statusCode === 200 ? 500 : res.statusCode;
   // eslint-disable-next-line no-console
