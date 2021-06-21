@@ -15,7 +15,7 @@ export default function errorHandler(
   err: Error,
   req: Request,
   res: Response,
-  _next: NextFunction,
+  _next: NextFunction
 ): void {
   const status = res.statusCode === 200 ? 500 : res.statusCode;
   // eslint-disable-next-line no-console
