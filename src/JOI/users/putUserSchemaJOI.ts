@@ -15,9 +15,6 @@ const putUserSchema = Joi.object().keys({
   birthDate: Joi.date().iso().min("1-1-1900").max("now").required(),
   phoneNumber: Joi.string().min(10).max(10).required(),
   picture: Joi.string().uri().required(),
-
-  role: Joi.string().valid("SUPERADMIN", "ADMIN", "RENTER", "USER").required(),
-  isActive: Joi.boolean().valid("0", "1").required(),
 });
 
 export default putUserSchema;
