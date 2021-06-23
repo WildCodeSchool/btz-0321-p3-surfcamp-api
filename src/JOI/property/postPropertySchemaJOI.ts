@@ -7,7 +7,7 @@ const postPropertySchema = Joi.object().keys({
   status: Joi.bool().required(),
   priceByNight: Joi.number().min(1).required(),
   addressId: Joi.string().required(),
-  phoneNumber: Joi.string().required(),
+  phoneNumber: Joi.string(),
 });
 
 export default postPropertySchema;

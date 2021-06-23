@@ -46,7 +46,7 @@ model Property {
   id           String            @id @default(uuid())
   name         String
   description  String
-  type         String
+  type         PropertyType       @default(NONE)
   priceByNight Decimal           @db.Money
   status       Boolean
   pictures     PropertyPicture[]
@@ -176,4 +176,12 @@ enum Status {
   CONFIRMED
   CANCELED
   CONSUMED
+}
+
+enum PropertyType {
+NONE
+SURFCAMP
+SURFHOUSE
+SURFSCHOOL
+
 }
