@@ -14,7 +14,7 @@ const postUserSchema = Joi.object().keys({
   confirmPassword: Joi.ref("password"),
   birthDate: Joi.date().iso().min("1-1-1900").max("now").required(),
   phoneNumber: Joi.string().min(10).max(10).required(),
-  picture: Joi.link().ref("#type.a").required(),
+  picture: Joi.link("/").required(),
 });
 
 export default postUserSchema;
