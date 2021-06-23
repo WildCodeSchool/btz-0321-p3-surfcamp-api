@@ -6,7 +6,9 @@ const postUserSchema = Joi.object().keys({
   email: Joi.string().email({ allowUnicode: false }).required(),
   password: Joi.string()
     .pattern(
-      new RegExp(/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])\S{6,12}$/)
+      new RegExp(
+        /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`])\S{6,12}$/
+      )
     )
     .required(),
   confirmPassword: Joi.ref("password"),
