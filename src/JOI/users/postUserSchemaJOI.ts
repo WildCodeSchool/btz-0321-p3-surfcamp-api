@@ -1,14 +1,18 @@
 import Joi from "joi";
 
 const postUserSchema = Joi.object().keys({
-  firstname: Joi.string().min(1).max(50).required(),
-  lastname: Joi.string().min(1).max(50).required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().min(6).max(30).required(),
-  confirmPassword: Joi.string().min(6).max(30).required(),
-  picture: Joi.string().required(),
+  firstname: Joi.string().alphanum().min(3).max(30).required(),
+  lastname: Joi.string().alphanum().min(3).max(30).required(),
+  email: Joi.string().email({ allowUnicode: false }).required(),
+  password: Joi.string()
+    .pattern(new RegExp(/^(?=.[A-z])(?=.[A-Z])(?=.[0-9])(?=.[$@])\S{6,12}$/))
+    .min(8)
+    .max(50)
+    .required(),
+  confirmPassword: Joi.ref("password"),
   birthDate: Joi.date().iso().required(),
   phoneNumber: Joi.string().required(),
+  picture: Joi.string().required(),
 });
 
 export default postUserSchema;
