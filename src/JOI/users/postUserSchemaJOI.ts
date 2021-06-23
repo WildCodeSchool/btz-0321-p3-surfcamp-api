@@ -5,9 +5,9 @@ const postUserSchema = Joi.object().keys({
   lastname: Joi.string().alphanum().min(3).max(30).required(),
   email: Joi.string().email({ allowUnicode: false }).required(),
   password: Joi.string()
-    .pattern(new RegExp(/^(?=.[A-z])(?=.[A-Z])(?=.[0-9])(?=.[$@])\S{6,12}$/))
-    .min(8)
-    .max(50)
+    .pattern(
+      new RegExp(/^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@])\S{6,12}$/)
+    )
     .required(),
   confirmPassword: Joi.ref("password"),
   birthDate: Joi.date().iso().required(),
