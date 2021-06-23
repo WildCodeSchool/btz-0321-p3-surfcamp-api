@@ -26,25 +26,6 @@ const createComment = async (
         status: faker.datatype.boolean(),
         type: faker.company.companyName(),
         phoneNumber: faker.phone.phoneNumber(),
-<<<<<<< HEAD
-        addressId: address.id,
-      },
-    });
-
-    const room: any = await prisma.property.create({
-      data: {
-        name: faker.name.firstName(),
-        description: faker.lorem.words(20),
-        priceByNight: faker.commerce.price(),
-        capacity: faker.datatype.number({ min: 1, max: 6 }),
-        propertyId: property.id,
-      },
-    });
-  }
-};
-
-export default createRoom;
-=======
         addressId: addressId,
       },
     });
@@ -63,4 +44,3 @@ export default createRoom;
   }
 };
 export default createComment;
->>>>>>> 7a13d668756f65440d913f22cc3786f667c69e41
