@@ -1,11 +1,11 @@
 import { RequestHandler } from "express";
-import { Property, Room } from "@prisma/client";
+import { Room } from "@prisma/client";
 
 interface ReqBodyRoomPost {
   name: string;
+  priceByNight: number;
   description: string;
   capacity: number;
-  priceByNight: number;
   propertyId: string;
 }
 
@@ -17,14 +17,10 @@ interface ReqBodyRoomPut {
   propertyId: string;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface RoomHandlers {
-  getAll: RequestHandler<null, Room[], null>;
-  getOne: RequestHandler<Params, Room, null>;
-  post: RequestHandler<null, ReqBodyRoomPost>;
-  put: RequestHandler<Params, null, ReqBodyRoomPut>;
-  delete: RequestHandler<Params, null, null>;
+  getAll: RequestHandler<Record<string, never>, Room[], null>;
+  getOne: RequestHandler<{ id: string }, Room, null>;
+  post: RequestHandler<Record<string, never>, Room, ReqBodyRoomPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyRoomPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }

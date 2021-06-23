@@ -29,6 +29,7 @@ interface ReqBodyUserPut {
   firstname: string;
   lastname: string;
   email: string;
+  password: string;
   picture: string;
   birthDate: string;
   phoneNumber: string;
@@ -36,14 +37,14 @@ interface ReqBodyUserPut {
   isActive: boolean;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface UserHandlers {
-  getAll: RequestHandler<null, UserWithoutPassword[], null>;
-  getOne: RequestHandler<Params, UserWithoutPassword, null>;
-  post: RequestHandler<null, UserWithoutPassword, ReqBodyUserPost>;
-  put: RequestHandler<Params, null, ReqBodyUserPut>;
-  delete: RequestHandler<Params, null, null>;
+  getAll: RequestHandler<Record<string, never>, UserWithoutPassword[], null>;
+  getOne: RequestHandler<{ id: string }, UserWithoutPassword, null>;
+  post: RequestHandler<
+    Record<string, never>,
+    UserWithoutPassword | Error,
+    ReqBodyUserPost
+  >;
+  put: RequestHandler<{ id: string }, null, ReqBodyUserPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }

@@ -4,9 +4,9 @@ import CommentHandlers from "./interfaces";
 
 const getAll: CommentHandlers["getAll"] = async (req, res) => {
   const Comments = await prisma.comment.findMany();
-  res.setHeader("X-Total-Count", 200);
+  res.setHeader("X-Total-Count", Comments.length);
   res.set({
-    "X-Total-Count": "100",
+    "X-Total-Count": Comments.length,
     "Access-Control-Expose-Headers": "X-Total-Count",
   });
   res.status(200).json(Comments);

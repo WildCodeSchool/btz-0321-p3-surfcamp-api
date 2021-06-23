@@ -17,6 +17,7 @@ const getOne: PropertyHandlers["getOne"] = async (req, res, next) => {
   } catch (error) {
     res.status(404);
     next(error);
+    throw new Error("Not found");
   }
 };
 

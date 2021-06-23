@@ -4,6 +4,10 @@ import { Status } from ".prisma/client";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
 
+//    For this test we must create multiple ressources beacause
+//  the ressource we are testing depend of others ressources
+//  who depends of others too ...
+
 describe("comments Ressources", () => {
   test("Get status 200 and array of comments", async () => {
     const res = await request(app)
@@ -23,7 +27,7 @@ describe("comments Ressources", () => {
       picture: faker.internet.avatar(),
       password: faker.internet.password(),
       phoneNumber: faker.phone.phoneNumber(),
-    }
+    };
 
     const { id: userId } = await prisma.user.create({
       data: sampleUser,
@@ -52,20 +56,20 @@ describe("comments Ressources", () => {
       addressId: addressId,
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -132,20 +136,20 @@ describe("comments Ressources", () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -209,20 +213,20 @@ describe("comments Ressources", () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -237,10 +241,7 @@ describe("comments Ressources", () => {
       data: sampleComment,
     });
 
-    const res = await request(app)
-      .put(`/comments/${id}`)
-      .send(sampleComment)
-      .expect(204);
+    await request(app).put(`/comments/${id}`).send(sampleComment).expect(204);
 
     expect.not.objectContaining(sampleComment);
   });
@@ -284,20 +285,20 @@ describe("comments Ressources", () => {
       addressId: addressId,
     };
 
-    const { id: propertyId }: any = await prisma.property.create({
+    const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
 
     const sampleReservarion = {
       customerCount: faker.datatype.number(),
-      endDtate: faker.date.future(),
+      endDate: faker.date.future(),
       propertyId: propertyId,
       startDate: faker.date.future(),
       status: Status.CANCELED,
       userId: userId,
     };
 
-    const { id: reservationId }: any = await prisma.reservation.create({
+    const { id: reservationId } = await prisma.reservation.create({
       data: sampleReservarion,
     });
 
@@ -312,7 +313,7 @@ describe("comments Ressources", () => {
       data: sampleComment,
     });
 
-    const res = await request(app).delete(`/comments/${id}`).expect(204);
+    await request(app).delete(`/comments/${id}`).expect(204);
 
     expect.not.objectContaining(sampleComment);
   });

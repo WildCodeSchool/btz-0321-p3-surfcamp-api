@@ -1,4 +1,4 @@
-import prisma from '../../../prisma/prismaClient'
+import prisma from "../../../prisma/prismaClient";
 import PropertyPictureHandlers from "./interfaces";
 
 const deleteOne: PropertyPictureHandlers["delete"] = async (req, res) => {

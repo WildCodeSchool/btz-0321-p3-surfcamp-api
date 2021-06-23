@@ -15,14 +15,10 @@ interface ReqBodyCommentPut {
   rate: number;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface CommentHandlers {
-  getAll: RequestHandler<null, Comment[], null>;
-  getOne: RequestHandler<Params, Comment, null>;
-  post: RequestHandler<null, Comment, ReqBodyCommentPost>;
-  put: RequestHandler<Params, null, ReqBodyCommentPut>;
-  delete: RequestHandler<Params, null, null>;
+  getAll: RequestHandler<Record<string, never>, Comment[], null>;
+  getOne: RequestHandler<{ id: string }, Comment, null>;
+  post: RequestHandler<Record<string, never>, Comment, ReqBodyCommentPost>;
+  put: RequestHandler<{ id: string }, null, ReqBodyCommentPut>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }

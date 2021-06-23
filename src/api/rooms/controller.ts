@@ -1,18 +1,17 @@
-import RoomHandlers from './interfaces'
+import RoomHandlers from "./interfaces";
 
-import getAll from './getAll';
-import getOne from './getOne';
-import post from './post';
-import put from './put';
-import deleteOne from './delete';
+import getAll from "./getAll";
+import getOne from "./getOne";
+import post from "./post";
+import put from "./put";
+import deleteOne from "./delete";
 
 const controllers: RoomHandlers = {
-    getAll,
-    getOne,
-    post,
-    put,
-    delete: deleteOne,
-
+  getAll,
+  getOne,
+  post,
+  put,
+  delete: deleteOne,
 };
 
 export default controllers;
