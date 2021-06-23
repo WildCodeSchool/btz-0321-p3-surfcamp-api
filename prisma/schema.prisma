@@ -16,11 +16,11 @@ model User {
   lastname     String
   email        String
   password     String
-  picture      String
+  picture      String?
   role         Role          @default(USER)
-  birthDate    DateTime
+  birthDate    DateTime?
   isActive     Boolean       @default(false)
-  phoneNumber  String
+  phoneNumber  String?
   address      Address?      @relation(fields: [addressId], references: [id])
   addressId    String?
   property     Property[]
