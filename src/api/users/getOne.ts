@@ -1,3 +1,4 @@
+import { triggerAsyncId } from "async_hooks";
 import prisma from "../../../prisma/prismaClient";
 
 import UserHandlers from "./interfaces";
@@ -15,6 +16,11 @@ const getOne: UserHandlers["getOne"] = async (req, res, next) => {
     const user = await prisma.user.findUnique({
       where: {
         id,
+      },
+      include: {
+        address: true,
+        reservations: true,
+        property: true,
       },
       rejectOnNotFound: true,
     });
