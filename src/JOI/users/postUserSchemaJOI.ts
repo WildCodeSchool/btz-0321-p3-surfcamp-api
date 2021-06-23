@@ -7,13 +7,13 @@ const postUserSchema = Joi.object().keys({
   password: Joi.string()
     .pattern(
       new RegExp(
-        /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`])\S{6,12}$/
+        /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`])\S{8,30}$/
       )
     )
     .required(),
   confirmPassword: Joi.ref("password"),
-  birthDate: Joi.date().iso().required(),
-  phoneNumber: Joi.string().required(),
+  birthDate: Joi.date().iso().min("1-1-1900").max("now").required(),
+  phoneNumber: Joi.string().min(10).max(10).required(),
   picture: Joi.string().required(),
 });
 
