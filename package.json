@@ -28,7 +28,8 @@
     "express-jsdoc-swagger": "^1.6.2",
     "helmet": "^4.6.0",
     "joi": "^17.4.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "swagger-jsdoc-express": "^4.1.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",

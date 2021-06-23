@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import faker from "faker";
-import { PrismaClient } from "@prisma/client";
-
-const createRoom = async (number: number, prisma: PrismaClient) => {
-  for (let i = 0; i < number; i++) {
-    let property = await prisma.address.create({
-=======
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
 
@@ -27,7 +19,6 @@ const createComment = async (
     });
 
     const { id } = await prisma.property.create({
->>>>>>> 7a13d668756f65440d913f22cc3786f667c69e41
       data: {
         description: faker.company.catchPhraseDescriptor(),
         name: faker.company.companyName(),
