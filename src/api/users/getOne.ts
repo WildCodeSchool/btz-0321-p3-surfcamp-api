@@ -1,4 +1,3 @@
-import { triggerAsyncId } from "async_hooks";
 import prisma from "../../../prisma/prismaClient";
 
 import UserHandlers from "./interfaces";
