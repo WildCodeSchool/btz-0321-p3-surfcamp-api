@@ -10,6 +10,8 @@ const putUserSchema = Joi.object().keys({
   phoneNumber: Joi.string(),
   role: Joi.string(),
   isActive: Joi.boolean(),
+  addressId: Joi.string(),
+  propertyId: Joi.string(),
 });
 
 export default putUserSchema;

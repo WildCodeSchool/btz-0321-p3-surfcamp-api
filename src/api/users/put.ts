@@ -22,6 +22,7 @@ const put: UserHandlers["put"] = async (req, res) => {
     phoneNumber,
     role,
     isActive,
+    addressId,
   } = req.body;
 
   try {
@@ -37,6 +38,7 @@ const put: UserHandlers["put"] = async (req, res) => {
         birthDate,
         phoneNumber,
         role,
+        addressId,
       },
     });
 
