@@ -10,7 +10,7 @@ import UserHandlers from "./interfaces";
  * @param {UpdateUser} request.body.required - User info
  * @return {object} 204 - User successfully updated
  */
-const put: UserHandlers["put"] = async (req, res) => {
+const put: UserHandlers["put"] = async (req, res, next) => {
   const { id } = req.params;
   const {
     firstname,
@@ -44,7 +44,7 @@ const put: UserHandlers["put"] = async (req, res) => {
 
     res.sendStatus(204);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 };
 
