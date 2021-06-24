@@ -21,8 +21,8 @@ const createReservation = async (
 
     await prisma.reservation.create({
       data: {
-        startDate: faker.date.future(),
-        endDate: faker.date.future(),
+        startDate: faker.date.future().toISOString(),
+        endDate: faker.date.future().toISOString(),
         customerCount: faker.random.number(),
         userId: users.id,
       },
