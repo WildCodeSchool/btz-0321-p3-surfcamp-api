@@ -35,7 +35,7 @@ const put: UserHandlers["put"] = async (req, res, next) => {
         email,
         picture,
         password,
-        birthDate: new Date(birthDate).toISOString(),
+        birthDate : new Date(birthDate).toISOString(),
         phoneNumber,
         role,
         addressId,

@@ -39,6 +39,7 @@ interface ReqBodyUserPut {
   phoneNumber: string | null;
   role: Role;
   isActive: boolean;
+  reservationId: string;
   address?: string;
   addressId?: string;
   propertyId?: string;

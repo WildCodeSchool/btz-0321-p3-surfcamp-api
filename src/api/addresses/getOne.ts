@@ -10,6 +10,9 @@ const getOne: AddressHandlers["getOne"] = async (req, res, next) => {
       where: {
         id,
       },
+      include: {
+        user: true,
+      },
       rejectOnNotFound: true,
     });
 

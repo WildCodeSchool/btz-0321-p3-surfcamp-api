@@ -26,7 +26,10 @@ content-type: application/json
     "email":"julien_abbz@email.com",
     "password":"totoO12@@",
     "confirmPassword":"totoO12@@",
-    "birthDate":"2021-06-24T10:51:29.718Z"
+    "birthDate":"2021-06-24T10:51:29.718Z",
+    "reservation": {
+        "status": "PENDING"
+    }
 }
 
 ###
