@@ -2,6 +2,7 @@ import request from "supertest";
 import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
+import { PropertyType } from "@prisma/client";
 
 describe("Reservation Ressources", () => {
   test("Get status 200 and an arraay of reservation", async () => {
@@ -43,12 +44,13 @@ describe("Reservation Ressources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
+
     const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
@@ -117,11 +119,11 @@ describe("Reservation Ressources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
     const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
@@ -192,12 +194,13 @@ describe("Reservation Ressources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
+
     const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,
     });
@@ -260,11 +263,11 @@ describe("Reservation Ressources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
     const { id: propertyId } = await prisma.property.create({
       data: sampleProperty,

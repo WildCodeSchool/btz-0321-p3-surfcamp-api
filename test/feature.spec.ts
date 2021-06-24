@@ -2,6 +2,7 @@ import request from "supertest";
 import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
+import { PropertyType } from "@prisma/client";
 
 //    For this test we must create multiple ressources beacause
 //  the ressource we are testing depend of others ressources
@@ -18,15 +19,6 @@ describe("Features Ressources", () => {
   });
 
   test("Get status 200 and one feature", async () => {
-    const property = {
-      name: faker.company.companyName(),
-      description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
-      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
-      phoneNumber: faker.phone.phoneNumber(),
-    };
-
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -37,19 +29,47 @@ describe("Features Ressources", () => {
       long: "-1.514699",
     };
 
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+
+    const user = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: user,
+    });
+
+    const property = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: PropertyType.SURFCAMP,
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: addressId,
+      userId: userId,
+    };
+
+    const { id: propertyId } = await prisma.property.create({
+      data: property,
+    });
+
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
       iconUrl: faker.internet.url(),
+      propertyId: propertyId,
     };
 
     const { id } = await prisma.feature.create({
-      data: {
-        ...sampleFeature,
-        property: {
-          create: { ...property, address: { create: { ...address } } },
-        },
-      },
+      data: sampleFeature,
     });
 
     const res = await request(app)
@@ -62,6 +82,20 @@ describe("Features Ressources", () => {
   });
 
   test("Post feature", async () => {
+    const user = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: user,
+    });
+
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -79,11 +113,11 @@ describe("Features Ressources", () => {
     const property = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -109,15 +143,6 @@ describe("Features Ressources", () => {
   });
 
   test("Put one feature", async () => {
-    const property = {
-      name: faker.company.companyName(),
-      description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
-      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
-      phoneNumber: faker.phone.phoneNumber(),
-    };
-
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -128,19 +153,47 @@ describe("Features Ressources", () => {
       long: "-1.514699",
     };
 
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+
+    const user = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: user,
+    });
+
+    const property = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: PropertyType.SURFCAMP,
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: addressId,
+      userId: userId,
+    };
+
+    const { id: propertyId } = await prisma.property.create({
+      data: property,
+    });
+
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
       iconUrl: faker.internet.url(),
+      propertyId: propertyId,
     };
 
     const { id } = await prisma.feature.create({
-      data: {
-        ...sampleFeature,
-        property: {
-          create: { ...property, address: { create: { ...address } } },
-        },
-      },
+      data: sampleFeature,
     });
 
     await request(app).put(`/features/${id}`).send(sampleFeature).expect(204);
@@ -149,15 +202,6 @@ describe("Features Ressources", () => {
   });
 
   test("Delete one feature", async () => {
-    const property = {
-      name: faker.company.companyName(),
-      description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
-      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
-      phoneNumber: faker.phone.phoneNumber(),
-    };
-
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -168,19 +212,47 @@ describe("Features Ressources", () => {
       long: "-1.514699",
     };
 
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+
+    const user = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: user,
+    });
+
+    const property = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: PropertyType.SURFCAMP,
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      phoneNumber: faker.phone.phoneNumber(),
+      addressId: addressId,
+      userId: userId,
+    };
+
+    const { id: propertyId } = await prisma.property.create({
+      data: property,
+    });
+
     const sampleFeature = {
       label: faker.lorem.word(),
       type: faker.lorem.word(),
       iconUrl: faker.internet.url(),
+      propertyId: propertyId,
     };
 
     const { id } = await prisma.feature.create({
-      data: {
-        ...sampleFeature,
-        property: {
-          create: { ...property, address: { create: { ...address } } },
-        },
-      },
+      data: sampleFeature,
     });
 
     await request(app).delete(`/features/${id}`).expect(204);
