@@ -2,6 +2,7 @@ import request from "supertest";
 import faker from "faker";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
+import { PropertyType } from "@prisma/client";
 
 //    For this test we must create multiple ressources beacause
 //  the ressource we are testing depend of others ressources
@@ -17,15 +18,6 @@ describe("Properties Resources", () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
   test("Get status 200 and one property", async () => {
-    const sampleProperty = {
-      name: faker.company.companyName(),
-      description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
-      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
-      phoneNumber: faker.phone.phoneNumber(),
-    };
-
     const address = {
       street: faker.address.streetAddress(),
       city: faker.address.cityName(),
@@ -35,8 +27,34 @@ describe("Properties Resources", () => {
       lat: "43.481402",
       long: "-1.514699",
     };
+    const { id: addressId } = await prisma.address.create({
+      data: address,
+    });
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+    const sampleProperty = {
+      name: faker.company.companyName(),
+      description: faker.company.catchPhraseDescriptor(),
+      type: PropertyType.FLAT,
+      priceByNight: faker.datatype.number({ min: 1, max: 10 }),
+      phoneNumber: faker.phone.phoneNumber(),
+      userId: userId,
+      addressId: addressId,
+    };
+
     const { id } = await prisma.property.create({
-      data: { ...sampleProperty, address: { create: { ...address } } },
+      data: sampleProperty,
     });
 
     const res = await request(app)
@@ -98,19 +116,31 @@ describe("Properties Resources", () => {
       lat: "43.481402",
       long: "-1.514699",
     };
-
     const { id: addressId } = await prisma.address.create({
       data: address,
+    });
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
     });
 
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.FLAT,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id } = await prisma.property.create({
@@ -140,14 +170,28 @@ describe("Properties Resources", () => {
       data: address,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.FLAT,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id } = await prisma.property.create({

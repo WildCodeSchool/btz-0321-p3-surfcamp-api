@@ -3,6 +3,7 @@ import faker from "faker";
 import { Status } from ".prisma/client";
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
+import { PropertyType } from "@prisma/client";
 
 //    For this test we must create multiple ressources beacause
 //  the ressource we are testing depend of others ressources
@@ -50,10 +51,10 @@ describe("comments Ressources", () => {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      type: PropertyType.FLAT,
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -130,10 +131,10 @@ describe("comments Ressources", () => {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
-      status: faker.datatype.boolean(),
+      type: PropertyType.FLAT,
       addressId: addressId,
       phoneNumber: faker.phone.phoneNumber(),
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -207,10 +208,10 @@ describe("comments Ressources", () => {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
-      status: faker.datatype.boolean(),
+      type: PropertyType.FLAT,
       addressId: addressId,
       phoneNumber: faker.phone.phoneNumber(),
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -280,8 +281,8 @@ describe("comments Ressources", () => {
       priceByNight: faker.datatype.number(),
       phoneNumber: faker.phone.phoneNumber(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
-      status: faker.datatype.boolean(),
+      type: PropertyType.FLAT,
+      userId: userId,
       addressId: addressId,
     };
 
