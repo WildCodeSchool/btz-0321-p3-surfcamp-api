@@ -4,3 +4,5 @@ dist
 .vscode
 .http
 REST_CLIENT
+/.http
+/REST_CLIENT
