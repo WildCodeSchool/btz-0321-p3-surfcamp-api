@@ -12,7 +12,7 @@ const post: ReservationHandlers["post"] = async (req, res) => {
       endDate: new Date(endDate).toISOString(),
       propertyId,
       roomId,
-      startDate:new Date(startDate).toISOString(),
+      startDate: new Date(startDate).toISOString(),
       userId,
     },
   });
