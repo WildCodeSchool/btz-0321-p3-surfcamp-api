@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, PropertyType } from "@prisma/client";
 import faker from "faker";
 
 const createComment = async (
@@ -17,14 +17,25 @@ const createComment = async (
         zipcode: faker.address.zipCode(),
       },
     });
+    const { id: userId } = await prisma.user.create({
+      data: {
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        picture: faker.image.avatar(),
+        birthDate: faker.date.past().toISOString(),
+        phoneNumber: faker.phone.phoneNumber(),
+      },
+    });
 
     const { id } = await prisma.property.create({
       data: {
         description: faker.company.catchPhraseDescriptor(),
         name: faker.company.companyName(),
         priceByNight: parseInt(faker.commerce.price()),
-        status: faker.datatype.boolean(),
-        type: faker.company.companyName(),
+        type: PropertyType.HOUSE,
+        userId: userId,
         phoneNumber: faker.phone.phoneNumber(),
         addressId: addressId,
       },

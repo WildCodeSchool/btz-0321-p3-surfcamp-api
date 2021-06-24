@@ -1,23 +1,26 @@
-import { Property } from ".prisma/client";
+import { Property, Availability, PropertyType } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPost {
   name: string;
   description: string;
-  type: string;
+  type: PropertyType;
   priceByNight: number;
-  status: boolean;
+  availability: Availability;
   addressId: string;
   phoneNumber: string;
   address: Record<string, unknown>;
+  userId: string;
 }
 
 interface ReqBodyPropertyPut {
   name: string;
   description: string;
-  type: string;
+  type: PropertyType;
+  addressId: string;
+  userId: string;
   priceByNight: number;
-  status: boolean;
+  availability: Availability;
   phoneNumber: string;
 }
 

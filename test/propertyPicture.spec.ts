@@ -3,6 +3,7 @@ import faker from "faker";
 
 import prisma from "../prisma/prismaClient";
 import app from "../src/app";
+import { PropertyType } from "@prisma/client";
 
 //    For this test we must create multiple ressources beacause
 //  the ressource we are testing depend of others ressources
@@ -32,14 +33,28 @@ describe("PropertyPicture Ressources", () => {
       data: sampleAddress,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -88,14 +103,28 @@ describe("PropertyPicture Ressources", () => {
       data: sampleAddress,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -140,14 +169,28 @@ describe("PropertyPicture Ressources", () => {
       data: sampleAddress,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
@@ -187,14 +230,28 @@ describe("PropertyPicture Ressources", () => {
       data: sampleAddress,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       priceByNight: faker.datatype.number(),
       description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
     };
 
     const { id: propertyId } = await prisma.property.create({
