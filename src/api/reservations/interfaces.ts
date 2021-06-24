@@ -4,8 +4,8 @@ import { Status } from ".prisma/client";
 
 interface ReqBodyReservationPost {
   customerCount: number;
-  startDate: Date;
-  endDate: Date;
+  startDate: string;
+  endDate: string;
   status: Status;
   roomId?: string;
   userId: string;
@@ -17,8 +17,8 @@ interface ReqBodyReservationPut {
   id: string;
   comment: string;
   customerCount: number;
-  endDate: Date;
-  startDate: Date;
+  endDate: string;
+  startDate: string;
   status: Status;
   userId: string;
   roomId?: string;

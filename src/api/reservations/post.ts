@@ -9,10 +9,10 @@ const post: ReservationHandlers["post"] = async (req, res) => {
   const createdReservation = await prisma.reservation.create({
     data: {
       customerCount,
-      endDate,
+      endDate: new Date(endDate).toISOString(),
       propertyId,
       roomId,
-      startDate,
+      startDate:new Date(startDate).toISOString(),
       userId,
     },
   });
