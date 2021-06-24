@@ -27,9 +27,11 @@ describe("Properties Resources", () => {
       lat: "43.481402",
       long: "-1.514699",
     };
+
     const { id: addressId } = await prisma.address.create({
       data: address,
     });
+
     const sampleUser = {
       email: faker.internet.email(),
       firstname: faker.name.firstName(),
@@ -43,6 +45,7 @@ describe("Properties Resources", () => {
     const { id: userId } = await prisma.user.create({
       data: sampleUser,
     });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
@@ -82,14 +85,28 @@ describe("Properties Resources", () => {
       data: address,
     });
 
+    const sampleUser = {
+      email: faker.internet.email(),
+      firstname: faker.name.firstName(),
+      lastname: faker.name.lastName(),
+      birthDate: faker.date.past(),
+      picture: faker.internet.avatar(),
+      password: faker.internet.password(),
+      phoneNumber: faker.phone.phoneNumber(),
+    };
+
+    const { id: userId } = await prisma.user.create({
+      data: sampleUser,
+    });
+
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: faker.lorem.word(),
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
-      status: faker.datatype.boolean(),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: id,
+      userId: userId,
     };
 
     const res = await request(app)
