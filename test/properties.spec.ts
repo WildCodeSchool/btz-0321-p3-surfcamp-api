@@ -49,7 +49,7 @@ describe("Properties Resources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: PropertyType.FLAT,
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
       phoneNumber: faker.phone.phoneNumber(),
       userId: userId,
@@ -153,7 +153,7 @@ describe("Properties Resources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: PropertyType.FLAT,
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,
@@ -204,7 +204,7 @@ describe("Properties Resources", () => {
     const sampleProperty = {
       name: faker.company.companyName(),
       description: faker.company.catchPhraseDescriptor(),
-      type: PropertyType.FLAT,
+      type: PropertyType.SURFCAMP,
       priceByNight: faker.datatype.number({ min: 1, max: 10 }),
       phoneNumber: faker.phone.phoneNumber(),
       addressId: addressId,

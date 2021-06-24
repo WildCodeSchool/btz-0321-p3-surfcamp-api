@@ -189,6 +189,5 @@ enum Availability {
 enum PropertyType {
   SURFCAMP
   HOUSE
-  FLAT
   SURFSCHOOL
 }
