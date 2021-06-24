@@ -12,9 +12,16 @@ const postUserSchema = Joi.object().keys({
     )
     .required(),
   confirmPassword: Joi.ref("password"),
-  birthDate: Joi.date().iso().min("1-1-1900").max("now").required(),
-  phoneNumber: Joi.string().min(10).max(10).required(),
-  picture: Joi.string().uri().required(),
+  birthDate: Joi.date().iso().min("1-1-1900").max("now"),
+  phoneNumber: Joi.string().min(10).max(10),
+  picture: Joi.string().uri(),
+  addressId: Joi.string(),
+  propertyId: Joi.string(),
+  role: Joi.string(),
+  isActive: Joi.bool(),
+  address: Joi.any(),
+  property: Joi.any(),
+  reservations: Joi.any(),
 });
 
 export default postUserSchema;

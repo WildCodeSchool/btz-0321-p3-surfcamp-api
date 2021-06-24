@@ -9,6 +9,7 @@ interface ReqBodyPropertyPost {
   status: boolean;
   addressId: string;
   phoneNumber: string;
+  address: Record<string, unknown>;
 }
 
 interface ReqBodyPropertyPut {

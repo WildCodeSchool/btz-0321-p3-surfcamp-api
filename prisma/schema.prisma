@@ -16,13 +16,14 @@ model User {
   lastname     String
   email        String
   password     String
-  picture      String
+  picture      String?
   role         Role          @default(USER)
-  birthDate    DateTime
+  birthDate    DateTime?
   isActive     Boolean       @default(false)
-  phoneNumber  String
+  phoneNumber  String?
   address      Address?      @relation(fields: [addressId], references: [id])
   addressId    String?
+  property     Property[]
   reservations Reservation[]
   comments     Comment[]
   createdAt    DateTime      @default(now())
@@ -58,46 +59,48 @@ model Property {
   comments     Comment[]
   phoneNumber  String
   createdAt    DateTime          @default(now())
+  User         User?             @relation(fields: [userId], references: [id])
+  userId       String?
 }
 
 model Country {
-  id	            String		@id @default(uuid())
-  name	          String
+  id              String           @id @default(uuid())
+  name            String
   title           String
-  description	    String
+  description     String
   textSeo         String
   countryCode     String
-  countryPictures	CountryPicture[]
-  createdAt       DateTime  @default(now())	
+  countryPictures CountryPicture[]
+  createdAt       DateTime         @default(now())
 }
 
 model CountryPicture {
-  id	        String		@id @default(uuid())
-  name	      String
-  url	        String
-  country     Country   @relation(fields: [countryId], references: [id])
-  countryId   String
-  createdAt   DateTime  @default(now())
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  country   Country  @relation(fields: [countryId], references: [id])
+  countryId String
+  createdAt DateTime @default(now())
 }
 
 model City {
-  id	          String		@id @default(uuid())
-  name	        String
-  title         String
-  description	  String
-  textSeo       String
-  countryCode	  String
-  cityPictures	CityPicture[]
-  createdAt     DateTime  @default(now())
+  id           String        @id @default(uuid())
+  name         String
+  title        String
+  description  String
+  textSeo      String
+  countryCode  String
+  cityPictures CityPicture[]
+  createdAt    DateTime      @default(now())
 }
 
 model CityPicture {
-  id	       String		@id @default(uuid())
-  name	     String
-  url	       String
-  city       City     @relation(fields: [cityId], references: [id])
-  cityId     String
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  city      City     @relation(fields: [cityId], references: [id])
+  cityId    String
+  createdAt DateTime @default(now())
 }
 
 model Feature {
@@ -106,7 +109,7 @@ model Feature {
   type       String
   property   Property @relation(fields: [propertyId], references: [id])
   propertyId String
-  iconUrl	   String
+  iconUrl    String
   createdAt  DateTime @default(now())
 }
 
