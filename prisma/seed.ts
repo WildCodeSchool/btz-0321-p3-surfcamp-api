@@ -16,7 +16,7 @@ const seed = async () => {
   await createFeature(10, prisma);
   await createPropertyPictureSeed(10, prisma);
   await createCountryPicture(10, prisma);
-  await createCityPicture(10, prisma);
+  await createCityPicture(1000, prisma);
 };
 
 seed()
