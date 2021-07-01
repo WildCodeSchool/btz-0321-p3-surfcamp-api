@@ -9,8 +9,9 @@ const post: PropertyHandlers["post"] = async (req, res, next) => {
     priceByNight,
     type,
     description,
-    status,
     addressId,
+    availability,
+    userId,
   } = req.body;
 
   try {
@@ -20,9 +21,10 @@ const post: PropertyHandlers["post"] = async (req, res, next) => {
         phoneNumber,
         priceByNight,
         description,
+        availability,
         type,
-        status,
         addressId,
+        userId,
       },
     });
 

@@ -1,12 +1,23 @@
 import faker from "faker";
 import { PrismaClient } from "@prisma/client";
-// function who take a number as parrameter as iterator and create one property and one adress with the relation between them for each iteration.
+// function who take a number as parrameter as iterator and create one property, one user and one adress with the relation between them for each iteration.
 
 const createProperty = async (
   number: number,
   prisma: PrismaClient
 ): Promise<void> => {
   for (let i = 0; i < number; i++) {
+    const user = await prisma.user.create({
+      data: {
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        email: faker.internet.email(),
+        password: faker.internet.password(),
+        picture: faker.image.avatar(),
+        birthDate: faker.date.past().toISOString(),
+        phoneNumber: faker.phone.phoneNumber(),
+      },
+    });
     const address = await prisma.address.create({
       data: {
         city: faker.address.cityName(),
@@ -24,10 +35,10 @@ const createProperty = async (
         description: faker.company.catchPhraseDescriptor(),
         name: faker.company.companyName(),
         priceByNight: parseInt(faker.commerce.price()),
-        status: faker.datatype.boolean(),
-        type: faker.company.companyName(),
         phoneNumber: faker.phone.phoneNumber(),
         addressId: address.id,
+        userId: user.id,
+        type: "HOUSE",
       },
     });
   }

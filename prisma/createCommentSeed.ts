@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import faker from "faker";
 import { Status } from ".prisma/client";
-
+import { PropertyType } from ".prisma/client";
 // function who take a number as iterator and create an adress on each iteration
 
 const createComment = async (
@@ -37,13 +37,13 @@ const createComment = async (
     });
 
     const sampleProperty = {
+      description: faker.company.catchPhraseDescriptor(),
       name: faker.company.companyName(),
-      priceByNight: faker.datatype.number(),
-      description: faker.lorem.text(),
-      type: faker.lorem.word(),
+      priceByNight: parseInt(faker.commerce.price()),
       phoneNumber: faker.phone.phoneNumber(),
-      status: faker.datatype.boolean(),
       addressId: addressId,
+      userId: userId,
+      type: PropertyType.HOUSE,
     };
 
     const { id: propertyId } = await prisma.property.create({

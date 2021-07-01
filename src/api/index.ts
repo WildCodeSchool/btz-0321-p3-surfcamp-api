@@ -1,5 +1,4 @@
 import { Router } from "express";
-
 import users from "./users/routes";
 import properties from "./properties/routes";
 import address from "./addresses/routes";
@@ -12,9 +11,11 @@ import country from "./countries/routes";
 import city from "./cities/routes";
 import countryPicture from "./countryPictures/routes";
 import cityPicture from "./cityPictures/routes";
+import auth from "./auth/routes";
 
 const router = Router();
 
+router.use("/auth", auth);
 router.use("/users", users);
 router.use("/properties", properties);
 router.use("/addresses", address);

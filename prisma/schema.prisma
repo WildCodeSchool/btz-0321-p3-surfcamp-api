@@ -12,8 +12,8 @@ generator client {
 
 model User {
   id           String        @id @default(uuid())
-  firstname    String
-  lastname     String
+  firstname    String?
+  lastname     String?
   email        String        @unique
   password     String
   picture      String?
@@ -45,11 +45,11 @@ model Address {
 
 model Property {
   id           String            @id @default(uuid())
-  name         String
+  name         String              //name of the property
   description  String
-  type         String
+  type         PropertyType        //type of the property, ex : Surfcamp/House/Flat/...
   priceByNight Decimal           @db.Money
-  status       Boolean
+  availability Availability      @default(AVAILABLE)
   pictures     PropertyPicture[]
   address      Address           @relation(fields: [addressId], references: [id])
   addressId    String
@@ -59,8 +59,8 @@ model Property {
   comments     Comment[]
   phoneNumber  String
   createdAt    DateTime          @default(now())
-  User         User?             @relation(fields: [userId], references: [id])
-  userId       String?
+  User         User             @relation(fields: [userId], references: [id])
+  userId       String
 }
 
 model Country {
@@ -179,4 +179,15 @@ enum Status {
   CONFIRMED
   CANCELED
   CONSUMED
+}
+
+enum Availability {
+  AVAILABLE
+  PENDING
+}
+
+enum PropertyType {
+  SURFCAMP
+  HOUSE
+  SURFSCHOOL
 }

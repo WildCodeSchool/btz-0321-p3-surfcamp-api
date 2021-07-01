@@ -1,0 +1,9 @@
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email": "Dena93@hotmail.com",
+    "password":"3E0pMRW7d8O5pmx",
+    "firstname":"Aubree",
+    "lastname":"Jacobi"
+}

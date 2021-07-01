@@ -1,20 +1,14 @@
 import Joi from "joi";
 
 const putUserSchema = Joi.object().keys({
-  firstname: Joi.string().alphanum().min(3).max(30).required(),
-  lastname: Joi.string().alphanum().min(3).max(30).required(),
-  email: Joi.string().email({ allowUnicode: false }).required(),
-  password: Joi.string().pattern(
-    new RegExp(
-      /^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_{|}~`])\S{8,30}$/
-    )
-  ),
-  confirmPassword: Joi.ref("password"),
+  firstname: Joi.string().alphanum().min(3).max(30),
+  lastname: Joi.string().alphanum().min(3).max(30),
+  email: Joi.string().email({ allowUnicode: false }),
+  password: Joi.string(),
   birthDate: Joi.date().iso().min("1-1-1900").max("now"),
-  phoneNumber: Joi.string().min(10).max(10),
+  phoneNumber: Joi.string(),
   picture: Joi.string().uri(),
   addressId: Joi.string(),
-  propertyId: Joi.string(),
   role: Joi.string(),
   isActive: Joi.bool(),
   address: Joi.any(),
