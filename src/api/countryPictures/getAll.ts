@@ -5,8 +5,8 @@ import CountryPictureHandlers from "./interfaces";
 const getAll: CountryPictureHandlers["getAll"] = async (req, res) => {
   const { skip, take } = req.query;
 
-  const parsedSkip = parser(skip);
-  const parsedTake = parser(take);
+  const parsedSkip = parser(skip as string);
+  const parsedTake = parser(take as string);
 
   if (req.query) {
     const countryPicture = await prisma.countryPicture.findMany({
