@@ -8,15 +8,13 @@ import createCityPicture from "./createCityPictureSeed";
 
 const prisma = new PrismaClient();
 
-//  Only comment function is called because we allready create all ressources when we create a comment
-
 const seed = async () => {
-  await createCommentSeed(20, prisma);
-  await createRoomSeed(10, prisma);
-  await createFeature(10, prisma);
-  await createPropertyPictureSeed(10, prisma);
-  await createCountryPicture(10, prisma);
-  await createCityPicture(10, prisma);
+  await createCommentSeed(200, prisma);
+  await createRoomSeed(100, prisma);
+  await createFeature(100, prisma);
+  await createPropertyPictureSeed(100, prisma);
+  await createCountryPicture(100, prisma);
+  await createCityPicture(100, prisma);
 };
 
 seed()

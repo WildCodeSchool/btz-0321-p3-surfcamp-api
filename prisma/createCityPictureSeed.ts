@@ -20,7 +20,7 @@ const createCityPicture = async (
     await prisma.cityPicture.create({
       data: {
         name: faker.address.country(),
-        url: faker.internet.avatar(),
+        url: `${faker.image.city()}?random=${Date.now()}`,
         cityId: city.id,
       },
     });
