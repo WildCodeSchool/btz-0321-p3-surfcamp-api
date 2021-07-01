@@ -3,8 +3,8 @@ import { RequestHandler } from "express";
 
 interface UserWithoutPassword {
   id: string;
-  firstname: string;
-  lastname: string;
+  firstname: string | null;
+  lastname: string | null;
   email: string;
   picture: string | null;
   role: Role;
@@ -15,8 +15,8 @@ interface UserWithoutPassword {
 }
 
 interface ReqBodyUserPost {
-  firstname: string;
-  lastname: string;
+  firstname?: string;
+  lastname?: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -30,8 +30,8 @@ interface ReqBodyUserPost {
 }
 
 interface ReqBodyUserPut {
-  firstname: string;
-  lastname: string;
+  firstname?: string;
+  lastname?: string;
   email: string;
   password?: string;
   picture: string | null;

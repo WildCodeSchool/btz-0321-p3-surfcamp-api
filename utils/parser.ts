@@ -1,4 +1,3 @@
-export default function parser(value : any){
-    return parseInt(value)
+export default function parser(value: string): number {
+  return parseInt(value);
 }
-

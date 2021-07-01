@@ -2,6 +2,8 @@ import { RequestHandler } from "express";
 
 interface register {
   email: string;
+  firstname: string;
+  lastname: string;
   password: string;
 }
 
@@ -12,14 +14,22 @@ interface Login {
 
 interface UserWithoutPassword {
   id: string;
+  firstname?: string | null;
+  lastname?: string | null;
   email: string;
+  picture: string | null;
+  birthDate: Date | null;
+  phoneNumber: string | null;
+  createdAt: Date;
+  addressId?: string | null;
 }
 
 export default interface AuthHandlers {
-  register: RequestHandler<{ id: string }, Login, null>;
+  register: RequestHandler<register, UserWithoutPassword, register>;
+
   login: RequestHandler<
     Record<string, never>,
-    UserWithoutPassword | any,
+    Login | { message: string },
     register
   >;
 }
