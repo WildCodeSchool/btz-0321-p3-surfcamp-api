@@ -4,9 +4,9 @@ const postReservationSchema = Joi.object().keys({
   customerCount: Joi.number().min(1).max(2000).required(),
   startDate: Joi.date().required(),
   endDate: Joi.date().required(),
-  status: Joi.string(),
-  propertyId: Joi.string(),
-  roomId: Joi.string(),
+  status: Joi.string().required(),
+  propertyId: Joi.string().required(),
+  roomId: Joi.string().required(),
   userId: Joi.string().required(),
 });
 
