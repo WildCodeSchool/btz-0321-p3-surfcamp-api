@@ -1,6 +1,7 @@
 import {
   Address,
   Property,
+  Feature,
   Availability,
   PropertyType,
   Comment,
@@ -39,6 +40,7 @@ export default interface PropertyHandlers {
   getOne: RequestHandler<{ id: string }, Property, null>;
   getComments: RequestHandler<{ id: string }, Comment[], null>;
   getAddresses: RequestHandler<{ id: string }, Address[], null>;
+  getFeatures: RequestHandler<{ id: string }, Feature[], null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
