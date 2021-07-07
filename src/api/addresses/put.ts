@@ -4,15 +4,15 @@ import AddressHandlers from "./interfaces";
 
 const put: AddressHandlers["put"] = async (req, res) => {
   const { id } = req.params;
-  const { zipcode, long, street, streetNumber, lat, countryCode, city } =
+  const { zipcode, long, street, streetNumber, lat, countryId, cityId } =
     req.body;
 
   await prisma.address.update({
     where: { id },
     data: {
-      city,
+      cityId,
       id,
-      countryCode,
+      countryId,
       lat,
       long,
       street,
