@@ -4,6 +4,8 @@ import {
   Availability,
   PropertyType,
   Comment,
+  Country,
+  City,
 } from ".prisma/client";
 import { RequestHandler } from "express";
 
@@ -39,6 +41,8 @@ export default interface PropertyHandlers {
   getOne: RequestHandler<{ id: string }, Property, null>;
   getComments: RequestHandler<{ id: string }, Comment[], null>;
   getAddresses: RequestHandler<{ id: string }, Address[], null>;
+  getCities: RequestHandler<{ id: string }, City, null>;
+  getCountries: RequestHandler<{ id: string }, Country[], null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
