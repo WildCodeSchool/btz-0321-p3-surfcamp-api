@@ -9,12 +9,12 @@ import createCityPicture from "./createCityPictureSeed";
 const prisma = new PrismaClient();
 
 const seed = async () => {
-  await createCommentSeed(200, prisma);
-  await createRoomSeed(100, prisma);
-  await createFeature(100, prisma);
-  await createPropertyPictureSeed(100, prisma);
-  await createCountryPicture(100, prisma);
-  await createCityPicture(100, prisma);
+  await createCommentSeed(25, prisma);
+  await createRoomSeed(25, prisma);
+  await createFeature(25, prisma);
+  await createPropertyPictureSeed(25, prisma);
+  await createCountryPicture(25, prisma);
+  await createCityPicture(25, prisma);
 };
 
 seed()

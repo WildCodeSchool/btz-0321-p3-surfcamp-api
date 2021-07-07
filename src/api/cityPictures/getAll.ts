@@ -8,16 +8,21 @@ const getAll: CityPictureHandlers["getAll"] = async (req, res) => {
   const parsedSkip = parser(skip as string);
   const parsedTake = parser(take as string);
 
-  if (req.query) {
+  if (typeof parsedSkip !== "number") {
     const cityPicture = await prisma.cityPicture.findMany({
       skip: parsedSkip,
       take: parsedTake,
     });
+
     res.setHeader("X-Total-Count", cityPicture.length);
     res.status(200).json(cityPicture);
   } else {
     const cityPicture = await prisma.cityPicture.findMany();
     res.setHeader("X-Total-Count", cityPicture.length);
+    res.set({
+      "X-Total-Count": cityPicture.length,
+      "Access-Control-Expose-Headers": "X-Total-Count",
+    });
     res.status(200).json(cityPicture);
   }
 };
