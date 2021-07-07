@@ -6,10 +6,28 @@ const createComment = async (
   prisma: PrismaClient
 ): Promise<void> => {
   for (let i = 0; i < number; i++) {
-    const { id: addressId } = await prisma.address.create({
+    const city = await prisma.city.create({
       data: {
-        city: faker.address.cityName(),
+        name: faker.address.country(),
+        title: faker.lorem.words(5),
+        description: faker.lorem.sentence(),
+        textSeo: faker.lorem.sentence(),
         countryCode: faker.address.countryCode(),
+      },
+    });
+    const country = await prisma.country.create({
+      data: {
+        name: faker.address.country(),
+        title: faker.lorem.words(5),
+        description: faker.lorem.sentence(),
+        textSeo: faker.lorem.sentence(),
+        countryCode: faker.address.countryCode(),
+      },
+    });
+    const address = await prisma.address.create({
+      data: {
+        cityId: city.id,
+        countryId: country.id,
         lat: faker.address.latitude(),
         long: faker.address.longitude(),
         street: faker.address.streetName(),
@@ -37,7 +55,7 @@ const createComment = async (
         type: PropertyType.HOUSE,
         userId: userId,
         phoneNumber: faker.phone.phoneNumber(),
-        addressId: addressId,
+        addressId: address.id,
       },
     });
 
