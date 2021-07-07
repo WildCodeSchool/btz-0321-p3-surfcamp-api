@@ -1,4 +1,4 @@
-import { Property, Availability, PropertyType } from ".prisma/client";
+import { Property, Availability, PropertyType, Comment } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyPropertyPost {
@@ -31,6 +31,7 @@ interface Params {
 export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
   getOne: RequestHandler<{ id: string }, Property, null>;
+  getComments: RequestHandler<{ id: string }, Comment[], null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;
