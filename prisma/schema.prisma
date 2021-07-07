@@ -32,12 +32,14 @@ model User {
 model Address {
   id           String    @id @default(uuid())
   zipcode      String
-  city         String
+  city         City       @relation(fields: [cityId], references: [id])
+  cityId       String
   street       String
   streetNumber String
   lat          String
   long         String
-  countryCode  String
+  country  Country @relation(fields: [countryId], references: [id])
+  countryId String
   user         User?
   property     Property?
   createdAt    DateTime  @default(now())
@@ -70,6 +72,7 @@ model Country {
   description     String
   textSeo         String
   countryCode     String
+  address         Address[]
   countryPictures CountryPicture[]
   createdAt       DateTime         @default(now())
 }
@@ -90,6 +93,7 @@ model City {
   description  String
   textSeo      String
   countryCode  String
+  address      Address[]
   cityPictures CityPicture[]
   createdAt    DateTime      @default(now())
 }
@@ -105,8 +109,7 @@ model CityPicture {
 
 model Feature {
   id         String   @id @default(uuid())
-  label      String
-  type       String
+  label      Label
   property   Property @relation(fields: [propertyId], references: [id])
   propertyId String
   iconUrl    String
@@ -190,4 +193,18 @@ enum PropertyType {
   SURFCAMP
   HOUSE
   SURFSCHOOL
+}
+
+enum Label {
+  WC
+  SHOWER
+  BATH
+  KITCHEN
+  LAUNDRY
+  WIFI
+  SURFBOARDS
+  SURFSUIT
+  RESTAURANT
+  BICYCLE
+  OTHER
 }
