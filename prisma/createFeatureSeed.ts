@@ -18,10 +18,28 @@ const createFeature = async (
         phoneNumber: faker.phone.phoneNumber(),
       },
     });
+    const city = await prisma.city.create({
+      data: {
+        name: faker.address.country(),
+        title: faker.lorem.words(5),
+        description: faker.lorem.sentence(),
+        textSeo: faker.lorem.sentence(),
+        countryCode: faker.address.countryCode(),
+      },
+    });
+    const country = await prisma.country.create({
+      data: {
+        name: faker.address.country(),
+        title: faker.lorem.words(5),
+        description: faker.lorem.sentence(),
+        textSeo: faker.lorem.sentence(),
+        countryCode: faker.address.countryCode(),
+      },
+    });
     const address = await prisma.address.create({
       data: {
-        city: faker.address.cityName(),
-        countryCode: faker.address.countryCode(),
+        cityId: city.id,
+        countryId: country.id,
         lat: faker.address.latitude(),
         long: faker.address.longitude(),
         street: faker.address.streetName(),
@@ -44,8 +62,7 @@ const createFeature = async (
 
     await prisma.feature.create({
       data: {
-        type: faker.lorem.word(),
-        label: faker.lorem.words(5),
+        label: "WC",
         propertyId: property.id,
         iconUrl: faker.internet.avatar(),
       },
