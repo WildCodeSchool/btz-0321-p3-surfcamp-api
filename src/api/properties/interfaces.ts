@@ -1,6 +1,7 @@
 import {
   Address,
   Property,
+  Feature,
   Availability,
   PropertyType,
   Comment,
@@ -43,6 +44,7 @@ export default interface PropertyHandlers {
   getAddresses: RequestHandler<{ id: string }, Address[], null>;
   getCity: RequestHandler<{ id: string }, City, null>;
   getCountry: RequestHandler<{ id: string }, Country, null>;
+  getFeatures: RequestHandler<{ id: string }, Feature[], null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;

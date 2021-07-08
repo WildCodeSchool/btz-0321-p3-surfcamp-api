@@ -6,6 +6,7 @@ import getComments from "./getComments";
 import getAddresses from "./getAddresses";
 import getCity from "./getCity";
 import getCountry from "./getCountry";
+import getFeatures from "./getFeatures";
 import post from "./post";
 import put from "./put";
 import deleteOne from "./delete";
@@ -17,6 +18,7 @@ const controllers: PropertyHandlers = {
   getAddresses,
   getCity,
   getCountry,
+  getFeatures,
   post,
   put,
   delete: deleteOne,
