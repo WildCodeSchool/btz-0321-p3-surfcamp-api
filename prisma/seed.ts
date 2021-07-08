@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { PrismaClient, PropertyType } from "@prisma/client";
 import faker from "faker";
 
@@ -19,12 +20,21 @@ const seed = async () => {
   const addresses = new Array(50).fill("").map(() => {
     return {
       city: faker.address.cityName(),
-      countryCode: faker.address.countryCode(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
       street: faker.address.streetName(),
       streetNumber: faker.address.streetAddress(),
       zipcode: faker.address.zipCode(),
+    };
+  });
+
+  const cities = new Array(10).fill("").map(() => {
+    return {
+      name: faker.address.country(),
+      title: faker.lorem.words(5),
+      description: faker.lorem.sentence(),
+      textSeo: faker.lorem.sentence(),
+      countryCode: faker.address.countryCode(),
     };
   });
 
@@ -36,6 +46,30 @@ const seed = async () => {
       phoneNumber: faker.phone.phoneNumber(),
     };
   });
+
+  const countries = [
+    {
+      name: faker.address.country(),
+      title: faker.lorem.words(5),
+      description: faker.lorem.sentence(),
+      textSeo: faker.lorem.sentence(),
+      countryCode: faker.address.countryCode(),
+    },
+    {
+      name: faker.address.country(),
+      title: faker.lorem.words(5),
+      description: faker.lorem.sentence(),
+      textSeo: faker.lorem.sentence(),
+      countryCode: faker.address.countryCode(),
+    },
+    {
+      name: faker.address.country(),
+      title: faker.lorem.words(5),
+      description: faker.lorem.sentence(),
+      textSeo: faker.lorem.sentence(),
+      countryCode: faker.address.countryCode(),
+    },
+  ];
 
   const rooms = new Array(250).fill("").map(() => {
     return {
@@ -61,15 +95,61 @@ const seed = async () => {
     };
   });
 
+  console.log("🌱 Generate 10 cities...");
+  const createdCities = await Promise.all(
+    cities.map((c) => {
+      return prisma.city.create({
+        data: c,
+      });
+    })
+  );
+
+  // create countries
+  console.log("🌱 Generate 3 countries...");
+  const createdCountries = await Promise.all(
+    countries.map((c) => {
+      return prisma.country.create({
+        data: c,
+      });
+    })
+  );
+
+  console.log("🌱 Generate 50 addresses...");
+  const createdAddresses = await Promise.all(
+    addresses.map((c) => {
+      return prisma.address.create({
+        data: {
+          ...c,
+          country: {
+            connect: {
+              id: createdCountries[
+                Math.floor(Math.random() * createdCountries.length)
+              ].id,
+            },
+          },
+          city: {
+            connect: {
+              id: createdCities[
+                Math.floor(Math.random() * createdCities.length)
+              ].id,
+            },
+          },
+        },
+      });
+    })
+  );
+
   // create users
+  console.log("🌱 Generate 20 users...");
   const createdUsers = await Promise.all(
     users.map((u, i) => {
       return prisma.user.create({
         data: {
           ...u,
+
           address: {
-            create: {
-              ...addresses[i + 30],
+            connect: {
+              id: createdAddresses[i + 30].id,
             },
           },
         },
@@ -78,6 +158,7 @@ const seed = async () => {
   );
 
   // create properties and rooms
+  console.log("🌱 Generate 30 properties...");
   await Promise.all(
     properties.map((p, i) => {
       const type = ["HOUSE", "SURFCAMP", "SURFSCHOOL"][
@@ -88,8 +169,8 @@ const seed = async () => {
           ...p,
           type,
           address: {
-            create: {
-              ...addresses[i],
+            connect: {
+              id: createdAddresses[i].id,
             },
           },
           User: {
@@ -113,6 +194,7 @@ const seed = async () => {
   const createdRooms = await prisma.room.findMany();
 
   // create reservations
+  console.log("🌱 Generate 500 reservations...");
   await Promise.all(
     reservations.map((r, i) => {
       const selectRandomUserId =
@@ -155,4 +237,5 @@ seed()
   })
   .finally(async () => {
     await prisma.$disconnect();
+    console.log("✅ All done !");
   });
