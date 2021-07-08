@@ -38,8 +38,8 @@ model Address {
   streetNumber String
   lat          String
   long         String
-  country  Country @relation(fields: [countryId], references: [id])
-  countryId String
+  country      Country @relation(fields: [countryId], references: [id])
+  countryId    String
   user         User?
   property     Property?
   createdAt    DateTime  @default(now())

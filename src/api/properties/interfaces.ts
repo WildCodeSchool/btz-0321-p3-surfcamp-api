@@ -41,8 +41,8 @@ export default interface PropertyHandlers {
   getOne: RequestHandler<{ id: string }, Property, null>;
   getComments: RequestHandler<{ id: string }, Comment[], null>;
   getAddresses: RequestHandler<{ id: string }, Address[], null>;
-  getCities: RequestHandler<{ id: string }, City, null>;
-  getCountries: RequestHandler<{ id: string }, Country[], null>;
+  getCity: RequestHandler<{ id: string }, City, null>;
+  getCountry: RequestHandler<{ id: string }, Country, null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
   delete: RequestHandler<Params, null, null>;

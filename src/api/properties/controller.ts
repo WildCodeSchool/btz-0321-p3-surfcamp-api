@@ -4,8 +4,8 @@ import getAll from "./getAll";
 import getOne from "./getOne";
 import getComments from "./getComments";
 import getAddresses from "./getAddresses";
-import getCities from "./getCities";
-import getCountries from "./getCountries";
+import getCity from "./getCity";
+import getCountry from "./getCountry";
 import post from "./post";
 import put from "./put";
 import deleteOne from "./delete";
@@ -15,8 +15,8 @@ const controllers: PropertyHandlers = {
   getOne,
   getComments,
   getAddresses,
-  getCities,
-  getCountries,
+  getCity,
+  getCountry,
   post,
   put,
   delete: deleteOne,
