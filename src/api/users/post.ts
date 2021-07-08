@@ -20,7 +20,6 @@ const post: UserHandlers["post"] = async (req, res, next) => {
     phoneNumber,
     addressId,
   } = req.body;
-
   try {
     if (password !== confirmPassword) {
       res.status(422);
