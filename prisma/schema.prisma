@@ -24,7 +24,6 @@ model User {
   address      Address?      @relation(fields: [addressId], references: [id])
   addressId    String?
   property     Property[]
-  reservations Reservation[]
   comments     Comment[]
   createdAt    DateTime      @default(now())
 }
@@ -51,13 +50,11 @@ model Property {
   description  String
   type         PropertyType        //type of the property, ex : Surfcamp/House/Flat/...
   priceByNight Decimal           @db.Money
-  availability Availability      @default(AVAILABLE)
   pictures     PropertyPicture[]
   address      Address           @relation(fields: [addressId], references: [id])
   addressId    String
   rooms        Room[]
   features     Feature[]
-  reservations Reservation[]
   comments     Comment[]
   phoneNumber  String
   createdAt    DateTime          @default(now())
@@ -134,7 +131,6 @@ model Room {
   priceByNight Decimal       @db.Money
   property     Property      @relation(fields: [propertyId], references: [id])
   propertyId   String
-  reservation  Reservation[]
   comments     Comment[]
   createdAt    DateTime      @default(now())
 }
@@ -149,25 +145,7 @@ model Comment {
   propertyId    String?
   room          Room?       @relation(fields: [roomId], references: [id])
   roomId        String?
-  reservation   Reservation @relation(fields: [reservationId], references: [id])
-  reservationId String
   createdAt     DateTime    @default(now())
-}
-
-model Reservation {
-  id            String    @id @default(uuid())
-  startDate     DateTime
-  endDate       DateTime?
-  customerCount Int
-  status        Status    @default(PENDING)
-  user          User?     @relation(fields: [userId], references: [id])
-  userId        String
-  property      Property? @relation(fields: [propertyId], references: [id])
-  propertyId    String?
-  room          Room?     @relation(fields: [roomId], references: [id])
-  roomId        String?
-  comment       Comment?
-  createdAt     DateTime  @default(now())
 }
 
 enum Role {
@@ -175,18 +153,6 @@ enum Role {
   ADMIN
   SUPERADMIN
   RENTER
-}
-
-enum Status {
-  PENDING
-  CONFIRMED
-  CANCELED
-  CONSUMED
-}
-
-enum Availability {
-  AVAILABLE
-  PENDING
 }
 
 enum PropertyType {
