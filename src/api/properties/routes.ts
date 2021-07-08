@@ -11,6 +11,7 @@ router.get("/:id", controller.getOne);
 router.get("/:id/features", controller.getFeatures);
 router.get("/:id/comments", controller.getComments);
 router.get("/:id/addresses", controller.getAddresses);
+router.get("/:id/features", controller.getFeatures);
 router.post("/", bodyValidator(postPropertySchema), controller.post);
 router.put("/:id", bodyValidator(putPropertySchema), controller.put);
 router.delete("/:id", controller.delete);
