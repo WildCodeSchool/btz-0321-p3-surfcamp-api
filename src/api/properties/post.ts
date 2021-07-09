@@ -10,7 +10,6 @@ const post: PropertyHandlers["post"] = async (req, res, next) => {
     type,
     description,
     addressId,
-    availability,
     userId,
   } = req.body;
 
@@ -21,7 +20,6 @@ const post: PropertyHandlers["post"] = async (req, res, next) => {
         phoneNumber,
         priceByNight,
         description,
-        availability,
         type,
         addressId,
         userId,
