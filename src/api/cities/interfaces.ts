@@ -4,7 +4,7 @@ import { RequestHandler } from "express";
 interface ReqBodyCityPost {
   name: string;
   description: string;
-  countryCode: string;
+  countryId: string;
   title: string;
   textSeo: string;
 }
@@ -12,7 +12,7 @@ interface ReqBodyCityPost {
 interface ReqBodyCityPut {
   name: string;
   description: string;
-  countryCode: string;
+  countryId: string;
   title: string;
   textSeo: string;
 }

@@ -18,7 +18,6 @@ const getOne: UserHandlers["getOne"] = async (req, res, next) => {
       },
       include: {
         address: true,
-        reservations: true,
         property: true,
       },
       rejectOnNotFound: true,

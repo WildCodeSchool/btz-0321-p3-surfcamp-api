@@ -90,7 +90,7 @@ model City {
   description  String
   textSeo      String
   country      Country      @relation(fields: [countryId], references: [id])
-  countryId  String
+  countryId    String
   address      Address[]
   cityPictures CityPicture[]
   createdAt    DateTime      @default(now())

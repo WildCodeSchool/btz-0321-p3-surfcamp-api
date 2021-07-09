@@ -3,14 +3,13 @@ import prisma from "../../../prisma/prismaClient";
 import CommentHandlers from "./interfaces";
 
 const post: CommentHandlers["post"] = async (req, res, next) => {
-  const { comment, rate, reservationId, userId } = req.body;
+  const { comment, rate, userId } = req.body;
 
   try {
     const createdComments = await prisma.comment.create({
       data: {
         comment,
         rate,
-        reservationId,
         userId,
       },
     });
