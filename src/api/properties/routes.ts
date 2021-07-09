@@ -16,5 +16,6 @@ router.get("/:id/country", controller.getCountry);
 router.post("/", bodyValidator(postPropertySchema), controller.post);
 router.put("/:id", bodyValidator(putPropertySchema), controller.put);
 router.delete("/:id", controller.delete);
+router.get("/search", controller.search);
 
 export default router;
