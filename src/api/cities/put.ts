@@ -22,5 +22,4 @@ const put: CityHandlers["put"] = async (req, res, next) => {
     next(error);
   }
 };
-
 export default put;
