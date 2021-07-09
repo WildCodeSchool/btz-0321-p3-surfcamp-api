@@ -71,15 +71,6 @@ const seed = async () => {
     },
   ];
 
-  const rooms = new Array(250).fill("").map(() => {
-    return {
-      name: faker.company.companyName(),
-      description: faker.lorem.text(),
-      capacity: faker.datatype.number(),
-      priceByNight: faker.datatype.number(),
-    };
-  });
-
   const comments = new Array(500).fill("").map(() => {
     return {
       comment: faker.lorem.text(),
@@ -149,10 +140,12 @@ const seed = async () => {
     })
   );
 
-  // create properties and rooms
+  // create properties and comments
   console.log("🌱 Generate 30 properties...");
   await Promise.all(
     properties.map((p, i) => {
+      const selectRandomUserId =
+        createdUsers[Math.floor(Math.random() * createdUsers.length)].id;
       const type = ["HOUSE", "SURFCAMP", "SURFSCHOOL"][
         Math.floor(Math.random() * 3)
       ] as PropertyType;
@@ -171,52 +164,12 @@ const seed = async () => {
                 .id,
             },
           },
-          ...(type === "SURFCAMP" && {
-            rooms: {
-              createMany: {
-                data: rooms.slice(i * 5, i * 5 + Math.floor(Math.random() * 8)),
-              },
-            },
-          }),
-        },
-      });
-    })
-  );
-
-  const createdRooms = await prisma.room.findMany();
-  const createdProperties = await prisma.property.findMany();
-
-  // create reservations
-  console.log("🌱 Generate 500 reservations...");
-  await Promise.all(
-    comments.map((r) => {
-      const selectRandomPropertyId =
-        createdProperties[Math.floor(Math.random() * createdProperties.length)]
-          .id;
-
-      const selectRandomRoomId =
-        createdRooms[Math.floor(Math.random() * createdRooms.length)].id;
-
-      return prisma.comment.create({
-        data: {
-          ...r,
-          property: {
-            connect: {
-              id: selectRandomPropertyId,
+          comments: {
+            create: {
+              ...comments[i],
+              userId: selectRandomUserId,
             },
           },
-          room: {
-            connect: {
-              id: selectRandomRoomId,
-            },
-          },
-          // comment: {
-          //   create: {
-          //     ...comments[i],
-          //     userId: selectRandomUserId,
-          //     roomId: selectRandomRoomId,
-          //   },
-          // },
         },
       });
     })

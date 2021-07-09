@@ -53,7 +53,6 @@ model Property {
   pictures     PropertyPicture[]
   address      Address           @relation(fields: [addressId], references: [id])
   addressId    String
-  rooms        Room[]
   features     Feature[]
   comments     Comment[]
   phoneNumber  String
@@ -123,18 +122,6 @@ model PropertyPicture {
   createdAt   DateTime @default(now())
 }
 
-model Room {
-  id           String        @id @default(uuid())
-  name         String
-  description  String
-  capacity     Int
-  priceByNight Decimal       @db.Money
-  property     Property      @relation(fields: [propertyId], references: [id])
-  propertyId   String
-  comments     Comment[]
-  createdAt    DateTime      @default(now())
-}
-
 model Comment {
   id            String      @id @default(uuid())
   comment       String      @db.Text
@@ -143,8 +130,6 @@ model Comment {
   userId        String
   property      Property?   @relation(fields: [propertyId], references: [id])
   propertyId    String?
-  room          Room?       @relation(fields: [roomId], references: [id])
-  roomId        String?
   createdAt     DateTime    @default(now())
 }
 
