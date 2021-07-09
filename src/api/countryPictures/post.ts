@@ -2,18 +2,22 @@ import prisma from "../../../prisma/prismaClient";
 
 import CountryPictureHandlers from "./interfaces";
 
-const post: CountryPictureHandlers["post"] = async (req, res) => {
+const post: CountryPictureHandlers["post"] = async (req, res, next) => {
   const { name, url, countryId } = req.body;
 
-  const createdCountryPicture = await prisma.countryPicture.create({
-    data: {
-      name,
-      url,
-      countryId,
-    },
-  });
+  try {
+    const createdCountryPicture = await prisma.countryPicture.create({
+      data: {
+        name,
+        url,
+        countryId,
+      },
+    });
 
-  res.status(201).json(createdCountryPicture);
+    res.status(201).json(createdCountryPicture);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default post;

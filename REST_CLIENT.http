@@ -32,3 +32,6 @@ content-type: application/json
 ###
 
 GET http://localhost:5000/users/a2d9bbe2-2ee3-4e94-9eba-6b35807075af HTTP/1.1
+
+###
+GET http://localhost:5000/properties/search/?search=monaco HTTP/1.1
