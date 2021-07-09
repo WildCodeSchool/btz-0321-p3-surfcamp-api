@@ -29,5 +29,3 @@ const search: PropertyHandlers["search"] = async (req, res, next) => {
 };
 
 export default search;
-
-//https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#or
