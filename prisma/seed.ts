@@ -19,7 +19,6 @@ const seed = async () => {
 
   const addresses = new Array(50).fill("").map(() => {
     return {
-      city: faker.address.cityName(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
       street: faker.address.streetName(),
@@ -34,7 +33,6 @@ const seed = async () => {
       title: faker.lorem.words(5),
       description: faker.lorem.sentence(),
       textSeo: faker.lorem.sentence(),
-      countryCode: faker.address.countryCode(),
     };
   });
 
@@ -78,21 +76,30 @@ const seed = async () => {
     };
   });
 
-  console.log("🌱 Generate 10 cities...");
-  const createdCities = await Promise.all(
-    cities.map((c) => {
-      return prisma.city.create({
-        data: c,
-      });
-    })
-  );
-
   // create countries
   console.log("🌱 Generate 3 countries...");
   const createdCountries = await Promise.all(
     countries.map((c) => {
       return prisma.country.create({
         data: c,
+      });
+    })
+  );
+
+  console.log("🌱 Generate 10 cities...");
+  const createdCities = await Promise.all(
+    cities.map((c) => {
+      return prisma.city.create({
+        data: {
+          ...c,
+          country: {
+            connect: {
+              id: createdCountries[
+                Math.floor(Math.random() * createdCountries.length)
+              ].id,
+            },
+          },
+        },
       });
     })
   );
