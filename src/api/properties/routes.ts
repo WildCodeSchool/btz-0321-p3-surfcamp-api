@@ -7,6 +7,7 @@ import controller from "./controller";
 const router = Router();
 
 router.get("/", controller.getAll);
+router.get("/search", controller.search);
 router.get("/:id", controller.getOne);
 router.get("/:id/features", controller.getFeatures);
 router.get("/:id/comments", controller.getComments);

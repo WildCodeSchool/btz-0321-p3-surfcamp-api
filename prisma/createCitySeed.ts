@@ -9,7 +9,7 @@ const createCity = async (
   for (let i = 0; i < number; i++) {
     await prisma.city.create({
       data: {
-        name: faker.address.country(),
+        name: faker.address.cityName(),
         title: faker.lorem.words(5),
         description: faker.lorem.sentence(),
         textSeo: faker.lorem.sentence(),

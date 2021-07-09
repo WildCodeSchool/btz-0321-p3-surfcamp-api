@@ -10,6 +10,7 @@ import getFeatures from "./getFeatures";
 import post from "./post";
 import put from "./put";
 import deleteOne from "./delete";
+import search from "./search";
 
 const controllers: PropertyHandlers = {
   getAll,
@@ -22,6 +23,7 @@ const controllers: PropertyHandlers = {
   post,
   put,
   delete: deleteOne,
+  search,
 };
 
 export default controllers;
