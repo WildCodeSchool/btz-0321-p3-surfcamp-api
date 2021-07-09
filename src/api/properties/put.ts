@@ -4,9 +4,7 @@ import PropertyHandlers from "./interfaces";
 
 const put: PropertyHandlers["put"] = async (req, res, next) => {
   const { id } = req.params;
-  const { description, name, phoneNumber, priceByNight, availability, type } =
-    req.body;
-
+  const { description, name, phoneNumber, priceByNight, type } = req.body;
   try {
     await prisma.property.update({
       where: { id },
@@ -15,7 +13,6 @@ const put: PropertyHandlers["put"] = async (req, res, next) => {
         phoneNumber,
         description,
         priceByNight,
-        availability,
         type,
       },
     });

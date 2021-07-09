@@ -19,7 +19,6 @@ const seed = async () => {
 
   const addresses = new Array(50).fill("").map(() => {
     return {
-      city: faker.address.cityName(),
       lat: faker.address.latitude(),
       long: faker.address.longitude(),
       street: faker.address.streetName(),
@@ -34,7 +33,6 @@ const seed = async () => {
       title: faker.lorem.words(5),
       description: faker.lorem.sentence(),
       textSeo: faker.lorem.sentence(),
-      countryCode: faker.address.countryCode(),
     };
   });
 
@@ -71,23 +69,6 @@ const seed = async () => {
     },
   ];
 
-  const rooms = new Array(250).fill("").map(() => {
-    return {
-      name: faker.company.companyName(),
-      description: faker.lorem.text(),
-      capacity: faker.datatype.number(),
-      priceByNight: faker.datatype.number(),
-    };
-  });
-
-  const reservations = new Array(500).fill("").map(() => {
-    return {
-      startDate: faker.date.future().toISOString(),
-      endDate: faker.date.future().toISOString(),
-      customerCount: faker.datatype.number(),
-    };
-  });
-
   const comments = new Array(500).fill("").map(() => {
     return {
       comment: faker.lorem.text(),
@@ -95,21 +76,30 @@ const seed = async () => {
     };
   });
 
-  console.log("🌱 Generate 10 cities...");
-  const createdCities = await Promise.all(
-    cities.map((c) => {
-      return prisma.city.create({
-        data: c,
-      });
-    })
-  );
-
   // create countries
   console.log("🌱 Generate 3 countries...");
   const createdCountries = await Promise.all(
     countries.map((c) => {
       return prisma.country.create({
         data: c,
+      });
+    })
+  );
+
+  console.log("🌱 Generate 10 cities...");
+  const createdCities = await Promise.all(
+    cities.map((c) => {
+      return prisma.city.create({
+        data: {
+          ...c,
+          country: {
+            connect: {
+              id: createdCountries[
+                Math.floor(Math.random() * createdCountries.length)
+              ].id,
+            },
+          },
+        },
       });
     })
   );
@@ -157,10 +147,12 @@ const seed = async () => {
     })
   );
 
-  // create properties and rooms
+  // create properties and comments
   console.log("🌱 Generate 30 properties...");
   await Promise.all(
     properties.map((p, i) => {
+      const selectRandomUserId =
+        createdUsers[Math.floor(Math.random() * createdUsers.length)].id;
       const type = ["HOUSE", "SURFCAMP", "SURFSCHOOL"][
         Math.floor(Math.random() * 3)
       ] as PropertyType;
@@ -179,48 +171,10 @@ const seed = async () => {
                 .id,
             },
           },
-          ...(type === "SURFCAMP" && {
-            rooms: {
-              createMany: {
-                data: rooms.slice(i * 5, i * 5 + Math.floor(Math.random() * 8)),
-              },
-            },
-          }),
-        },
-      });
-    })
-  );
-
-  const createdRooms = await prisma.room.findMany();
-
-  // create reservations
-  console.log("🌱 Generate 500 reservations...");
-  await Promise.all(
-    reservations.map((r, i) => {
-      const selectRandomUserId =
-        createdUsers[Math.floor(Math.random() * createdUsers.length)].id;
-
-      const selectRandomRoomId =
-        createdRooms[Math.floor(Math.random() * createdRooms.length)].id;
-
-      return prisma.reservation.create({
-        data: {
-          ...r,
-          user: {
-            connect: {
-              id: selectRandomUserId,
-            },
-          },
-          room: {
-            connect: {
-              id: selectRandomRoomId,
-            },
-          },
-          comment: {
+          comments: {
             create: {
               ...comments[i],
               userId: selectRandomUserId,
-              roomId: selectRandomRoomId,
             },
           },
         },

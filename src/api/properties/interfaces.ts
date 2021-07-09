@@ -2,7 +2,6 @@ import {
   Address,
   Property,
   Feature,
-  Availability,
   PropertyType,
   Comment,
   Country,
@@ -15,7 +14,6 @@ interface ReqBodyPropertyPost {
   description: string;
   type: PropertyType;
   priceByNight: number;
-  availability: Availability;
   addressId: string;
   phoneNumber: string;
   address: Record<string, unknown>;
@@ -29,7 +27,6 @@ interface ReqBodyPropertyPut {
   addressId: string;
   userId: string;
   priceByNight: number;
-  availability: Availability;
   phoneNumber: string;
 }
 
