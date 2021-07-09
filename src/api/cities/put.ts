@@ -4,14 +4,14 @@ import CityHandlers from "./interfaces";
 
 const put: CityHandlers["put"] = async (req, res, next) => {
   const { id } = req.params;
-  const { name, description, countryCode, title, textSeo } = req.body;
+  const { name, description, countryId, title, textSeo } = req.body;
   try {
     await prisma.city.update({
       where: { id },
       data: {
         name,
         description,
-        countryCode,
+        countryId,
         title,
         textSeo,
       },
