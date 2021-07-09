@@ -80,14 +80,6 @@ const seed = async () => {
     };
   });
 
-  const reservations = new Array(500).fill("").map(() => {
-    return {
-      startDate: faker.date.future().toISOString(),
-      endDate: faker.date.future().toISOString(),
-      customerCount: faker.datatype.number(),
-    };
-  });
-
   const comments = new Array(500).fill("").map(() => {
     return {
       comment: faker.lorem.text(),
@@ -192,23 +184,25 @@ const seed = async () => {
   );
 
   const createdRooms = await prisma.room.findMany();
+  const createdProperties = await prisma.property.findMany();
 
   // create reservations
   console.log("🌱 Generate 500 reservations...");
   await Promise.all(
-    reservations.map((r, i) => {
-      const selectRandomUserId =
-        createdUsers[Math.floor(Math.random() * createdUsers.length)].id;
+    comments.map((r) => {
+      const selectRandomPropertyId =
+        createdProperties[Math.floor(Math.random() * createdProperties.length)]
+          .id;
 
       const selectRandomRoomId =
         createdRooms[Math.floor(Math.random() * createdRooms.length)].id;
 
-      return prisma.reservation.create({
+      return prisma.comment.create({
         data: {
           ...r,
-          user: {
+          property: {
             connect: {
-              id: selectRandomUserId,
+              id: selectRandomPropertyId,
             },
           },
           room: {
@@ -216,13 +210,13 @@ const seed = async () => {
               id: selectRandomRoomId,
             },
           },
-          comment: {
-            create: {
-              ...comments[i],
-              userId: selectRandomUserId,
-              roomId: selectRandomRoomId,
-            },
-          },
+          // comment: {
+          //   create: {
+          //     ...comments[i],
+          //     userId: selectRandomUserId,
+          //     roomId: selectRandomRoomId,
+          //   },
+          // },
         },
       });
     })
