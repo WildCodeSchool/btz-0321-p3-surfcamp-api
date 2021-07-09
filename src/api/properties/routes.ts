@@ -7,6 +7,7 @@ import controller from "./controller";
 const router = Router();
 
 router.get("/", controller.getAll);
+router.get("/search", controller.search);
 router.get("/:id", controller.getOne);
 router.get("/:id/features", controller.getFeatures);
 router.get("/:id/comments", controller.getComments);
@@ -16,6 +17,5 @@ router.get("/:id/country", controller.getCountry);
 router.post("/", bodyValidator(postPropertySchema), controller.post);
 router.put("/:id", bodyValidator(putPropertySchema), controller.put);
 router.delete("/:id", controller.delete);
-router.get("/search", controller.search);
 
 export default router;

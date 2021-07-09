@@ -1,33 +1,33 @@
-import { query, Request, Response } from "express";
 import prisma from "../../../prisma/prismaClient";
+import PropertyHandlers from "./interfaces";
 
-interface Iprops {
-  req: Request;
-  res: Response;
-}
+const search: PropertyHandlers["search"] = async (req, res, next) => {
+  const { search: keyWord } = req.query;
 
-export default search = async (req, res): Iprops => {
-  const keyWord = new query();
-
-  const keyWordLS = keyWord.toLowerCase();
-
-  const result = await prisma.property.findMany({
-    where: {
-      OR: [
-        {
-          address: {
-            city: {
-              name: {
-                contains: keyWordLS,
+  try {
+    const result = await prisma.property.findMany({
+      where: {
+        OR: [
+          {
+            address: {
+              city: {
+                name: {
+                  contains: keyWord?.toString(),
+                  mode: "insensitive",
+                },
               },
             },
           },
-        },
-      ],
-    },
-  });
+        ],
+      },
+    });
 
-  res.status(200).send(result);
+    res.status(200).send(result);
+  } catch (error) {
+    next(error);
+  }
 };
+
+export default search;
 
 //https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#or
