@@ -7,19 +7,23 @@ import UserHandlers from "./interfaces";
  * @tags users
  * @return {array<DisplayUser>} 200 - User list successfully retrieved
  */
-const getAll: UserHandlers["getAll"] = async (req, res) => {
-  const users = await prisma.user.findMany();
-  res.setHeader("X-Total-Count", users.length);
-  res.set({
-    "X-Total-Count": users.length,
-    "Access-Control-Expose-Headers": "X-Total-Count",
-  });
-  res.status(200).json(
-    users.map((user) => {
-      const { password, ...rest } = user;
-      return rest;
-    })
-  );
+const getAll: UserHandlers["getAll"] = async (req, res, next) => {
+  try {
+    const users = await prisma.user.findMany();
+    res.setHeader("X-Total-Count", users.length);
+    res.set({
+      "X-Total-Count": users.length,
+      "Access-Control-Expose-Headers": "X-Total-Count",
+    });
+    res.status(200).json(
+      users.map((user) => {
+        const { password, ...rest } = user;
+        return rest;
+      })
+    );
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default getAll;
