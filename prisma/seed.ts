@@ -35,6 +35,7 @@ const seed = async () => {
       textSeo: faker.lorem.sentence(),
     };
   });
+
   const cityPictures = new Array(10).fill("").map(() => {
     return {
       name: faker.lorem.words(5),
