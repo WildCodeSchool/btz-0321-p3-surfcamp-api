@@ -8,6 +8,7 @@ const router = Router();
 
 router.get("/", controller.getAll);
 router.get("/:id", controller.getOne);
+router.get("/:id/citypictures", controller.getCityPictures);
 router.post("/", bodyValidator(postCitySchema), controller.post);
 router.put("/:id", bodyValidator(putCitySchema), controller.put);
 router.delete("/:id", controller.delete);
