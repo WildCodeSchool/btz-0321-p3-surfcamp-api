@@ -190,7 +190,7 @@ const seed = async () => {
   );
 
   //create city pictures
-  console.log("🌱 Generate 20 users...");
+  console.log("🌱 Generate 10 city pictures...");
   await Promise.all(
     cityPictures.map((cp, i) => {
       return prisma.cityPicture.create({
