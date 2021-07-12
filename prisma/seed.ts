@@ -36,6 +36,13 @@ const seed = async () => {
     };
   });
 
+  const cityPictures = new Array(10).fill("").map(() => {
+    return {
+      name: faker.lorem.words(5),
+      url: faker.image.city(),
+    };
+  });
+
   const properties = new Array(30).fill("").map(() => {
     return {
       description: faker.company.catchPhraseDescriptor(),
@@ -175,6 +182,24 @@ const seed = async () => {
             create: {
               ...comments[i],
               userId: selectRandomUserId,
+            },
+          },
+        },
+      });
+    })
+  );
+
+  //create city pictures
+  console.log("🌱 Generate 20 users...");
+  await Promise.all(
+    cityPictures.map((cp, i) => {
+      return prisma.cityPicture.create({
+        data: {
+          ...cp,
+
+          city: {
+            connect: {
+              id: createdCities[i].id,
             },
           },
         },
