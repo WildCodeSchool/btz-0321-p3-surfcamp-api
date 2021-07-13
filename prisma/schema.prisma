@@ -63,11 +63,11 @@ model Property {
 
 model Country {
   id              String           @id @default(uuid())
-  name            String
-  title           String
-  description     String
-  textSeo         String
-  countryCode     String
+  name            String            @unique
+  title           String?
+  description     String?
+  textSeo         String?
+  countryCode     String?
   city            City[]
   address         Address[]
   countryPictures CountryPicture[]
@@ -86,9 +86,9 @@ model CountryPicture {
 model City {
   id           String        @id @default(uuid())
   name         String
-  title        String
-  description  String
-  textSeo      String
+  title        String?
+  description  String?
+  textSeo      String?
   country      Country      @relation(fields: [countryId], references: [id])
   countryId    String
   address      Address[]
