@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import expressJSDocSwagger from "express-jsdoc-swagger";
-
+import checkToken from "./middleware/checkToken";
 import errorHandler from "./middleware/errorHandler";
 import api from "./api";
 import options from "./swaggerOptions";
@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(helmet());
 app.use(express.json());
-
+app.use(checkToken);
 // Swagger documentation
 
 if (process.env.NODE_ENVV !== "test") {
