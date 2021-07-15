@@ -2,7 +2,7 @@ import prisma from "../../../prisma/prismaClient";
 import PropertyHandlers from "./interfaces";
 
 const search: PropertyHandlers["search"] = async (req, res, next) => {
-  const { city: keyWord } = req.query;
+  const { query: keyWord } = req.query;
 
   try {
     const result = await prisma.property.findMany({
@@ -16,6 +16,10 @@ const search: PropertyHandlers["search"] = async (req, res, next) => {
                   mode: "insensitive",
                 },
               },
+            },
+          },
+          {
+            address: {
               country: {
                 name: {
                   contains: keyWord?.toString(),
