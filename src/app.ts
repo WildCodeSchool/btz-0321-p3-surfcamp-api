@@ -13,7 +13,6 @@ const app = express();
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(helmet());
 app.use(express.json());
-app.use(checkToken);
 // Swagger documentation
 
 if (process.env.NODE_ENVV !== "test") {
@@ -21,6 +20,7 @@ if (process.env.NODE_ENVV !== "test") {
 }
 
 // Here is call the api folder wich contain all our Ressources.
+app.use(checkToken);
 app.use(api);
 
 // We call the error middleware after all the roads to be sur that all errors are catched.
