@@ -20,7 +20,7 @@ if (process.env.NODE_ENVV !== "test") {
 }
 
 // Here is call the api folder wich contain all our Ressources.
-app.use(checkToken);
+
 app.use(api);
 
 // We call the error middleware after all the roads to be sur that all errors are catched.
