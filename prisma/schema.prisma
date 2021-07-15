@@ -35,8 +35,8 @@ model Address {
   cityId       String
   street       String
   streetNumber String
-  lat          String
-  long         String
+  lat          String?
+  long         String?
   country      Country @relation(fields: [countryId], references: [id])
   countryId    String
   user         User?
@@ -159,5 +159,11 @@ enum Label {
   SURFSUIT
   RESTAURANT
   BICYCLE
+  PETALLOWED
+  NOPETALLOWED
+  SMOKING
+  NOSMOKING
+  PARTY
+  NOPARTY
   OTHER
 }
