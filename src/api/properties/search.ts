@@ -16,6 +16,12 @@ const search: PropertyHandlers["search"] = async (req, res, next) => {
                   mode: "insensitive",
                 },
               },
+              country: {
+                name: {
+                  contains: keyWord?.toString(),
+                  mode: "insensitive",
+                },
+              },
             },
           },
         ],

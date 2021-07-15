@@ -10,11 +10,10 @@ const getCityPictures: CityHandlers["getCityPictures"] = async (
   const { id } = req.params;
 
   try {
-    const cityPictures = await prisma.cityPicture.findUnique({
+    const cityPictures = await prisma.cityPicture.findMany({
       where: {
-        id,
+        cityId: id,
       },
-      rejectOnNotFound: true,
     });
     res.status(200).json(cityPictures);
   } catch (error) {
