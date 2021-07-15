@@ -8,8 +8,9 @@ interface register {
 }
 
 interface Login {
-  email: string;
-  password: string;
+  user: UserWithoutPassword;
+
+  token: string;
 }
 
 interface UserWithoutPassword {

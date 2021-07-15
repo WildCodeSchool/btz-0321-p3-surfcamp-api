@@ -1,15 +1,17 @@
 import prisma from "../../../prisma/prismaClient";
 
+import bcrypt from "bcrypt";
 import AuthHandlers from "./interfaces";
 
 const register: AuthHandlers["register"] = async (req, res, next) => {
   const { email, password, firstname, lastname } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
 
   try {
     const createdUser = await prisma.user.create({
       data: {
         email: email,
-        password: password,
+        password: hashedPassword,
         firstname: firstname,
         lastname: lastname,
       },
