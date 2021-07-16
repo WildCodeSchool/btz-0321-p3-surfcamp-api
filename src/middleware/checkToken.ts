@@ -5,7 +5,7 @@ function checkToken(req: any, res: any, next: NextFunction): any {
   try {
     const rawToken = req.headers.cookie;
     const token = rawToken?.split("=");
-    console.log(token);
+
     if (typeof token === "undefined") {
       throw new Error("You need to login.");
     }
