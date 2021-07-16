@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import expressJSDocSwagger from "express-jsdoc-swagger";
-import checkToken from "./middleware/checkToken";
 import errorHandler from "./middleware/errorHandler";
 import api from "./api";
 import options from "./swaggerOptions";
