@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import expressJSDocSwagger from "express-jsdoc-swagger";
-import checkToken from "./middleware/checkToken";
 import errorHandler from "./middleware/errorHandler";
 import api from "./api";
 import options from "./swaggerOptions";
@@ -20,7 +19,7 @@ if (process.env.NODE_ENVV !== "test") {
 }
 
 // Here is call the api folder wich contain all our Ressources.
-app.use(checkToken);
+
 app.use(api);
 
 // We call the error middleware after all the roads to be sur that all errors are catched.

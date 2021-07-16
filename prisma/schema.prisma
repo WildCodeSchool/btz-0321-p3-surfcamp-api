@@ -107,7 +107,7 @@ model CityPicture {
 
 model Feature {
   id         String   @id @default(uuid())
-  label      Label
+  label      String
   property   Property @relation(fields: [propertyId], references: [id])
   propertyId String
   iconUrl    String
@@ -146,24 +146,4 @@ enum PropertyType {
   SURFCAMP
   HOUSE
   SURFSCHOOL
-}
-
-enum Label {
-  WC
-  SHOWER
-  BATH
-  KITCHEN
-  LAUNDRY
-  WIFI
-  SURFBOARDS
-  SURFSUIT
-  RESTAURANT
-  BICYCLE
-  PETALLOWED
-  NOPETALLOWED
-  SMOKING
-  NOSMOKING
-  PARTY
-  NOPARTY
-  OTHER
 }
