@@ -38,7 +38,7 @@ export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
   getOne: RequestHandler<{ id: string }, Property, null>;
   getComments: RequestHandler<{ id: string }, Comment[], null>;
-  getAddresses: RequestHandler<{ id: string }, Address[], null>;
+  getAddresses: RequestHandler<{ id: string }, Address, null>;
   getCity: RequestHandler<{ id: string }, City, null>;
   getCountry: RequestHandler<{ id: string }, Country, null>;
   getFeatures: RequestHandler<{ id: string }, Feature[], null>;

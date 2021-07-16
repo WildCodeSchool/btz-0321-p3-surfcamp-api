@@ -9,12 +9,16 @@ const getAddresses: PropertyHandlers["getAddresses"] = async (
 ) => {
   const { id } = req.params;
   try {
-    const addresses = await prisma.address.findMany({
+    const addresses = await prisma.address.findFirst({
       where: {
         property: {
           id,
         },
       },
+      include: {
+        city: true,
+      },
+      rejectOnNotFound: true,
     });
     res.status(200).json(addresses);
   } catch (error) {
