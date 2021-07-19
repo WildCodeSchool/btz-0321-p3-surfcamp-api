@@ -2,11 +2,13 @@ import { Feature } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface ReqBodyFeaturePost {
+  label: string;
   propertyId: string;
   iconUrl: string;
 }
 
 interface ReqBodyFeaturePut {
+  label: string;
   propertyId: string;
   iconUrl: string;
 }
