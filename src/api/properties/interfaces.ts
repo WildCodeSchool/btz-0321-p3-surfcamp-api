@@ -44,6 +44,6 @@ export default interface PropertyHandlers {
   getFeatures: RequestHandler<{ id: string }, Feature[], null>;
   post: RequestHandler<Record<string, never>, Property, ReqBodyPropertyPost>;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPut>;
-  delete: RequestHandler<Params, null, null>;
+  delete: RequestHandler<{ id: string }, null, null>;
   search: RequestHandler<null, Property[], null>;
 }

@@ -15,10 +15,6 @@ interface ReqBodyPropertyPicturePut {
   propertyId: string;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface PropertyPictureHandlers {
   getAll: RequestHandler<null, PropertyPicture[], null>;
   getOne: RequestHandler<{ id: string }, PropertyPicture, null>;
@@ -28,5 +24,5 @@ export default interface PropertyPictureHandlers {
     ReqBodyPropertyPicturePost
   >;
   put: RequestHandler<{ id: string }, null, ReqBodyPropertyPicturePut>;
-  delete: RequestHandler<Params, null, null>;
+  delete: RequestHandler<{ id: string }, null, null>;
 }
