@@ -54,7 +54,7 @@ In this secion we will init Prisma and sync the database
   $ npx prisma migrate dev
 ```
 ---
-Be carreful if you allready have a database with the same name all your datas wiil be destoyed.
+Be careful if you already have a database with the same name all your datas will be destroyed.
 ---
 Say yes when the prompt ask you if you want to reset your DB.
 
