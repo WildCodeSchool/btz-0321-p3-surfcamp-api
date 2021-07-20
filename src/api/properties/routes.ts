@@ -3,6 +3,7 @@ import bodyValidator from "../../middleware/bodyValidator";
 import putPropertySchema from "../../JOI/property/putPropertySchemaJOI";
 import postPropertySchema from "../../JOI/property/postPropertySchemaJOI";
 import controller from "./controller";
+import checkToken from "../../middleware/checkToken";
 
 const router = Router();
 
@@ -14,8 +15,18 @@ router.get("/:id/comments", controller.getComments);
 router.get("/:id/addresses", controller.getAddresses);
 router.get("/:id/city", controller.getCity);
 router.get("/:id/country", controller.getCountry);
-router.post("/", bodyValidator(postPropertySchema), controller.post);
-router.put("/:id", bodyValidator(putPropertySchema), controller.put);
-router.delete("/:id", controller.delete);
+router.post(
+  "/",
+  checkToken,
+  bodyValidator(postPropertySchema),
+  controller.post
+);
+router.put(
+  "/:id",
+  checkToken,
+  bodyValidator(putPropertySchema),
+  controller.put
+);
+router.delete("/:id", checkToken, controller.delete);
 
 export default router;

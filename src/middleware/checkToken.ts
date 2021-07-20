@@ -1,7 +1,7 @@
-import { NextFunction } from "express";
+import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
 
-function checkToken(req: any, res: any, next: NextFunction): any {
+function checkToken(req: any, res: Response, next: NextFunction): any {
   try {
     const rawToken = req.headers.cookie;
     const token = rawToken?.split("=");
