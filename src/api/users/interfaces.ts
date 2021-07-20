@@ -1,40 +1,48 @@
-import { Address, Role } from ".prisma/client";
+import { Address, Role, Property } from ".prisma/client";
 import { RequestHandler } from "express";
 
 interface UserWithoutPassword {
   id: string;
-  firstname: string;
-  lastname: string;
+  firstname: string | null;
+  lastname: string | null;
   email: string;
-  picture: string;
+  picture: string | null;
   role: Role;
-  birthDate: Date;
-  phoneNumber: string;
+  birthDate: Date | null;
+  phoneNumber: string | null;
   createdAt: Date;
+  addressId?: string | null;
 }
 
 interface ReqBodyUserPost {
-  firstname: string;
-  lastname: string;
+  firstname?: string;
+  lastname?: string;
   email: string;
   password: string;
   confirmPassword: string;
-  picture: string;
+  picture: string | null;
   birthDate: string;
-  phoneNumber: string;
+  phoneNumber: string | null;
   address?: Address;
+  addressId?: string;
+  property?: Property;
+  propertyId?: string;
 }
 
 interface ReqBodyUserPut {
-  firstname: string;
-  lastname: string;
+  firstname?: string;
+  lastname?: string;
   email: string;
-  password: string;
-  picture: string;
+  password?: string;
+  picture: string | null;
   birthDate: string;
-  phoneNumber: string;
+  phoneNumber: string | null;
   role: Role;
   isActive: boolean;
+  address?: string;
+  addressId?: string;
+  propertyId?: string;
+  property?: string;
 }
 
 export default interface UserHandlers {

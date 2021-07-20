@@ -18,9 +18,8 @@ const post: UserHandlers["post"] = async (req, res, next) => {
     picture,
     birthDate,
     phoneNumber,
-    address,
+    addressId,
   } = req.body;
-
   try {
     if (password !== confirmPassword) {
       res.status(422);
@@ -36,13 +35,7 @@ const post: UserHandlers["post"] = async (req, res, next) => {
         picture,
         birthDate: new Date(birthDate).toISOString(),
         phoneNumber,
-        ...(address && {
-          address: {
-            create: {
-              ...address,
-            },
-          },
-        }),
+        addressId,
       },
     });
     const { password: pw, ...createdUserWithoutPassword } = createdUser;

@@ -3,13 +3,14 @@ import postUserSchema from "../../JOI/users/postUserSchemaJOI";
 import controller from "./controller";
 import putUserSchema from "../../JOI/users/putUserSchemaJOI";
 import bodyValidator from "../../middleware/bodyValidator";
+import checkToken from "../../middleware/checkToken";
 
 const router = Router();
 
-router.get("/", controller.getAll);
-router.get("/:id", controller.getOne);
-router.post("/", bodyValidator(postUserSchema), controller.post);
-router.put("/:id", bodyValidator(putUserSchema), controller.put);
-router.delete("/:id", controller.delete);
+router.get("/", checkToken, controller.getAll);
+router.get("/:id", checkToken, controller.getOne);
+router.post("/", checkToken, bodyValidator(postUserSchema), controller.post);
+router.put("/:id", checkToken, bodyValidator(putUserSchema), controller.put);
+router.delete("/:id", checkToken, controller.delete);
 
 export default router;

@@ -1,8 +1,7 @@
 import Joi from "joi";
 
 const putFeatureSchema = Joi.object().keys({
-  label: Joi.string(),
-  type: Joi.string(),
+  label: Joi.string().min(1).max(50),
   propertyId: Joi.string(),
   iconUrl: Joi.string(),
 });

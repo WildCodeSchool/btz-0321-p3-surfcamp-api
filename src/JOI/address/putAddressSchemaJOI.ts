@@ -1,13 +1,13 @@
 import Joi from "joi";
 
 const putAddressSchema = Joi.object().keys({
-  zipcode: Joi.string().required(),
-  city: Joi.string().required(),
-  street: Joi.string().required(),
-  streetNumber: Joi.string().required(),
-  lat: Joi.string().required(),
-  long: Joi.string().required(),
-  countryCode: Joi.string().required(),
+  zipcode: Joi.string(),
+  street: Joi.string(),
+  streetNumber: Joi.string(),
+  lat: Joi.string(),
+  long: Joi.string(),
+  cityId: Joi.string(),
+  countryId: Joi.string(),
 });
 
 export default putAddressSchema;

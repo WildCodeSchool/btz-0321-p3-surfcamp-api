@@ -16,6 +16,10 @@ const getOne: UserHandlers["getOne"] = async (req, res, next) => {
       where: {
         id,
       },
+      include: {
+        address: true,
+        property: true,
+      },
       rejectOnNotFound: true,
     });
 

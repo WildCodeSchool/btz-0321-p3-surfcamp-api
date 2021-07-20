@@ -2,23 +2,27 @@ import prisma from "../../../prisma/prismaClient";
 
 import AddressHandlers from "./interfaces";
 
-const post: AddressHandlers["post"] = async (req, res) => {
-  const { city, countryCode, lat, long, street, streetNumber, zipcode } =
+const post: AddressHandlers["post"] = async (req, res, next) => {
+  const { cityId, countryId, lat, long, street, streetNumber, zipcode } =
     req.body;
 
-  const createdAddress = await prisma.address.create({
-    data: {
-      city,
-      countryCode,
-      lat,
-      zipcode,
-      streetNumber,
-      street,
-      long,
-    },
-  });
+  try {
+    const createdAddress = await prisma.address.create({
+      data: {
+        cityId,
+        countryId,
+        lat,
+        zipcode,
+        streetNumber,
+        street,
+        long,
+      },
+    });
 
-  res.status(201).json(createdAddress);
+    res.status(201).json(createdAddress);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default post;

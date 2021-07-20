@@ -10,7 +10,7 @@ import UserHandlers from "./interfaces";
  * @param {UpdateUser} request.body.required - User info
  * @return {object} 204 - User successfully updated
  */
-const put: UserHandlers["put"] = async (req, res) => {
+const put: UserHandlers["put"] = async (req, res, next) => {
   const { id } = req.params;
   const {
     firstname,
@@ -22,6 +22,7 @@ const put: UserHandlers["put"] = async (req, res) => {
     phoneNumber,
     role,
     isActive,
+    addressId,
   } = req.body;
 
   try {
@@ -34,15 +35,16 @@ const put: UserHandlers["put"] = async (req, res) => {
         email,
         picture,
         password,
-        birthDate,
+        birthDate: new Date(birthDate).toISOString(),
         phoneNumber,
         role,
+        addressId,
       },
     });
 
     res.sendStatus(204);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 };
 

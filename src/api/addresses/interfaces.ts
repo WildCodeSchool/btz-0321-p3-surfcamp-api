@@ -3,24 +3,24 @@ import { RequestHandler } from "express";
 
 interface ReqBodyAddressPost {
   zipcode: string;
-  city: string;
+  cityId: string;
   street: string;
   streetNumber: string;
   lat: string;
   long: string;
-  countryCode: string;
+  countryId: string;
   userId?: string;
   propertyId?: string;
 }
 
 interface ReqBodyAddressPut {
   zipcode: string;
-  city: string;
+  cityId: string;
   street: string;
   streetNumber: string;
   lat: string;
   long: string;
-  countryCode: string;
+  countryId: string;
   userId?: string;
   propertyId?: string;
 }

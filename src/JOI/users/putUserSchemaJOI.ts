@@ -1,15 +1,19 @@
 import Joi from "joi";
 
 const putUserSchema = Joi.object().keys({
-  firstname: Joi.string().min(1).max(50),
-  lastname: Joi.string().min(1).max(50),
-  email: Joi.string().email(),
-  password: Joi.string().min(6).max(30),
-  picture: Joi.string(),
-  birthDate: Joi.date().iso(),
+  firstname: Joi.string().alphanum().min(3).max(30),
+  lastname: Joi.string().alphanum().min(3).max(30),
+  email: Joi.string().email({ allowUnicode: false }),
+  password: Joi.string(),
+  birthDate: Joi.date().iso().min("1-1-1900").max("now"),
   phoneNumber: Joi.string(),
+  picture: Joi.string().uri(),
+  addressId: Joi.string(),
   role: Joi.string(),
-  isActive: Joi.boolean(),
+  isActive: Joi.bool(),
+  address: Joi.any(),
+  property: Joi.any(),
+  reservations: Joi.any(),
 });
 
 export default putUserSchema;

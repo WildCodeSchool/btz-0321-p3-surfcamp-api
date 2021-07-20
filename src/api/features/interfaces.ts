@@ -3,14 +3,12 @@ import { RequestHandler } from "express";
 
 interface ReqBodyFeaturePost {
   label: string;
-  type: string;
   propertyId: string;
   iconUrl: string;
 }
 
 interface ReqBodyFeaturePut {
   label: string;
-  type: string;
   propertyId: string;
   iconUrl: string;
 }
