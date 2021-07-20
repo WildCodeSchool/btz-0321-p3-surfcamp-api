@@ -36,7 +36,7 @@ To run this project, you will need to add the following environment variables to
 
 `DATABASE_URL="postgresql://username:password@IP:port/database?schema=public"`
 
-Dont forget to replace "username, password, database, port,IP" with your personnals postgreSQL credentials.
+Don't forget to replace "username, password, database, port,IP" with your personnals postgreSQL credentials.
 
 You need a postgreSQL database with at leat one table to init Prisma.
 
@@ -65,7 +65,7 @@ Now you can run the dev environment with this command :
 ```
 
 
-If nothins went wrong you should see something like this 
+If nothing went wrong you should see something like this 
 
 ```bash
 > surfcamp-api@1.0.0 dev
@@ -192,7 +192,7 @@ City pictures
 
 
 
-Coutries
+Countries
 ---
 #### Get all coutries
 ```http
