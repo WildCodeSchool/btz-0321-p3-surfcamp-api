@@ -1,0 +1,21 @@
+GET http://localhost:5000/users/
+
+
+###
+POST http://localhost:5000/auth/login 
+Content-Type: application/json
+
+{
+    "email":"admin@admin.fr",
+    "password":"adminAAA123"
+}
+
+
+###
+POST http://localhost:5000/auth/login 
+Content-Type: application/json
+
+{
+    "email":"Albina99@yahooo.com",
+    "password":"cmTey9RucEMfVoS"
+}

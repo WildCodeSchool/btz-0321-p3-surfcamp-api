@@ -9,8 +9,9 @@ function checkToken(req: any, res: Response, next: NextFunction): any {
     if (typeof token === "undefined") {
       throw new Error("You need to login.");
     }
+    const index = token.indexOf("token");
 
-    req.user = jwt.verify(token[1], process.env.TOKEN_SECRET as string);
+    req.user = jwt.verify(token[index + 1], process.env.TOKEN_SECRET as string);
 
     return next();
   } catch (err) {
