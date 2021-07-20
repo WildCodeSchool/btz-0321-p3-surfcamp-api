@@ -2,6 +2,14 @@ import prisma from "../../../prisma/prismaClient";
 
 import PropertyHandlers from "./interfaces";
 
+/**
+ * GET /adresses/{id}
+ * @summary View one address
+ * @tags address
+ * @param {string} id.path - id of wanted address
+ * @return {DisplayAddress} 200 - address successfully retrieved
+ */
+
 const getAddresses: PropertyHandlers["getAddresses"] = async (
   req,
   res,

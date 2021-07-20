@@ -1,6 +1,13 @@
 import prisma from "../../../prisma/prismaClient";
 import PropertyHandlers from "./interfaces";
 
+/**
+ * GET /properties
+ * @summary View all properties
+ * @tags properties
+ * @return {array<DisplayProperty>} 200 - Property list successfully retrieved
+ */
+
 const getAll: PropertyHandlers["getAll"] = async (req, res, next) => {
   const { limit } = req.query;
 

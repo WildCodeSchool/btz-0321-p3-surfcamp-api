@@ -31,6 +31,7 @@ import deleteOne from "./delete";
  * @property {string} birthDate - "2021-05-17T07:06:24.054Z"
  * @property {string} email - "jmoconnor@ftm.com"
  * @property {string} phoneNumber - "+33601020304"
+ * @property {string} addressId -""
  */
 
 /**
