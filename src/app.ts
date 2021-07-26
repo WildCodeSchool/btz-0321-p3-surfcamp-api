@@ -5,10 +5,12 @@ import expressJSDocSwagger from "express-jsdoc-swagger";
 import errorHandler from "./middleware/errorHandler";
 import api from "./api";
 import options from "./swaggerOptions";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 // Basics middlewares needed to build our api
+app.use(cookieParser());
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(helmet());
 app.use(express.json());
