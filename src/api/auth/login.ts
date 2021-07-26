@@ -26,7 +26,7 @@ const login: AuthHandlers["login"] = async (req, res, next) => {
       {
         email: user.email,
         id: user.id,
-        role: "USER",
+        role: user.role,
       },
       process.env.TOKEN_SECRET as string,
       {

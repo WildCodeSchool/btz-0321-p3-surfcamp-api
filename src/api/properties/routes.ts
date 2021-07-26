@@ -4,7 +4,7 @@ import putPropertySchema from "../../JOI/property/putPropertySchemaJOI";
 import postPropertySchema from "../../JOI/property/postPropertySchemaJOI";
 import controller from "./controller";
 import checkToken from "../../middleware/checkToken";
-
+import checkRole from "../../middleware/checkRole";
 const router = Router();
 
 router.get("/", controller.getAll);
@@ -27,6 +27,6 @@ router.put(
   bodyValidator(putPropertySchema),
   controller.put
 );
-router.delete("/:id", checkToken, controller.delete);
+router.delete("/:id", checkToken, checkRole, controller.delete);
 
 export default router;
