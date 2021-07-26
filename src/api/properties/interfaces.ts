@@ -30,10 +30,6 @@ interface ReqBodyPropertyPut {
   phoneNumber: string;
 }
 
-interface Params {
-  id: string;
-}
-
 export default interface PropertyHandlers {
   getAll: RequestHandler<null, Property[], null>;
   getOne: RequestHandler<{ id: string }, Property, null>;
