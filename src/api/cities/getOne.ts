@@ -2,6 +2,14 @@ import prisma from "../../../prisma/prismaClient";
 
 import CityHandlers from "./interfaces";
 
+/**
+ * GET cities/{id}
+ * @summary View of one city
+ * @tags cities
+ * @param {string} id.path - id of wanted city
+ * @return {DisplayCity} 200 - city successfully retrieved
+ */
+
 const getOne: CityHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
 

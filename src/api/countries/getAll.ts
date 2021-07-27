@@ -2,6 +2,13 @@ import prisma from "../../../prisma/prismaClient";
 
 import CountryHandlers from "./interfaces";
 
+/**
+ * GET /countries
+ * @summary View af all countries
+ * @tags countries
+ * @return {array <DisplayCountry>} 200 - countries list successfully retrieved
+ */
+
 const getAll: CountryHandlers["getAll"] = async (req, res, next) => {
   try {
     const countries = await prisma.country.findMany();
