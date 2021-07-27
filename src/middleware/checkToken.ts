@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 function checkToken(req: any, res: Response, next: NextFunction): any {
   try {
-    const { token } = req.cookie;
+    const { token } = req.cookies;
 
     if (typeof token === "undefined") {
       throw new Error("You need to login.");
