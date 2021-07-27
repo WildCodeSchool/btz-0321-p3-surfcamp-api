@@ -33,17 +33,19 @@ Install dependencies
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL="postgresql://username:password@IP:port/database?schema=public"`
+`DATABASE_URL="postgresql://postgres:postgres@localhost:5432/surfcamp?schema=public"`
+`TOKEN_SECRET=secretToken`
+`ORIGINS=ServerWhereYouWork`
 
-Don't forget to replace "username, password, database, port,IP" with your personnals postgreSQL credentials.
+You need a postgreSQL database with at least one table to init Prisma.
 
-You need a postgreSQL database with at leat one table to init Prisma.
+You need to replace 'secretToken' by the provided secret token ;)
+
+You need to replace 'ServerWhereYouWork' by all server that you use for work like localhost:3000 (don't forget to split the different server used by a coma and without space).
 
 ---
-RUN YOUR DATABASE BEFORE INIT
----
 
-
+## RUN YOUR DATABASE BEFORE INIT
 
 ## Database ORM Init
 
@@ -52,19 +54,20 @@ In this secion we will init Prisma and sync the database
 ```bash
   $ npx prisma migrate dev
 ```
+
 ---
-Be careful if you already have a database with the same name all your datas will be destroyed.
----
+
+## Be careful if you already have a database with the same name all your datas will be destroyed.
+
 Say yes when the prompt ask you if you want to reset your DB.
 
+Now you can run the dev environment with this command :
 
-Now you can run the dev environment with this command : 
 ```bash
   npm run dev
 ```
 
-
-If nothing went wrong you should see something like this 
+If nothing went wrong you should see something like this
 
 ```bash
 > surfcamp-api@1.0.0 dev
@@ -72,12 +75,15 @@ If nothing went wrong you should see something like this
 [INFO] 21:57:37 ts-node-dev ver. 1.1.6 (using ts-node ver. 9.1.1, typescript ver. 4.3.2)
 Server running on http://localhost:5000
 ```
------
-## //  API Reference. //
------
 
-Properties
---
+---
+
+## // API Reference. //
+
+---
+
+## Properties
+
 #### Get all properties
 
 ```http
@@ -94,8 +100,8 @@ Properties
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-Addresses
----
+## Addresses
+
 #### Get all addresses
 
 ```http
@@ -112,11 +118,10 @@ Addresses
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## Rooms
 
-
-Rooms
-----
 #### Get all rooms
+
 ```http
   GET /rooms
 ```
@@ -131,8 +136,8 @@ Rooms
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-Users
----
+## Users
+
 #### Get all users
 
 ```http
@@ -149,10 +154,10 @@ Users
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## Cities
 
-Cities
----
 #### Get all cities
+
 ```http
   GET /cities
 ```
@@ -163,16 +168,14 @@ Cities
   GET /cities/:id
 ```
 
-
-
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## City pictures
 
-City pictures
----
 #### Get all city pictures
+
 ```http
   GET /citypictures
 ```
@@ -183,17 +186,14 @@ City pictures
   GET /citypictures/:id
 ```
 
-
-
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## Countries
 
-
-Countries
----
 #### Get all coutries
+
 ```http
   GET /countries
 ```
@@ -204,16 +204,14 @@ Countries
   GET /country/:id
 ```
 
-
-
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## Country Pictures
 
-Country Pictures
----
 #### Get all coutry pictures
+
 ```http
   GET /countrypictures
 ```
@@ -224,25 +222,16 @@ Country Pictures
   GET /countrypictures/:id
 ```
 
-
-
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
+## SEARCH
 
-
-
-SEARCH
---
 ```http
   GET /properties/search/?search=ressource
 ```
 
-
-| query | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `ressource`      | `query string` | **Required**. name of ressource to fetch |
-
-
-
+| query       | Type           | Description                              |
+| :---------- | :------------- | :--------------------------------------- |
+| `ressource` | `query string` | **Required**. name of ressource to fetch |
