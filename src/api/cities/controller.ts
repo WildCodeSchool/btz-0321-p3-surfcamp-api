@@ -24,7 +24,7 @@ import deleteOne from "./delete";
 
 /**
  * a city (for Post body)
- * @typedef {object} CreateCity
+ * @typedef {object} PostCity
  * @property {string} name
  * @property {string} description
  * @property {string} countryId

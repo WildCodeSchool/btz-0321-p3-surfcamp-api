@@ -29,7 +29,7 @@ import search from "./search";
 
 /**
  * A property (for POST body)
- * @typedef {object} CreateProperty
+ * @typedef {object} PostProperty
  * @property {string} name -"Beach House"
  * @property {string} description -"this is a beautiful place in front of the beach"
  * @property {string} type -"SURFHOUSE"

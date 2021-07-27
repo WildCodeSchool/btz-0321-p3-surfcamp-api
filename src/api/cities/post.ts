@@ -7,7 +7,7 @@ import CityHandlers from "./interfaces";
  * @summary Create one city
  * @tags cities
  * @param {PostCity} request.body.required - City info
- * @return {DisplatCIty} 201 - city successfully created
+ * @return {DisplayCity} 201 - city successfully created
  */
 
 const post: CityHandlers["post"] = async (req, res, next) => {

@@ -3,10 +3,10 @@ import prisma from "../../../prisma/prismaClient";
 import CityHandlers from "./interfaces";
 
 /**
- * GET /cities
+ * GET /cities/
  * @summary View af all cities
  * @tags cities
- * @return {array <DisplayCity>} 200- Cities list successfully retrieved
+ * @return {array <DisplayCity>} 200 - Cities list successfully retrieved
  */
 
 const getAll: CityHandlers["getAll"] = async (req, res, next) => {
