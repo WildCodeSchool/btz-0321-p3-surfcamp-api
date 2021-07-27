@@ -11,33 +11,33 @@ generator client {
 }
 
 model User {
-  id           String        @id @default(uuid())
-  firstname    String?
-  lastname     String?
-  email        String        @unique
-  password     String
-  picture      String?
-  role         Role          @default(USER)
-  birthDate    DateTime?
-  isActive     Boolean       @default(false)
-  phoneNumber  String?
-  address      Address?      @relation(fields: [addressId], references: [id])
-  addressId    String?
-  property     Property[]
-  comments     Comment[]
-  createdAt    DateTime      @default(now())
+  id          String     @id @default(uuid())
+  firstname   String?
+  lastname    String?
+  email       String     @unique
+  password    String
+  picture     String?
+  role        Role       @default(USER)
+  birthDate   DateTime?
+  isActive    Boolean    @default(false)
+  phoneNumber String?
+  address     Address?   @relation(fields: [addressId], references: [id])
+  addressId   String?
+  property    Property[]
+  comments    Comment[]
+  createdAt   DateTime   @default(now())
 }
 
 model Address {
   id           String    @id @default(uuid())
   zipcode      String
-  city         City       @relation(fields: [cityId], references: [id])
+  city         City      @relation(fields: [cityId], references: [id])
   cityId       String
   street       String
   streetNumber String
   lat          String?
   long         String?
-  country      Country @relation(fields: [countryId], references: [id])
+  country      Country   @relation(fields: [countryId], references: [id])
   countryId    String
   user         User?
   property     Property?
@@ -46,9 +46,9 @@ model Address {
 
 model Property {
   id           String            @id @default(uuid())
-  name         String              //name of the property
+  name         String //name of the property
   description  String
-  type         PropertyType        //type of the property, ex : Surfcamp/House/Flat/...
+  type         PropertyType //type of the property, ex : Surfcamp/House/Flat/...
   priceByNight Decimal           @db.Money
   pictures     PropertyPicture[]
   address      Address           @relation(fields: [addressId], references: [id])
@@ -57,13 +57,13 @@ model Property {
   comments     Comment[]
   phoneNumber  String
   createdAt    DateTime          @default(now())
-  User         User             @relation(fields: [userId], references: [id])
+  User         User              @relation(fields: [userId], references: [id])
   userId       String
 }
 
 model Country {
   id              String           @id @default(uuid())
-  name            String            @unique
+  name            String           @unique
   title           String?
   description     String?
   textSeo         String?
@@ -89,7 +89,7 @@ model City {
   title        String?
   description  String?
   textSeo      String?
-  country      Country      @relation(fields: [countryId], references: [id])
+  country      Country       @relation(fields: [countryId], references: [id])
   countryId    String
   address      Address[]
   cityPictures CityPicture[]
@@ -125,14 +125,14 @@ model PropertyPicture {
 }
 
 model Comment {
-  id            String      @id @default(uuid())
-  comment       String      @db.Text
-  rate          Int
-  user          User        @relation(fields: [userId], references: [id])
-  userId        String
-  property      Property?   @relation(fields: [propertyId], references: [id])
-  propertyId    String?
-  createdAt     DateTime    @default(now())
+  id         String    @id @default(uuid())
+  comment    String    @db.Text
+  rate       Int
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String
+  property   Property? @relation(fields: [propertyId], references: [id])
+  propertyId String?
+  createdAt  DateTime  @default(now())
 }
 
 enum Role {
