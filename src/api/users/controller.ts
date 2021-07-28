@@ -22,7 +22,7 @@ import deleteOne from "./delete";
 
 /**
  * A user (for POST body)
- * @typedef {object} CreateUser
+ * @typedef {object} PostUser
  * @property {string} firstname - "Jean-Michel"
  * @property {string} lastname - "O'Connor de la Tour"
  * @property {string} password - "asdfashdyjfsefswefg"
@@ -31,6 +31,7 @@ import deleteOne from "./delete";
  * @property {string} birthDate - "2021-05-17T07:06:24.054Z"
  * @property {string} email - "jmoconnor@ftm.com"
  * @property {string} phoneNumber - "+33601020304"
+ * @property {string} addressId -""
  */
 
 /**

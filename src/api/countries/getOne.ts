@@ -2,6 +2,14 @@ import prisma from "../../../prisma/prismaClient";
 
 import CountryHandlers from "./interfaces";
 
+/**
+ * GET /countries/{id}
+ * @summary View of one country
+ * @tags countries
+ * @param {string} id.path - id of wanted country
+ * @return {DisplayCountry} 200 - country successfully retrieved
+ */
+
 const getOne: CountryHandlers["getOne"] = async (req, res, next) => {
   const { id } = req.params;
 
