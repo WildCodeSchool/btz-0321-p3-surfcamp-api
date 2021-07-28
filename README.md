@@ -27,15 +27,48 @@ Install dependencies
   npm install
 ```
 
+## Docker local development
 
+If you don't have any postgres database running on your system, you can download docker and run docker-compose to build a container with a postgres database. 
+You can find the database credentials in the docker-compose.yml file in our repo.
+
+```bash
+version: "3.1"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/data/postgres
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    environment:
+      ADMINER_DESIGN: mvt
+
+volumes:
+  postgres:
+```
+
+---
 
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL="postgresql://login:password@ip:5432/surfcamp?schema=public"`
+`DATABASE_URL="postgresql://login:password@ip:port/databasename?schema=public"`
 
-example in development: `DATABASE_URL="postgresql://postgres:postgres@localhost:5432/surfcamp?schema=public"`
+example in development:
+`DATABASE_URL="postgresql://postgres:postgres@localhost:5432/surfcamp?schema=public"`
 
 `TOKEN_SECRET=secretToken`
 
