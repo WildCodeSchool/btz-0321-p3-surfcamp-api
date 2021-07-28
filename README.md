@@ -30,7 +30,7 @@ Install dependencies
 ## Docker local development
 
 If you don't have any postgres database running on your system, you can download docker and run docker-compose to build a container with a postgres database. 
-You can find the database credentials in the docker-compose.yml file in our repo.
+You can find the database credentials in the docker-compose.yml file here.
 
 ```bash
 version: "3.1"
