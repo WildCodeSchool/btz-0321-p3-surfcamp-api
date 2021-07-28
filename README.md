@@ -33,8 +33,12 @@ Install dependencies
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`DATABASE_URL="postgresql://postgres:postgres@localhost:5432/surfcamp?schema=public"`
+`DATABASE_URL="postgresql://login:password@ip:5432/surfcamp?schema=public"`
+
+example in development: `DATABASE_URL="postgresql://postgres:postgres@localhost:5432/surfcamp?schema=public"`
+
 `TOKEN_SECRET=secretToken`
+
 `ORIGINS=ServerWhereYouWork`
 
 You need a postgreSQL database with at least one table to init Prisma.
