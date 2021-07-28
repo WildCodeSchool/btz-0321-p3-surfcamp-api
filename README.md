@@ -30,7 +30,7 @@ Install dependencies
 
 ## What you need to know
 
-This api is link with :
+This api is linked with :
 
 https://github.com/WildCodeSchool/btz-0321-p3-surfcamp
 
