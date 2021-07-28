@@ -26,10 +26,23 @@ Install dependencies
 ```bash
   npm install
 ```
+---
+
+## What you need to know
+
+This api is link with :
+
+https://github.com/WildCodeSchool/btz-0321-p3-surfcamp
+
+and
+
+https://github.com/WildCodeSchool/btz-0321-p3-surfcamp-admin
+
+---
 
 ## Docker local development
 
-If you don't have any postgres database running on your system, you can download docker and run docker-compose to build a container with a postgres database. 
+If you don't have any postgres database running on your system, you can download docker and run docker-compose to build a container with a postgres database.
 You can find the database credentials in the docker-compose.yml file here.
 
 ```bash
