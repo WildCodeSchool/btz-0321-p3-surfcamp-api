@@ -1,16 +1,36 @@
 /* eslint-disable no-console */
-import { PrismaClient, PropertyType } from "@prisma/client";
+import { PrismaClient, PropertyType, Role } from "@prisma/client";
 import faker from "faker";
+import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
 const seed = async () => {
+  // this first bloc create an user with role : "ADMIN" , email : "admin@admin.fr", password "Admin123".
+
+  const newUser = {
+    firstname: faker.name.firstName(),
+    lastname: faker.name.lastName(),
+    email: "admin@admin.fr",
+    role: Role.ADMIN,
+    password: bcrypt.hashSync("Admin123", 10),
+    picture: faker.image.avatar(),
+    birthDate: faker.date.past().toISOString(),
+    phoneNumber: faker.phone.phoneNumber(),
+  };
+  console.log("🌱 Generate 1 ADMIN...");
+  await prisma.user.create({
+    data: newUser,
+  });
+
+  // ----------------------
+
   const users = new Array(20).fill("").map(() => {
     return {
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password(),
+      password: bcrypt.hashSync(faker.internet.password(), 10),
       picture: faker.image.avatar(),
       birthDate: faker.date.past().toISOString(),
       phoneNumber: faker.phone.phoneNumber(),
